@@ -67,7 +67,7 @@
     
   });
 
-  if (isset('form#tt-client-yakassa')){
+  if ($('form#tt-client-yakassa').length > 0){
     var $form = $('form#tt-client-yakassa');
     var $monthControl = $form.find('[data-month-count]');
     var $sumControl = $form.find('[data-tariff-sum]');
@@ -121,7 +121,7 @@
     });
   }
 
-  if (isset('#tt-client-openbank')){
+  if ($('#tt-client-openbank').length > 0){
     $(document).on('change', '#select-payment-client', function(){
       var $this = $(this);
       var $form = $this.closest('form');
@@ -260,7 +260,7 @@
     });
   });
 
-  if(isset('.jstree')){
+  if ($('.jstree').length > 0){
     console.log('Init JSTree');
     $('.jstree').jstree({"core" : {"check_callback" : true}}).on('changed.jstree', function (e, data) {
       var tree = $(this).jstree(true);
@@ -321,7 +321,7 @@
   });
 
   /* Сортируемый список */
-  if(isset('[data-list]')){
+  if ($('[data-list]').length > 0){
     if (typeof(listjs) == 'undefined'){
       var listjs = [];
     }
@@ -350,7 +350,7 @@
     });
   }
 
-  if(isset('#coach_noty_toggle')){
+  if ($('#coach_noty_toggle').length > 0){
     var elems = Array.prototype.slice.call(document.querySelectorAll('#coach_noty_toggle input'));
 
     elems.forEach(function(html) {
@@ -378,7 +378,7 @@
 
   }
 
-  if (isset('#loginform .login-remember input[name="rememberme"]')){
+  if ($('#loginform .login-remember input[name="rememberme"]').length > 0){
     var elems = Array.prototype.slice.call(document.querySelectorAll('#loginform .login-remember input[name="rememberme"]'));
 
     elems.forEach(function(html) {
@@ -386,7 +386,7 @@
     });
   }
 
-  if (isset('#member_training_peaks')){
+  if ($('#member_training_peaks').length > 0){
     var member_switcher = Array.prototype.slice.call(document.querySelectorAll('#member_training_peaks input'));
 
     member_switcher.forEach(function(html) {
@@ -400,6 +400,8 @@
       var state = (input.is(":checked")) ? 0 : 1;
       var isDisabled = input.prop('disabled');
       var options = input.data('form');
+
+      console.log(options);
 
       if (isDisabled) {
         // получает выбранный период подписки

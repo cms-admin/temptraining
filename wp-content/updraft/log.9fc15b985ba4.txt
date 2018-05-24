@@ -1,0 +1,238 @@
+0000.000 (0) Opened log file at time: Sat, 19 May 2018 18:13:16 +0000 on https://temptraining.ru
+0000.004 (0) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.14.7 WP: 4.9.6 PHP: 7.0.19 (cgi-fcgi, Linux vip8.hosting.reg.ru 2.6.32-696.18.7.el6.x86_64 #1 SMP Thu Jan 4 17:31:22 UTC 2018 x86_64) MySQL: 5.6.39 WPLANG: ru_RU Server: Apache/2.2.15 (CentOS) safe_mode: 0 max_execution_time: 900 memory_limit: 256M (used: 12.6M | 10M) multisite: N openssl: OpenSSL 1.0.1e-fips 11 Feb 2013 mcrypt: Y LANG:  ZipArchive::addFile: Y
+0000.006 (0) Free space on disk containing Updraft's temporary directory: 241420.4 MB
+0000.009 (0) Tasks: Backup files:  (schedule: fortnightly) Backup DB: 1 (schedule: daily)
+0000.011 (0) Processed schedules. Tasks now: Backup files:  Backup DB: 1
+0000.023 (0) Requesting semaphore lock (d) (apparently via scheduler: last_scheduled_action_called_at=1526666891, seconds_ago=86705)
+0000.025 (0) Set semaphore last lock (d) time to 2018-05-19 18:13:17
+0000.028 (0) Semaphore lock (d) complete
+0000.034 (0) Backup run: resumption=0, nonce=9fc15b985ba4, begun at=1526753596 (1s ago), job type=backup
+0000.036 (0) Scheduling a resumption (1) after 300 seconds (1526753897) in case this run gets aborted
+0000.053 (0) This backup run is not intended for files - skipping
+0000.054 (0) Beginning creation of database dump (WordPress DB)
+0000.057 (0) Testing: /usr/bin/mysqldump
+0000.132 (0) Output: /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;\n/*!40103 SET TIME_ZONE='+00:00' */;\n/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;\n/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;\n/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;\n/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;\nDROP TABLE IF EXISTS `xsp_options`;\n/*!40101 SET @saved_cs_client     = @@character_set_client */;\n/*!40101 SET character_set_client = utf8 */;\nCR (truncated - 1193 bytes total)
+0000.151 (0) Working binary mysqldump found: /usr/bin/mysqldump
+0000.213 (0) Table xsp_options: Total expected rows (approximate): 1061
+0001.326 (0) Table xsp_options: Total rows added: 1057 in 1.11 seconds
+0001.329 (0) Table xsp_options: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_options.table.gz - 592.5 KB)
+0001.336 (0) Table xsp_users: Total expected rows (approximate): 225
+0001.390 (0) Table xsp_users: Total rows added: 225 in 0.05 seconds
+0001.392 (0) Table xsp_users: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_users.table.gz - 14.4 KB)
+0001.398 (0) Table xsp_usermeta: Total expected rows (approximate): 5459
+0002.254 (0) Table xsp_usermeta: Total rows added: 5459 in 0.85 seconds
+0002.256 (0) Table xsp_usermeta: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_usermeta.table.gz - 64.3 KB)
+0002.268 (0) Table xsp_commentmeta: Total expected rows (approximate): 0
+0002.296 (0) Table xsp_commentmeta: Total rows added: 0 in 0.03 seconds
+0002.298 (0) Table xsp_commentmeta: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_commentmeta.table.gz - 0.4 KB)
+0002.315 (0) Table xsp_comments: Total expected rows (approximate): 0
+0002.338 (0) Table xsp_comments: Total rows added: 0 in 0.02 seconds
+0002.340 (0) Table xsp_comments: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_comments.table.gz - 0.5 KB)
+0002.352 (0) Table xsp_links: Total expected rows (approximate): 0
+0002.384 (0) Table xsp_links: Total rows added: 0 in 0.03 seconds
+0002.387 (0) Table xsp_links: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_links.table.gz - 0.4 KB)
+0002.393 (0) Table xsp_postmeta: Total expected rows (approximate): 6294
+0007.872 (0) Table xsp_postmeta: Total rows added: 6294 in 5.48 seconds
+0007.875 (0) Table xsp_postmeta: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_postmeta.table.gz - 212.5 KB)
+0007.880 (0) Table xsp_posts: Total expected rows (approximate): 3662
+0014.742 (0) Table xsp_posts: Total rows added: 3662 in 6.86 seconds
+0014.744 (0) Table xsp_posts: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_posts.table.gz - 4566.4 KB)
+0014.751 (0) Table xsp_term_relationships: Total expected rows (approximate): 299
+0014.774 (0) Table xsp_term_relationships: Total rows added: 299 in 0.02 seconds
+0014.776 (0) Table xsp_term_relationships: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_term_relationships.table.gz - 1.3 KB)
+0014.782 (0) Table xsp_term_taxonomy: Total expected rows (approximate): 43
+0014.796 (0) Table xsp_term_taxonomy: Total rows added: 43 in 0.01 seconds
+0014.797 (0) Table xsp_term_taxonomy: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_term_taxonomy.table.gz - 0.8 KB)
+0014.804 (0) Table xsp_termmeta: Total expected rows (approximate): 0
+0014.816 (0) Table xsp_termmeta: Total rows added: 0 in 0.01 seconds
+0014.818 (0) Table xsp_termmeta: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_termmeta.table.gz - 0.4 KB)
+0014.823 (0) Table xsp_terms: Total expected rows (approximate): 37
+0014.836 (0) Table xsp_terms: Total rows added: 37 in 0.01 seconds
+0014.838 (0) Table xsp_terms: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_terms.table.gz - 1.2 KB)
+0014.849 (0) Table xsp_yoast_seo_links: Total expected rows (approximate): 1178
+0015.135 (0) Table xsp_yoast_seo_links: Total rows added: 1188 in 0.28 seconds
+0015.138 (0) Table xsp_yoast_seo_links: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_yoast_seo_links.table.gz - 20.3 KB)
+0015.147 (0) Table xsp_yoast_seo_meta: Total expected rows (approximate): 251
+0015.175 (0) Table xsp_yoast_seo_meta: Total rows added: 268 in 0.03 seconds
+0015.177 (0) Table xsp_yoast_seo_meta: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_yoast_seo_meta.table.gz - 1.3 KB)
+0015.180 (0) Skipping table (lacks our prefix (xsp_)): cerber_acl
+0015.182 (0) Skipping table (lacks our prefix (xsp_)): cerber_blocks
+0015.184 (0) Skipping table (lacks our prefix (xsp_)): cerber_countries
+0015.186 (0) Skipping table (lacks our prefix (xsp_)): cerber_lab
+0015.189 (0) Skipping table (lacks our prefix (xsp_)): cerber_lab_ip
+0015.191 (0) Skipping table (lacks our prefix (xsp_)): cerber_lab_net
+0015.196 (0) Skipping table (lacks our prefix (xsp_)): cerber_log
+0015.198 (0) Skipping table (lacks our prefix (xsp_)): cerber_traffic
+0015.202 (0) Skipping table (lacks our prefix (xsp_)): wp_yoast_seo_links
+0015.204 (0) Skipping table (lacks our prefix (xsp_)): wp_yoast_seo_meta
+0015.215 (0) Table xsp_clients: Total expected rows (approximate): 184
+0015.268 (0) Table xsp_clients: Total rows added: 190 in 0.05 seconds
+0015.270 (0) Table xsp_clients: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_clients.table.gz - 8.9 KB)
+0015.278 (0) Table xsp_club: Total expected rows (approximate): 9
+0015.304 (0) Table xsp_club: Total rows added: 12 in 0.02 seconds
+0015.306 (0) Table xsp_club: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_club.table.gz - 0.9 KB)
+0015.314 (0) Table xsp_club_orders: Total expected rows (approximate): 8
+0015.338 (0) Table xsp_club_orders: Total rows added: 12 in 0.02 seconds
+0015.340 (0) Table xsp_club_orders: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_club_orders.table.gz - 0.8 KB)
+0015.355 (0) Table xsp_coaches: Total expected rows (approximate): 21
+0015.395 (0) Table xsp_coaches: Total rows added: 21 in 0.04 seconds
+0015.397 (0) Table xsp_coaches: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_coaches.table.gz - 1.1 KB)
+0015.408 (0) Table xsp_ewwwio_images: Total expected rows (approximate): 7695
+0020.284 (0) Table xsp_ewwwio_images: Total rows added: 7864 in 4.87 seconds
+0020.286 (0) Table xsp_ewwwio_images: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_ewwwio_images.table.gz - 190.5 KB)
+0020.295 (0) Table xsp_goods: Total expected rows (approximate): 16
+0020.316 (0) Table xsp_goods: Total rows added: 16 in 0.02 seconds
+0020.318 (0) Table xsp_goods: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_goods.table.gz - 1.5 KB)
+0020.326 (0) Table xsp_log: Total expected rows (approximate): 1283
+0021.939 (0) Table xsp_log: Total rows added: 1345 in 1.61 seconds
+0021.941 (0) Table xsp_log: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_log.table.gz - 73.2 KB)
+0021.949 (0) Table xsp_orders: Total expected rows (approximate): 1931
+0022.643 (0) Table xsp_orders: Total rows added: 2348 in 0.69 seconds
+0022.645 (0) Table xsp_orders: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_orders.table.gz - 81.8 KB)
+0022.657 (0) Table xsp_popup_manager: Total expected rows (approximate): 0
+0022.683 (0) Table xsp_popup_manager: Total rows added: 0 in 0.02 seconds
+0022.685 (0) Table xsp_popup_manager: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_popup_manager.table.gz - 0.3 KB)
+0022.698 (0) Table xsp_popup_manager_templates: Total expected rows (approximate): 5
+0022.721 (0) Table xsp_popup_manager_templates: Total rows added: 5 in 0.02 seconds
+0022.723 (0) Table xsp_popup_manager_templates: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_popup_manager_templates.table.gz - 1.3 KB)
+0022.737 (0) Table xsp_rewards: Total expected rows (approximate): 436
+0022.798 (0) Table xsp_rewards: Total rows added: 527 in 0.06 seconds
+0022.801 (0) Table xsp_rewards: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_rewards.table.gz - 3.8 KB)
+0022.809 (0) Table xsp_wpfront_ure_login_redirect: Total expected rows (approximate): 0
+0022.833 (0) Table xsp_wpfront_ure_login_redirect: Total rows added: 0 in 0.02 seconds
+0022.835 (0) Table xsp_wpfront_ure_login_redirect: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wpfront_ure_login_redirect.table.gz - 0.4 KB)
+0022.841 (0) Table xsp_wpfront_ure_options: Total expected rows (approximate): 4
+0022.856 (0) Table xsp_wpfront_ure_options: Total rows added: 4 in 0.01 seconds
+0022.858 (0) Table xsp_wpfront_ure_options: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wpfront_ure_options.table.gz - 0.4 KB)
+0022.866 (0) Table xsp_wplnst_scans: Total expected rows (approximate): 0
+0022.879 (0) Table xsp_wplnst_scans: Total rows added: 0 in 0.01 seconds
+0022.881 (0) Table xsp_wplnst_scans: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wplnst_scans.table.gz - 0.5 KB)
+0022.894 (0) Table xsp_wplnst_scans_objects: Total expected rows (approximate): 0
+0022.913 (0) Table xsp_wplnst_scans_objects: Total rows added: 0 in 0.02 seconds
+0022.915 (0) Table xsp_wplnst_scans_objects: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wplnst_scans_objects.table.gz - 0.4 KB)
+0022.923 (0) Table xsp_wplnst_urls: Total expected rows (approximate): 125
+0022.963 (0) Table xsp_wplnst_urls: Total rows added: 125 in 0.04 seconds
+0022.965 (0) Table xsp_wplnst_urls: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wplnst_urls.table.gz - 9 KB)
+0022.976 (0) Table xsp_wplnst_urls_locations: Total expected rows (approximate): 0
+0022.998 (0) Table xsp_wplnst_urls_locations: Total rows added: 0 in 0.02 seconds
+0023.000 (0) Table xsp_wplnst_urls_locations: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wplnst_urls_locations.table.gz - 0.7 KB)
+0023.009 (0) Table xsp_wplnst_urls_locations_att: Total expected rows (approximate): 0
+0023.030 (0) Table xsp_wplnst_urls_locations_att: Total rows added: 0 in 0.02 seconds
+0023.032 (0) Table xsp_wplnst_urls_locations_att: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wplnst_urls_locations_att.table.gz - 0.4 KB)
+0023.040 (0) Table xsp_wplnst_urls_status: Total expected rows (approximate): 0
+0023.058 (0) Table xsp_wplnst_urls_status: Total rows added: 0 in 0.02 seconds
+0023.060 (0) Table xsp_wplnst_urls_status: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wplnst_urls_status.table.gz - 0.6 KB)
+0023.066 (0) Table xsp_wppcp_group_users: Total expected rows (approximate): 0
+0023.083 (0) Table xsp_wppcp_group_users: Total rows added: 0 in 0.02 seconds
+0023.085 (0) Table xsp_wppcp_group_users: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wppcp_group_users.table.gz - 0.3 KB)
+0023.095 (0) Table xsp_wppcp_private_page: Total expected rows (approximate): 0
+0023.114 (0) Table xsp_wppcp_private_page: Total rows added: 0 in 0.02 seconds
+0023.116 (0) Table xsp_wppcp_private_page: finishing file (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wppcp_private_page.table.gz - 0.3 KB)
+0023.121 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_options.table.gz (1/45): adding to final database dump
+0023.234 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_users.table.gz (2/45): adding to final database dump
+0023.238 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_usermeta.table.gz (3/45): adding to final database dump
+0023.258 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_commentmeta.table.gz (4/45): adding to final database dump
+0023.259 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_comments.table.gz (5/45): adding to final database dump
+0023.262 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_links.table.gz (6/45): adding to final database dump
+0023.264 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_postmeta.table.gz (7/45): adding to final database dump
+0023.329 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_posts.table.gz (8/45): adding to final database dump
+0025.222 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_term_relationships.table.gz (9/45): adding to final database dump
+0025.225 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_term_taxonomy.table.gz (10/45): adding to final database dump
+0025.228 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_termmeta.table.gz (11/45): adding to final database dump
+0025.230 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_terms.table.gz (12/45): adding to final database dump
+0025.232 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_yoast_seo_links.table.gz (13/45): adding to final database dump
+0025.240 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_yoast_seo_meta.table.gz (14/45): adding to final database dump
+0025.242 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_clients.table.gz (15/45): adding to final database dump
+0025.246 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_club.table.gz (16/45): adding to final database dump
+0025.248 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_club_orders.table.gz (17/45): adding to final database dump
+0025.250 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_coaches.table.gz (18/45): adding to final database dump
+0025.253 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_ewwwio_images.table.gz (19/45): adding to final database dump
+0025.316 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_goods.table.gz (20/45): adding to final database dump
+0025.318 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_log.table.gz (21/45): adding to final database dump
+0025.360 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_orders.table.gz (22/45): adding to final database dump
+0025.379 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_popup_manager.table.gz (23/45): adding to final database dump
+0025.380 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_popup_manager_templates.table.gz (24/45): adding to final database dump
+0025.383 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_rewards.table.gz (25/45): adding to final database dump
+0025.387 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wpfront_ure_login_redirect.table.gz (26/45): adding to final database dump
+0025.388 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wpfront_ure_options.table.gz (27/45): adding to final database dump
+0025.390 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wplnst_scans.table.gz (28/45): adding to final database dump
+0025.393 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wplnst_scans_objects.table.gz (29/45): adding to final database dump
+0025.396 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wplnst_urls.table.gz (30/45): adding to final database dump
+0025.400 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wplnst_urls_locations.table.gz (31/45): adding to final database dump
+0025.402 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wplnst_urls_locations_att.table.gz (32/45): adding to final database dump
+0025.404 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wplnst_urls_status.table.gz (33/45): adding to final database dump
+0025.406 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wppcp_group_users.table.gz (34/45): adding to final database dump
+0025.408 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db-table-xsp_wppcp_private_page.table.gz (35/45): adding to final database dump
+0025.410 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db.gz: finished writing out complete database file (5824 KB)
+0025.508 (0) Total database tables backed up: 35 (backup_2018-05-19-2113___Ironman__9fc15b985ba4-db.gz, size: 5989906, sha256)
+0025.518 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db.gz: db: This file has not yet been successfully uploaded: will queue
+0025.521 (0) Saving backup history. Total backup size: 5.7 MB
+0025.526 (0) Requesting upload of the files that have not yet been successfully uploaded (1)
+0025.531 (0) Cloud backup selection (1/1): googledrive with instance (1/1) (last)
+0025.533 (0) Beginning dispatch of backup to remote (googledrive) (instance identifier s-8ab31aed734e5a14e895cb264b738562)
+0025.535 (0) Google Drive: requesting access token: client_id=489942694835-b550auk3635vi3ictvn78rj74rdpfhv4.apps.googleusercontent.com
+0025.661 (0) Google Drive: successfully obtained access token
+0027.333 (0) Google Drive quota usage: used=1903.3 MB, total=17408 MB, available=15504.7 MB
+0027.335 (0) backup_2018-05-19-2113___Ironman__9fc15b985ba4-db.gz: Attempting to upload to Google Drive (into folder id: 0ByZ4K-JNv_UZSEl3dFJXTjlLeWs)
+0028.125 (0) Googledrive chunked upload: 17.5 % uploaded (1048576)
+0028.486 (0) Googledrive chunked upload: 35 % uploaded (2097152)
+0028.852 (0) Googledrive chunked upload: 52.5 % uploaded (3145728)
+0029.240 (0) Googledrive chunked upload: 70 % uploaded (4194304)
+0029.433 (0) Googledrive chunked upload: 76.9 % uploaded (4456448)
+0029.437 (0) OK: Archive backup_2018-05-19-2113___Ironman__9fc15b985ba4-db.gz uploaded to Google Drive in 2.1 seconds
+0029.440 (0) Recording as successfully uploaded: backup_2018-05-19-2113___Ironman__9fc15b985ba4-db.gz (30ce31ac916547eb5d59a56e51aeddf1)
+0029.447 (0) Deleting local file: backup_2018-05-19-2113___Ironman__9fc15b985ba4-db.gz: OK
+0029.449 (0) Retain: beginning examination of existing backup sets; user setting: retain_files=2, retain_db=7
+0029.452 (0) Number of backup sets in history: 10; groups (db): 1
+0029.455 (0) Examining (for databases) backup set with group_id=0, nonce=9fc15b985ba4, datestamp=1526753596 (May 19 2018 18:13:16)
+0029.457 (0) This backup set is the backup set just made, so will not be deleted.
+0029.457 (0) Examining (for databases) backup set with group_id=0, nonce=cd5376040e49, datestamp=1526666891 (May 18 2018 18:08:11)
+0029.457 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0029.459 (0) Examining (for databases) backup set with group_id=0, nonce=3561fa29cb1c, datestamp=1526580757 (May 17 2018 18:12:37)
+0029.459 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0029.459 (0) Examining (for databases) backup set with group_id=0, nonce=33811baff516, datestamp=1526494113 (May 16 2018 18:08:33)
+0029.459 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0029.460 (0) Examining (for databases) backup set with group_id=0, nonce=e9362f6fb178, datestamp=1526407697 (May 15 2018 18:08:17)
+0029.460 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0029.460 (0) Examining (for databases) backup set with group_id=0, nonce=105fd01e33be, datestamp=1526321364 (May 14 2018 18:09:24)
+0029.460 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0029.460 (0) Examining (for databases) backup set with group_id=0, nonce=dfae5e1c6c6f, datestamp=1526235096 (May 13 2018 18:11:36)
+0029.460 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0029.460 (0) Examining (for databases) backup set with group_id=0, nonce=218cd2a824ca, datestamp=1526148525 (May 12 2018 18:08:45)
+0029.460 (0) 1526148525: db: this set includes a database (backup_2018-05-12-2108___Ironman__218cd2a824ca-db.gz); db count is now 7
+0029.460 (0) 1526148525: db: over retain limit (7); will delete this database
+0029.460 (0) Delete file: backup_2018-05-12-2108___Ironman__218cd2a824ca-db.gz, service=googledrive
+0029.462 (0) Google Drive: requesting access token: client_id=489942694835-b550auk3635vi3ictvn78rj74rdpfhv4.apps.googleusercontent.com
+0029.622 (0) Google Drive: successfully obtained access token
+0030.204 (0) backup_2018-05-12-2108___Ironman__218cd2a824ca-db.gz: Deletion failed: file was not found
+0030.208 (0) This backup set is now empty; will remove from history
+0030.210 (0) Deleting log file (log.218cd2a824ca.txt)
+0030.213 (0) Examining (for databases) backup set with group_id=0, nonce=744c7e37359c, datestamp=1526121046 (May 12 2018 10:30:46)
+0030.213 (0) Examining (for databases) backup set with group_id=0, nonce=e2fcd1496581, datestamp=1524911475 (Apr 28 2018 10:31:15)
+0030.213 (0) Number of backup sets in history: 9; groups (files): 1
+0030.215 (0) Examining (for files) backup set with nonce=9fc15b985ba4, datestamp=1526753596 (May 19 2018 18:13:16)
+0030.215 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0030.218 (0) Examining (for files) backup set with nonce=cd5376040e49, datestamp=1526666891 (May 18 2018 18:08:11)
+0030.218 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0030.218 (0) Examining (for files) backup set with nonce=3561fa29cb1c, datestamp=1526580757 (May 17 2018 18:12:37)
+0030.218 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0030.218 (0) Examining (for files) backup set with nonce=33811baff516, datestamp=1526494113 (May 16 2018 18:08:33)
+0030.218 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0030.218 (0) Examining (for files) backup set with nonce=e9362f6fb178, datestamp=1526407697 (May 15 2018 18:08:17)
+0030.218 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0030.218 (0) Examining (for files) backup set with nonce=105fd01e33be, datestamp=1526321364 (May 14 2018 18:09:24)
+0030.218 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0030.219 (0) Examining (for files) backup set with nonce=dfae5e1c6c6f, datestamp=1526235096 (May 13 2018 18:11:36)
+0030.219 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0030.219 (0) Examining (for files) backup set with nonce=744c7e37359c, datestamp=1526121046 (May 12 2018 10:30:46)
+0030.219 (0) This backup set remains non-empty (f=1/d=0); will retain in history
+0030.221 (0) Examining (for files) backup set with nonce=e2fcd1496581, datestamp=1524911475 (Apr 28 2018 10:31:15)
+0030.221 (0) This backup set remains non-empty (f=1/d=0); will retain in history
+0030.222 (0) Retain: saving new backup history (sets now: 9) and finishing retain operation
+0030.229 (0) Resume backup (9fc15b985ba4, 0): finish run
+0030.233 (0) Decremented the semaphore (d) by 1
+0030.236 (0) Semaphore (d) unlocked
+0030.238 (0) There were no errors in the uploads, so the 'resume' event (1) is being unscheduled
+0030.245 (0) The backup apparently succeeded and is now complete
+0030.247 (0) No email will/can be sent - the user has not configured an email address.
+0030.249 (0) Резервное копирование успешно завершено

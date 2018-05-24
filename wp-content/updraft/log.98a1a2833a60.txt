@@ -1,0 +1,163 @@
+0000.001 (0) Opened log file at time: Sun, 20 May 2018 18:08:37 +0000 on https://temptraining.ru
+0000.004 (0) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.14.7 WP: 4.9.6 PHP: 7.0.19 (cgi-fcgi, Linux vip8.hosting.reg.ru 2.6.32-696.18.7.el6.x86_64 #1 SMP Thu Jan 4 17:31:22 UTC 2018 x86_64) MySQL: 5.6.39 WPLANG: ru_RU Server: Apache/2.2.15 (CentOS) safe_mode: 0 max_execution_time: 900 memory_limit: 256M (used: 12.7M | 2M) multisite: N openssl: OpenSSL 1.0.1e-fips 11 Feb 2013 mcrypt: Y LANG:  ZipArchive::addFile: Y
+0000.006 (0) Free space on disk containing Updraft's temporary directory: 241750.8 MB
+0000.010 (0) Tasks: Backup files:  (schedule: fortnightly) Backup DB: 1 (schedule: daily)
+0000.011 (0) Processed schedules. Tasks now: Backup files:  Backup DB: 1
+0000.024 (0) Requesting semaphore lock (d) (apparently via scheduler: last_scheduled_action_called_at=1526753596, seconds_ago=86121)
+0000.026 (0) Set semaphore last lock (d) time to 2018-05-20 18:08:37
+0000.028 (0) Semaphore lock (d) complete
+0000.035 (0) Backup run: resumption=0, nonce=98a1a2833a60, begun at=1526839717 (0s ago), job type=backup
+0000.037 (0) Scheduling a resumption (1) after 300 seconds (1526840017) in case this run gets aborted
+0000.055 (0) This backup run is not intended for files - skipping
+0000.057 (0) Beginning creation of database dump (WordPress DB)
+0000.060 (0) Testing: /usr/bin/mysqldump
+0000.120 (0) Output: /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;\n/*!40103 SET TIME_ZONE='+00:00' */;\n/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;\n/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;\n/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;\n/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;\nDROP TABLE IF EXISTS `xsp_options`;\n/*!40101 SET @saved_cs_client     = @@character_set_client */;\n/*!40101 SET character_set_client = utf8 */;\nCR (truncated - 1193 bytes total)
+0000.133 (0) Working binary mysqldump found: /usr/bin/mysqldump
+0000.196 (0) Table xsp_options: Total expected rows (approximate): 1057
+0001.275 (0) Table xsp_options: Total rows added: 1053 in 1.08 seconds
+0001.278 (0) Table xsp_options: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_options.table.gz - 592.3 KB)
+0001.284 (0) Table xsp_users: Total expected rows (approximate): 225
+0001.345 (0) Table xsp_users: Total rows added: 225 in 0.06 seconds
+0001.347 (0) Table xsp_users: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_users.table.gz - 14.4 KB)
+0001.353 (0) Table xsp_usermeta: Total expected rows (approximate): 5459
+0002.199 (0) Table xsp_usermeta: Total rows added: 5459 in 0.84 seconds
+0002.201 (0) Table xsp_usermeta: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_usermeta.table.gz - 64.2 KB)
+0002.212 (0) Table xsp_commentmeta: Total expected rows (approximate): 0
+0002.233 (0) Table xsp_commentmeta: Total rows added: 0 in 0.02 seconds
+0002.235 (0) Table xsp_commentmeta: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_commentmeta.table.gz - 0.4 KB)
+0002.249 (0) Table xsp_comments: Total expected rows (approximate): 0
+0002.267 (0) Table xsp_comments: Total rows added: 0 in 0.02 seconds
+0002.269 (0) Table xsp_comments: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_comments.table.gz - 0.5 KB)
+0002.278 (0) Table xsp_links: Total expected rows (approximate): 0
+0002.294 (0) Table xsp_links: Total rows added: 0 in 0.01 seconds
+0002.295 (0) Table xsp_links: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_links.table.gz - 0.4 KB)
+0002.300 (0) Table xsp_postmeta: Total expected rows (approximate): 6294
+0007.746 (0) Table xsp_postmeta: Total rows added: 6294 in 5.44 seconds
+0007.748 (0) Table xsp_postmeta: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_postmeta.table.gz - 212.5 KB)
+0007.754 (0) Table xsp_posts: Total expected rows (approximate): 3662
+0014.620 (0) Table xsp_posts: Total rows added: 3662 in 6.86 seconds
+0014.623 (0) Table xsp_posts: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_posts.table.gz - 4566.4 KB)
+0014.628 (0) Table xsp_term_relationships: Total expected rows (approximate): 299
+0014.658 (0) Table xsp_term_relationships: Total rows added: 299 in 0.03 seconds
+0014.660 (0) Table xsp_term_relationships: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_term_relationships.table.gz - 1.3 KB)
+0014.666 (0) Table xsp_term_taxonomy: Total expected rows (approximate): 43
+0014.687 (0) Table xsp_term_taxonomy: Total rows added: 43 in 0.02 seconds
+0014.689 (0) Table xsp_term_taxonomy: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_term_taxonomy.table.gz - 0.8 KB)
+0014.696 (0) Table xsp_termmeta: Total expected rows (approximate): 0
+0014.715 (0) Table xsp_termmeta: Total rows added: 0 in 0.02 seconds
+0014.717 (0) Table xsp_termmeta: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_termmeta.table.gz - 0.4 KB)
+0014.723 (0) Table xsp_terms: Total expected rows (approximate): 37
+0014.749 (0) Table xsp_terms: Total rows added: 37 in 0.02 seconds
+0014.751 (0) Table xsp_terms: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_terms.table.gz - 1.2 KB)
+0014.761 (0) Table xsp_yoast_seo_links: Total expected rows (approximate): 1178
+0015.055 (0) Table xsp_yoast_seo_links: Total rows added: 1188 in 0.29 seconds
+0015.057 (0) Table xsp_yoast_seo_links: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_yoast_seo_links.table.gz - 20.3 KB)
+0015.066 (0) Table xsp_yoast_seo_meta: Total expected rows (approximate): 251
+0015.094 (0) Table xsp_yoast_seo_meta: Total rows added: 268 in 0.03 seconds
+0015.096 (0) Table xsp_yoast_seo_meta: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_yoast_seo_meta.table.gz - 1.3 KB)
+0015.099 (0) Skipping table (lacks our prefix (xsp_)): cerber_acl
+0015.102 (0) Skipping table (lacks our prefix (xsp_)): cerber_blocks
+0015.104 (0) Skipping table (lacks our prefix (xsp_)): cerber_countries
+0015.106 (0) Skipping table (lacks our prefix (xsp_)): cerber_lab
+0015.108 (0) Skipping table (lacks our prefix (xsp_)): cerber_lab_ip
+0015.111 (0) Skipping table (lacks our prefix (xsp_)): cerber_lab_net
+0015.113 (0) Skipping table (lacks our prefix (xsp_)): cerber_log
+0015.115 (0) Skipping table (lacks our prefix (xsp_)): cerber_traffic
+0015.117 (0) Skipping table (lacks our prefix (xsp_)): wp_yoast_seo_links
+0015.119 (0) Skipping table (lacks our prefix (xsp_)): wp_yoast_seo_meta
+0015.128 (0) Table xsp_clients: Total expected rows (approximate): 184
+0015.177 (0) Table xsp_clients: Total rows added: 190 in 0.05 seconds
+0015.179 (0) Table xsp_clients: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_clients.table.gz - 9 KB)
+0015.186 (0) Table xsp_club: Total expected rows (approximate): 9
+0015.202 (0) Table xsp_club: Total rows added: 12 in 0.01 seconds
+0015.203 (0) Table xsp_club: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_club.table.gz - 0.9 KB)
+0015.209 (0) Table xsp_club_orders: Total expected rows (approximate): 8
+0015.224 (0) Table xsp_club_orders: Total rows added: 12 in 0.01 seconds
+0015.226 (0) Table xsp_club_orders: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_club_orders.table.gz - 0.8 KB)
+0015.239 (0) Table xsp_coaches: Total expected rows (approximate): 21
+0015.260 (0) Table xsp_coaches: Total rows added: 21 in 0.02 seconds
+0015.261 (0) Table xsp_coaches: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_coaches.table.gz - 1.1 KB)
+0015.271 (0) Table xsp_ewwwio_images: Total expected rows (approximate): 7695
+0020.305 (0) Table xsp_ewwwio_images: Total rows added: 7864 in 5.03 seconds
+0020.308 (0) Table xsp_ewwwio_images: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_ewwwio_images.table.gz - 190.5 KB)
+0020.318 (0) Table xsp_goods: Total expected rows (approximate): 16
+0020.334 (0) Table xsp_goods: Total rows added: 16 in 0.01 seconds
+0020.336 (0) Table xsp_goods: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_goods.table.gz - 1.5 KB)
+0020.345 (0) Table xsp_log: Total expected rows (approximate): 1283
+0022.056 (0) Table xsp_log: Total rows added: 1345 in 1.71 seconds
+0022.059 (0) Table xsp_log: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_log.table.gz - 73.2 KB)
+0022.068 (0) Table xsp_orders: Total expected rows (approximate): 1931
+0022.767 (0) Table xsp_orders: Total rows added: 2354 in 0.70 seconds
+0022.769 (0) Table xsp_orders: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_orders.table.gz - 82 KB)
+0022.781 (0) Table xsp_popup_manager: Total expected rows (approximate): 0
+0022.800 (0) Table xsp_popup_manager: Total rows added: 0 in 0.02 seconds
+0022.802 (0) Table xsp_popup_manager: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_popup_manager.table.gz - 0.3 KB)
+0022.813 (0) Table xsp_popup_manager_templates: Total expected rows (approximate): 5
+0022.832 (0) Table xsp_popup_manager_templates: Total rows added: 5 in 0.02 seconds
+0022.833 (0) Table xsp_popup_manager_templates: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_popup_manager_templates.table.gz - 1.3 KB)
+0022.846 (0) Table xsp_rewards: Total expected rows (approximate): 436
+0022.903 (0) Table xsp_rewards: Total rows added: 527 in 0.05 seconds
+0022.905 (0) Table xsp_rewards: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_rewards.table.gz - 3.8 KB)
+0022.915 (0) Table xsp_wpfront_ure_login_redirect: Total expected rows (approximate): 0
+0022.936 (0) Table xsp_wpfront_ure_login_redirect: Total rows added: 0 in 0.02 seconds
+0022.938 (0) Table xsp_wpfront_ure_login_redirect: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wpfront_ure_login_redirect.table.gz - 0.4 KB)
+0022.944 (0) Table xsp_wpfront_ure_options: Total expected rows (approximate): 4
+0022.959 (0) Table xsp_wpfront_ure_options: Total rows added: 4 in 0.01 seconds
+0022.961 (0) Table xsp_wpfront_ure_options: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wpfront_ure_options.table.gz - 0.4 KB)
+0022.969 (0) Table xsp_wplnst_scans: Total expected rows (approximate): 0
+0022.986 (0) Table xsp_wplnst_scans: Total rows added: 0 in 0.02 seconds
+0022.988 (0) Table xsp_wplnst_scans: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wplnst_scans.table.gz - 0.5 KB)
+0023.000 (0) Table xsp_wplnst_scans_objects: Total expected rows (approximate): 0
+0023.019 (0) Table xsp_wplnst_scans_objects: Total rows added: 0 in 0.02 seconds
+0023.021 (0) Table xsp_wplnst_scans_objects: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wplnst_scans_objects.table.gz - 0.4 KB)
+0023.030 (0) Table xsp_wplnst_urls: Total expected rows (approximate): 125
+0023.075 (0) Table xsp_wplnst_urls: Total rows added: 125 in 0.04 seconds
+0023.077 (0) Table xsp_wplnst_urls: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wplnst_urls.table.gz - 9 KB)
+0023.088 (0) Table xsp_wplnst_urls_locations: Total expected rows (approximate): 0
+0023.106 (0) Table xsp_wplnst_urls_locations: Total rows added: 0 in 0.02 seconds
+0023.108 (0) Table xsp_wplnst_urls_locations: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wplnst_urls_locations.table.gz - 0.7 KB)
+0023.118 (0) Table xsp_wplnst_urls_locations_att: Total expected rows (approximate): 0
+0023.140 (0) Table xsp_wplnst_urls_locations_att: Total rows added: 0 in 0.02 seconds
+0023.142 (0) Table xsp_wplnst_urls_locations_att: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wplnst_urls_locations_att.table.gz - 0.4 KB)
+0023.150 (0) Table xsp_wplnst_urls_status: Total expected rows (approximate): 0
+0023.169 (0) Table xsp_wplnst_urls_status: Total rows added: 0 in 0.02 seconds
+0023.171 (0) Table xsp_wplnst_urls_status: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wplnst_urls_status.table.gz - 0.6 KB)
+0023.178 (0) Table xsp_wppcp_group_users: Total expected rows (approximate): 0
+0023.195 (0) Table xsp_wppcp_group_users: Total rows added: 0 in 0.02 seconds
+0023.197 (0) Table xsp_wppcp_group_users: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wppcp_group_users.table.gz - 0.3 KB)
+0023.207 (0) Table xsp_wppcp_private_page: Total expected rows (approximate): 0
+0023.225 (0) Table xsp_wppcp_private_page: Total rows added: 0 in 0.02 seconds
+0023.227 (0) Table xsp_wppcp_private_page: finishing file (backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wppcp_private_page.table.gz - 0.3 KB)
+0023.232 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_options.table.gz (1/45): adding to final database dump
+0023.343 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_users.table.gz (2/45): adding to final database dump
+0023.347 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_usermeta.table.gz (3/45): adding to final database dump
+0023.367 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_commentmeta.table.gz (4/45): adding to final database dump
+0023.368 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_comments.table.gz (5/45): adding to final database dump
+0023.370 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_links.table.gz (6/45): adding to final database dump
+0023.373 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_postmeta.table.gz (7/45): adding to final database dump
+0023.441 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_posts.table.gz (8/45): adding to final database dump
+0025.421 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_term_relationships.table.gz (9/45): adding to final database dump
+0025.423 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_term_taxonomy.table.gz (10/45): adding to final database dump
+0025.426 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_termmeta.table.gz (11/45): adding to final database dump
+0025.428 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_terms.table.gz (12/45): adding to final database dump
+0025.431 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_yoast_seo_links.table.gz (13/45): adding to final database dump
+0025.438 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_yoast_seo_meta.table.gz (14/45): adding to final database dump
+0025.440 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_clients.table.gz (15/45): adding to final database dump
+0025.444 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_club.table.gz (16/45): adding to final database dump
+0025.446 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_club_orders.table.gz (17/45): adding to final database dump
+0025.448 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_coaches.table.gz (18/45): adding to final database dump
+0025.451 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_ewwwio_images.table.gz (19/45): adding to final database dump
+0025.520 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_goods.table.gz (20/45): adding to final database dump
+0025.522 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_log.table.gz (21/45): adding to final database dump
+0025.568 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_orders.table.gz (22/45): adding to final database dump
+0025.588 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_popup_manager.table.gz (23/45): adding to final database dump
+0025.590 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_popup_manager_templates.table.gz (24/45): adding to final database dump
+0025.593 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_rewards.table.gz (25/45): adding to final database dump
+0025.597 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wpfront_ure_login_redirect.table.gz (26/45): adding to final database dump
+0025.599 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wpfront_ure_options.table.gz (27/45): adding to final database dump
+0025.601 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wplnst_scans.table.gz (28/45): adding to final database dump
+0025.603 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wplnst_scans_objects.table.gz (29/45): adding to final database dump
+0025.606 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wplnst_urls.table.gz (30/45): adding to final database dump
+0025.609 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wplnst_urls_locations.table.gz (31/45): adding to final database dump
+0025.612 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wplnst_urls_locations_att.table.gz (32/45): adding to final database dump
+0025.614 (0) backup_2018-05-20-2108___Ironman__98a1a2833a60-db-table-xsp_wplnst_urls

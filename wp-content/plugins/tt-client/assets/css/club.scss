@@ -1,0 +1,1176 @@
+// Screen sizes
+$xxs: 320px;
+$xs: 480px;
+$sm: 768px;
+$md: 992px;
+$lg: 1200px;
+$xlg: 1600px;
+// Colors
+$color-white: #ffffff;
+$color-text: #525252;
+$color-grey: #ececec;
+$color-grey2: #777777;
+$color-dark: #2e3744;
+$color-orange: #f2784b;
+$color-red: #eb1c00;
+$color-blue: #01aaef;
+$color-green: #2dcc70;
+
+@mixin font_grotesk($size: 24px){
+  font-family: 'MADEGoodTimeGrotesk';
+  font-weight: bold;
+  font-size: $size;
+}
+@mixin skin($color: #000, $opacity: 0.5) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color, $opacity);
+  content: "";
+}
+@mixin gradient_orange($grad: 45deg){
+  background-image: -moz-linear-gradient( $grad, $color-red 0%, $color-orange 100%);
+  background-image: -webkit-linear-gradient( $grad, $color-red 0%, $color-orange 100%);
+  background-image: -ms-linear-gradient( $grad, $color-red 0%, $color-orange 100%);
+}
+@mixin gradient_blue($grad: 45deg){
+  background-image: -moz-linear-gradient( $grad, $color-dark 0%, $color-blue 100%);
+  background-image: -webkit-linear-gradient( $grad, $color-dark 0%, $color-blue 100%);
+  background-image: -ms-linear-gradient( $grad, $color-dark 0%, $color-blue 100%);
+}
+@mixin gradient_green($grad: 45deg){
+  background-image: -moz-linear-gradient( $grad, $color-blue 0%, $color-green 100%);
+  background-image: -webkit-linear-gradient( $grad, $color-blue 0%, $color-green 100%);
+  background-image: -ms-linear-gradient( $grad, $color-blue 0%, $color-green 100%);
+}
+
+@font-face {
+  font-family: 'MADEGoodTimeGrotesk';
+  src: url('../fonts/MADEGoodTimeGrotesk.eot?#iefix') format('embedded-opentype'),  
+       url('../fonts/MADEGoodTimeGrotesk.otf')  format('opentype'),
+       url('../fonts/MADEGoodTimeGrotesk.woff') format('woff'), 
+       url('../fonts/MADEGoodTimeGrotesk.ttf')  format('truetype'), 
+       url('../fonts/MADEGoodTimeGrotesk.svg#MADEGoodTimeGrotesk') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@import "_reflex.scss";
+@import "_clubicon.scss";
+
+body{
+  overflow-x: hidden;
+
+  .pulse-button{
+    @media screen and (min-width: 320px) and (max-width: 359px){
+      bottom: 3px;
+      right: 3px;
+      width: 40px;
+      height: 40px;
+      z-index: 9999999999;
+      font-size: 28px;
+      line-height: 40px;
+    }
+  }
+}
+.menu-main .nav-horizontal{
+  position: relative;
+  z-index: 99999;
+}
+.club-brand{
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 120px);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding-top: 30px;
+
+  @media screen and (max-width: $xs){
+    height: calc(100vh - 50px);
+  }
+
+  @media screen and (max-width: $lg) and (min-width: $xlg) {
+    overflow: hidden;
+  }
+
+  @media screen and (max-height: $xs) and (orientation: landscape){
+    height: 100vh;
+  }
+
+  span{
+    display: block;
+  }
+
+  body.admin-bar & {
+    height: calc(100vh - 152px);
+
+    @media screen and (max-width: $xs){
+      height: calc(100vh - 96px);
+      overflow: hidden;
+    }
+
+    @media screen and (max-height: $xs) and (orientation: landscape){
+      height:  calc(100vh - 46px);
+    }
+  }
+
+  &::before{
+    @include skin($color-dark, 0.6);
+
+    @media screen and (min-width: $xxs) and (max-width: 359px){
+      background-image: url('../icons/club-logo-text.png');
+      background-repeat: no-repeat;
+      background-position: center 5vh;
+      background-size: contain;
+    }
+
+    @media screen and (min-width: $xxs) and (max-height: $xs){
+      background-position: center 1vh;
+    }
+
+    @media screen and (min-width: 360px) and (max-width: $xs) and (orientation: portrait) {
+      background-image: url('../icons/club-logo-text.png');
+      background-repeat: no-repeat;
+      background-position: center 15px;
+      background-size: contain;
+    }
+
+    @media screen and (max-height: $xs) and (orientation: landscape){
+      background-image: url('../icons/club-logo-text.png');
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: contain;
+    }
+  }
+
+  & > .container,
+  & > .container > .grid {
+    position: relative;
+    height: 100%;
+  }
+
+  &__logo{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+    /*min-height: 560px;*/
+    min-height: 420px;
+    padding-top: 80px;
+    padding-right: 35px;
+    background-image: url('../icons/club-logo.png');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+    @include font_grotesk(48px);
+    text-align: center;
+    line-height: 60px;
+    color: $color-white;
+
+    @media screen and (max-width: $xs) {
+      display: none;
+    }
+    @media screen and (max-height: $xs) and (orientation: landscape){
+      display: none;
+    }
+
+    @media screen and (min-width: $md) and (max-width: $lg) and (orientation: portrait){
+      min-height: 520px;
+      padding-top: 96px;
+      font-size: 64px;
+      line-height: 70px;
+    }
+  }
+
+
+
+  &__counter-members{
+    position: absolute;
+    left: 0.5rem;
+    bottom: 65px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: $color-orange;
+    padding: 35px 25px;
+    color: $color-white;
+
+    @media screen and (min-width: $xxs) and (max-width: 359px){
+      top: auto;
+      bottom: 5vh;
+      width: 140px;
+      height: 140px;
+      padding: 20px 25px;
+    }
+
+    @media screen and (max-height: $xs) and (orientation: landscape){
+      top: 0;
+      left: 0;
+      width: 140px;
+      height: 140px;
+      padding: 30px 20px;
+      margin-top: 0;
+    }
+
+    @media screen and (min-width: 360px) and (max-width: $xs) and (orientation: portrait) {
+      top: calc(50vh - 60px);
+      right: 0;
+      width: 160px;
+      height: 160px;
+      padding: 30px 20px;
+    }
+
+    @media screen and (min-width: $xlg) and (orientation: landscape){
+      bottom: 20vh;
+    }
+
+    &::before{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -100px;
+      margin-left: -100px;
+      border-radius: 100px 100px 0 0;
+      width: 100%;
+      height: 50vw;
+      @include gradient_orange;
+      -webkit-transform-origin: 100px 100px;
+              transform-origin: 100px 100px;
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+      content: "";
+
+      @media screen and (min-width: 320px) and (max-width: 360px){
+        display: none;
+      }
+
+      @media screen and (max-height: $xs) and (orientation: landscape){
+        margin-top: -70px;
+        margin-left: -70px;
+        border-radius: 70px 70px 0 0;
+        height: 50vw;
+        -webkit-transform-origin: 70px 70px;
+              transform-origin: 70px 70px;
+        -webkit-transform: rotate(135deg);
+              transform: rotate(135deg);
+      }
+
+      @media screen and (max-width: $xs) and (orientation: portrait) {
+        margin-top: -80px;
+        margin-left: -80px;
+        border-radius: 80px 80px 0 0;
+        height: 50vh;
+        -webkit-transform-origin: 80px 80px;
+              transform-origin: 80px 80px;
+      }
+    }
+
+    &::after{
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      border: 2px dashed $color-white;
+      border-radius: 50%;
+      content: "";
+
+      @media screen and (max-height: $xs) and (orientation: landscape){
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+      }
+
+      @media screen and (min-width: 320px) and (max-width: 359px){
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+      }
+
+      @media screen and (min-width: 360px) and (max-width: $xs) and (orientation: portrait) {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+      }
+    }
+
+    span{
+      position: relative;
+      display: block;
+      line-height: 20px;
+      font-size: 18px;
+      font-weight: 300;
+      text-align: center;
+    }
+
+    figure{
+      position: relative;
+      line-height: 80px;
+      @include font_grotesk(72px);
+      text-align: center;
+
+      @media screen and (max-width: $xs) and (orientation: portrait) {
+        line-height: 60px;
+        font-size: 48px;
+      }
+
+      @media screen and (max-height: $xs) and (orientation: landscape){
+        line-height: 45px;
+        font-size: 42px;
+      }
+    }
+  }
+
+  &__counter-money{
+    position: absolute;
+    right: 0.5rem;
+    top: 65px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: $color-grey;
+    padding: 35px 25px;
+    color: $color-orange;
+
+    @media screen and (min-width: $xxs) and (max-width: 359px){
+      top: auto;
+      bottom: 5vh;
+      width: 140px;
+      height: 140px;
+      padding: 20px 15px;
+    }
+
+    @media screen and (min-width: 360px) and (max-width: $xs) and (orientation: portrait) {
+      top: 50vh;
+      right: 0;
+      width: 160px;
+      height: 160px;
+      padding: 30px 20px;
+    }
+
+    @media screen and (max-height: $xs) and (orientation: landscape){
+      bottom: 0;
+      right: 0;
+      width: 140px;
+      height: 140px;
+      padding: 30px 20px;
+      margin-top: 0;
+    }
+
+    @media screen and (min-width: $xlg) and (orientation: landscape){
+      top: 20vh;
+    }
+
+    &::before{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -100px;
+      margin-left: -100px;
+      border-radius: 100px 100px 0 0;
+      width: 100%;
+      height: 50vw;
+      background-color: $color-grey;
+      -webkit-transform-origin: 100px 100px;
+              transform-origin: 100px 100px;
+      -webkit-transform: rotate(-135deg);
+              transform: rotate(-135deg);
+      content: "";
+
+      @media screen and (min-width: 320px) and (max-width: 359px){
+        display: none;
+      }
+
+      @media screen and (max-width: $xs) and (orientation: portrait) {
+        margin-top: -80px;
+        margin-left: -80px;
+        border-radius: 80px 80px 0 0;
+        height: 50vh;
+        -webkit-transform-origin: 80px 80px;
+              transform-origin: 80px 80px;
+      }
+
+      @media screen and (max-height: $xs) and (orientation: landscape){
+        margin-top: -70px;
+        margin-left: -70px;
+        border-radius: 70px 70px 0 0;
+        height: 50vw;
+        -webkit-transform-origin: 70px 70px;
+              transform-origin: 70px 70px;
+        -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg);
+      }
+    }
+
+    &::after{
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      border: 2px dashed $color-orange;
+      border-radius: 50%;
+      content: "";
+
+      @media screen and (min-width: 320px) and (max-width: 359px){
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+      }
+
+      @media screen and (min-width: 360px) and (max-width: $xs) and (orientation: portrait) {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+      }
+
+      @media screen and (max-height: $xs) and (orientation: landscape){
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+      }
+    }
+
+    span{
+      position: relative;
+      display: block;
+      line-height: 20px;
+      font-size: 18px;
+      font-weight: 300;
+      text-align: center;
+    }
+
+    figure{
+      position: relative;
+      line-height: 80px;
+      @include font_grotesk(24px);
+      font-size: 2vw;
+      text-align: center;
+      white-space: nowrap;
+
+      @media screen and (min-width: $xxs) and (max-width: 359px){
+        line-height: 60px;
+        font-size: 24px;
+      }
+
+      @media screen and (min-width: 360px) and (max-width: $xs) and (orientation: portrait) {
+        line-height: 60px;
+        font-size: 6vw;
+      }
+
+      @media screen and (min-width: $xs) and (max-width: $sm) and (orientation: portrait) {
+        font-size: 4vw;
+      }
+
+      @media screen and (max-height: $xs) and (orientation: landscape){
+        line-height: 45px;
+        font-size: 6vh;
+      }
+
+      @media screen and (min-width: $xlg) and (orientation: landscape){
+        font-size: 3vh;
+      }
+    }
+  }
+
+  &__wave{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 140px;
+    fill: $color-grey;
+
+    @media screen and (max-width: $sm){
+      z-index: 50;
+    }
+    
+  }
+}
+
+.club-intro{
+  width: 100%;
+  background-color: $color-grey;
+  padding: 30px 0;
+  text-align: center;
+
+  &__title{
+    margin: 0 0 30px;
+    font-size: 24px;
+    text-align: center;
+    position: relative;
+  }
+
+  &__item{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 30px;
+  }
+  &__item-icon{
+    width: 130px;
+    height: 130px;
+    border: 2px dashed $color-grey2;
+    border-radius: 50%;
+    background-color: $color-white;
+    margin: 0 auto 30px;
+    line-height: 126px;
+    font-size: 86px;
+    text-align: center;
+    color: $color-blue;
+  }
+
+  &__item-text{
+    line-height: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    color: $color-text;
+  }
+
+  &__button{
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    width: auto;
+    padding: 10px 25px;
+    line-height: 30px;
+    border-radius: 25px;
+    border: 0 none;
+    @include gradient_orange(180deg);
+    color: $color-red;
+    font-size: 24px;
+    font-weight: 300;
+    text-transform: uppercase;
+
+    @media screen and (max-width: $xs){
+      height: auto;
+      text-align: center;
+      border-radius: 40px;
+    }
+
+    &::before{
+      position: absolute;
+      top: 2px;
+      bottom: 2px;
+      left: 2px;
+      right: 2px;
+      border-radius: 23px;
+      background-color: $color-white;
+      content: "";
+
+      @media screen and (max-width: $xs){
+        border-radius: 38px;
+      }
+    }
+
+    span{
+      position: relative;
+    }
+  }
+}
+
+.club-target{
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 15px;
+
+  &__logo{
+    width: 70px;
+    height: 70px;
+    margin: 0 0 30px;
+    background-color: $color-grey;
+    border-radius: 50%;
+    font-size: 48px;
+    line-height: 70px;
+    text-align: center;
+    color: $color-orange;
+  }
+
+  &__title{
+    margin: 0 0 30px;
+    line-height: 40px;
+    @include font_grotesk(26px);
+    text-transform: uppercase;
+  }
+
+  &__text{
+    margin: 0 0 30px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 25px;
+    color: $color-text;
+  }
+
+  &__item{
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.35);
+    color: $color-white;
+
+    @media screen and (max-width: $xs){
+      padding: 2rem 1.5rem;
+      margin-top: 30px;
+      min-height: 0;
+    }
+
+    @media screen and (min-width: $xs) and (max-width: $sm) {
+      margin-top: 30px;
+    }
+
+    &.is-first{
+      margin-top: 100px;
+      @include gradient_blue(225deg);
+
+      @media screen and (max-width: $xs){
+        margin-top: 30px;
+      }
+
+      @media screen and (min-width: $xs) and (max-width: $sm) {
+        margin-top: 30px;
+      }
+    }
+    &.is-second{
+      @include gradient_orange(225deg);
+    }
+    &.is-third{
+      margin-top: -50px;
+      @include gradient_green(225deg);
+
+      @media screen and (max-width: $xs){
+        margin-top: 30px;
+      }
+
+      @media screen and (min-width: $xs) and (max-width: $sm) {
+        margin-top: 30px;
+      }
+    }
+  }
+
+  &__item-icon{
+    width: auto;
+    height: 80px;
+    line-height: 80px;
+    margin: 0 0 10px;
+    font-size: 72px;
+  }
+  &__item-title{
+    margin: 0 0 10px;
+    line-height: 30px;
+  }
+  &__item-text{
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  &__button{
+    display: inline-block;
+    height: 60px;
+    width: auto;
+    padding: 15px 60px;
+    border: 0 none;
+    border-radius: 30px;
+    @include gradient_orange();
+    font-family: "Raleway", serif;
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 30px;
+    color: $color-white;
+
+    @media screen and (max-width: $xs){
+      width: 100%;
+      padding: 15px 20px;
+      font-size: 24px;
+      text-align: center;
+    }
+  }
+}
+
+.club-benefits{
+  position: relative;
+  width: 100%;
+  padding: 150px 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media screen and (max-width: $xs){
+    padding: 50px 0 100px;
+  }
+
+  &::before{
+    @include skin($color-dark, 0.85);
+  }
+
+  > .container{
+    position: relative;
+  }
+
+  p{
+    color: $color-white;
+
+    &:first-child{
+      font-family: Raleway, serif;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 30px;
+      margin-bottom: 30px;
+      padding-right: 33.3333%;
+
+      @media screen and (max-width: $xs){
+        font-size: 20px;
+        line-height: 25px;
+        padding-right: 0;
+      }
+    }
+  }
+
+  ul{
+    display: block;
+    margin: 0;
+    padding-left: 50px;
+    color: $color-white;
+    list-style-type: none;
+
+    @media screen and (max-width: $xs){
+      padding-left: 0;
+    }
+
+    li{
+      position: relative;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 25px;
+      margin-bottom: 10px;
+      padding-left: 40px;
+
+      @media screen and (max-width: $xs){
+        padding-left: 25px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+      }
+
+      &::before{
+        position: absolute;
+        top: 7px;
+        left: 0;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: $color-green;
+        content: "";
+      }
+    }
+  }
+
+  &__wave-bottom{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-height: 140px;
+    fill: $color-grey;
+
+    @media screen and (max-width: $xs){
+      max-height: 80px;
+    }
+  }
+
+  &__wave-one{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-height: 134px;
+    fill: $color-white;
+    opacity: 0.75;
+  }
+
+  &__wave-two{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-height: 114px;
+    fill: $color-white;
+    opacity: 0.5;
+  }
+
+  &__wave-three{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-height: 154px;
+    fill: $color-white;
+  }
+}
+
+.club-wishes{
+  width: 100%;
+  padding: 40px 0;
+  background-color: $color-grey;
+
+  @media screen and (max-width: $xs){
+    padding-top: 0;
+  }
+
+  &__title{
+    font-size: 24px;
+    line-height: 30px;
+    margin: 0 0 30px;
+  }
+
+  &__text{
+    ul {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+
+      li{
+        position:relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+                align-items: center;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+        width: 100%;
+        min-height: 70px;
+        margin-bottom: 30px;
+        padding: 0 100px;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 22px;
+
+        @media screen and (max-width: $xs){
+          font-size: 16px;
+          line-height: 20px;
+        }
+
+        &::before{
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          overflow: hodden;
+          color: $color-white;
+          @include gradient_blue(225deg);
+          @include clubicon("\76");
+          font-size: 52px;
+          line-height: 70px;
+          text-align: center;
+        }
+        &:first-child::before{
+          @include gradient_orange(225deg);
+          content: "\6c";
+        }
+        &:last-child::before{
+          @include gradient_green(225deg);
+          content: "\4d";
+        }
+      }
+    }
+
+    p{
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 25px;
+      color: $color-text;
+    }
+  }
+
+  &__button{
+    display: inline-block;
+    height: 50px;
+    width: auto;
+    margin-top: 30px;
+    padding: 10px 50px;
+    border: 0 none;
+    border-radius: 25px;
+    @include gradient_orange();
+    font-family: "Raleway", serif;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 30px;
+    color: $color-white;
+  }
+
+  &__frame{
+    width: 100%;
+    min-height: 455px;
+    max-height: 100%;
+    background-color: $color-white;
+    box-shadow: 0 5px 10px rgba(#000000, 0.35);
+    overflow: hidden;
+
+    @media screen and (max-width: $xs){
+      margin-top: 30px;
+    }
+    @media screen and (min-width: $xs) and (max-width: $sm) {
+      margin-top: 30px;
+    }
+  }
+}
+
+.club-form{
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
+  visibility: hidden;
+  backface-visibility: hidden;
+  background-color: rgba($color-dark, 0.75);
+  display: none;
+  z-index: 9999;
+
+  &.open{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+    visibility: visible;
+    -webkit-backface-visibility: visible;
+            backface-visibility: visible;
+  }
+
+  &__content{
+    display: block;
+    min-width: 640px;
+    height: auto;
+    max-height: calc(100vh - 80px);
+    border: 1px solid $color-green;
+    background-color: $color-white;
+    box-shadow: 0 5px 10px rgba($color-dark, 0.75);
+
+    @media screen and (max-width: $xs){
+      min-width: 0;
+      width: 100%;
+    }
+  }
+
+  &__header{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid $color-grey;
+  }
+
+  &__header-title{
+    margin: 0;
+    line-height: 30px;
+    font-size: 24px;
+    text-transform: uppercase;
+  }
+
+  &__header-close{
+    display: block;
+    width: 36px;
+    padding: 0.5rem;
+    line-height: 20px;
+    color: $color-grey;
+    font-size: 24px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+
+    @media screen and (max-width: $xs){
+      font-size: 32px;
+      color: $color-red;
+    }
+
+    &:hover{
+      color: $color-dark;
+    }
+  }
+
+  &__body{
+    padding: 15px;
+  }
+
+  &__control{
+    margin-bottom: 10px;
+
+    .switchery{
+      box-sizing: content-box;
+      margin-right: 0.5rem;
+    }
+  }
+
+  &__label{
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+  
+  &__label-checkbox{
+    display: block;
+    margin: 0;
+
+    @media screen and (max-width: $xs){
+      margin-bottom: 10px;
+    }
+  }
+
+  &__input{
+    display: block;
+    width: 100%;
+    border: 1px solid $color-grey2;
+    padding: 0.5rem 1rem;
+    line-height: 20px;
+
+    &.has-error{
+      border-color: $color-red;
+    }
+  }
+
+  &__error{
+    margin-top: 0.5rem;
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 12px;
+    background-color: rgba($color-red, 0.25);
+    color: $color-red;
+  }
+
+  &__message{
+    margin: 0.5rem 0;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    background-color: $color-grey;
+    color: $color-dark;
+
+    &.error{
+      background-color: rgba($color-red, 0.25);
+      color: $color-red;
+    }
+    &.success{
+      background-color: rgba($color-green, 0.25);
+      color: $color-green;
+    }
+  }
+
+  &__checkbox{
+    display: inline-block;
+    box-shadow: none;
+    width: 20px;
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+    outline: 0 none;
+  }
+
+  &__submit{
+    display: inline-block;
+    vertical-align: top;
+    border: 0 none;
+    padding: 0.5rem 1rem;
+    line-height: 24px;
+    background-color: $color-green;
+    color: $color-white;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    .default{
+      display: inline-block;
+    }
+
+    .loading{
+      display: none;
+      width: 100%;
+      height: 24px;
+      font-size: 0;
+      text-align: center;
+
+      & > span{
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin: 6px;
+        border-radius: 100%;
+        background-color: $color-white;
+        opacity: 0;
+        -webkit-animation: ball-fall 1s ease-in-out infinite;
+        -moz-animation: ball-fall 1s ease-in-out infinite;
+        -o-animation: ball-fall 1s ease-in-out infinite;
+        animation: ball-fall 1s ease-in-out infinite;
+
+        &:nth-child(1) {
+          -webkit-animation-delay: -200ms;
+          -moz-animation-delay: -200ms;
+          -o-animation-delay: -200ms;
+          animation-delay: -200ms; 
+        }
+        &:nth-child(2) {
+          -webkit-animation-delay: -100ms;
+          -moz-animation-delay: -100ms;
+          -o-animation-delay: -100ms;
+          animation-delay: -100ms; 
+        }
+        &:nth-child(3) {
+          -webkit-animation-delay: 0ms;
+          -moz-animation-delay: 0ms;
+          -o-animation-delay: 0ms;
+          animation-delay: 0ms; 
+        }
+      }
+    }
+
+    &.is-loading {
+      .default{
+        display: none;
+      }
+      .loading{
+        display: block;
+      }
+    }
+  }
+}

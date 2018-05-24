@@ -1,0 +1,111 @@
+<div class="ttcli">
+  <header class="ttcli-head">
+    <div class="grid grid--align-center">
+      <div class="grid__col-lg-8">
+        {% block header_title %}
+        <h2 class="ttcli-head__title">{{__('Биллинг панель', 'tt-client')}}</h2>
+        {% endblock %}
+
+        {% block header_data %}
+        <ul class="ttcli-head__data">
+          <li class="ttcli-head__data-item">
+            <span class="text">{{__('Клиенты', 'tt-client')}}</span>
+            <span class="counter bg-green">{{clients|length}}</span>
+          </li>
+
+          <li class="ttcli-head__data-item">
+            <span class="text">{{__('Тренеры', 'tt-client')}}</span>
+            <span class="counter bg-blue">{{coaches|length}}</span>
+          </li>
+
+          <li class="ttcli-head__data-item">
+            <span class="text">{{__('Вознаграждения', 'tt-client')}}</span>
+            <span class="counter bg-red">{{total.reward|number_format(2, '.', ' ')}}</span>
+          </li>
+
+          <li class="ttcli-head__data-item">
+            <span class="text">{{__('Налоги', 'tt-client')}}</span>
+            <span class="counter bg-yellow">{{total.tax|number_format(2, '.', ' ')}}</span>
+          </li>
+        </ul>
+        {% endblock %}
+      </div>
+
+      {% block header_actions %}
+      <div class="grid__col-lg-2"></div>
+      <div class="grid__col-lg-2">
+        <nav class="ttcli-head__menu">
+          <a class="ttcli-head__menu-title bg-grey-o" href="{{function('admin_url', 'admin.php?page=ttcli-settings')}}">
+            <i class="ti-settings"></i> <span>{{__('Настройки', 'tt-client')}}</span>
+          </a>
+        </nav>
+      </div>
+
+      {% endblock %}
+    </div>
+  </header>
+
+  <section class="ttcli-body">
+    {% block content %}
+    <div class="grid">
+      <div class="grid__col-md-8">
+        <div class="ttcli-form">
+          <div class="ttcli-form__head">
+            <h4 class="ttcli-form__head-title">
+              {{__('Последние оплатившие', 'tt-client')}}
+            </h4>
+          </div>
+          <div class="ttcli-form__control ttcli-orders">
+            {% for order in orders %}
+              <div class="ttcli-order one-line">
+                <figure class="ttcli-order__icon is-small"><span class="icon icon-coin-1"></span></figure>
+
+                <h4 class="ttcli-order__client">{{order.client_name}}</h4>
+
+                <div class="ttcli-order__meta">
+                  <span>{{order.coach_name}}</span>
+                  <span>{{order.amount|number_format(0, '.', ' ')}} {{__('руб.', 'tt-client')}}</span>
+                  <span>{{order.date|date('d.m.Y')}}</span>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="grid__col-md-4">
+        <div id="ttcliDebtors" class="ttcli-form" data-list="" {% if debtors|length > 15 %} data-list-pages="15"{% endif %}
+          data-list-options='{"valueNames": ["days", "notify"], "listClass": "ttcli-debtors__list"}'>
+          <div class="ttcli-form__head has-toolbar">
+            <h4 class="ttcli-form__head-title">
+              {{__('Список должников', 'tt-client')}} <span class="counter bg-red">{{debtors_cnt}}</span>
+            </h4>
+            <ul class="listjs-pagination"></ul>
+          </div>
+          <div class="ttcli-form__control">
+            <div class="ttcli-debtors">
+              <ul class="ttcli-debtors__list">
+                {% for debtor in debtors %}
+                <li class="ttcli-debtors__item">
+                  <figure class="ttcli-debtors__item-icon {% if debtor.notify %}is-active{% else %}is-pause{% endif %}">
+                    <span class="notify">{{debtor.notify}}</span>
+                  </figure>
+                  <div>
+                    <h4 class="ttcli-order__client">{{debtor.client_name}}</h4>
+                    <div class="ttcli-order__meta">
+                      <span>{{debtor.coach_name}}</span>
+                      <span>{{debtor.interval}}<span class="days">{{debtor.days}}</span></span>
+                    </div>
+                  </div>
+                </li>
+                {% endfor %}
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </section>
+</div>

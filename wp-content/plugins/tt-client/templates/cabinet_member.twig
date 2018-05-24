@@ -1,0 +1,94 @@
+{% extends "cabinet_base.twig" %}
+
+{% if options.yakassa_position == options.club_merchant %}
+  {% set merchant = "yakassa" %}
+{% endif %}
+
+{% if options.openbank_position == options.club_merchant %}
+  {% set merchant =  "openbank" %}
+{% endif %}
+
+{% block title %}Спортивный клуб{% endblock %}
+
+{% block header %}
+<section class="dash-header is-client">
+  <figure class="dash-header__image">
+    <img src="{{member.photo_url}}" alt="{{member.name}}" />
+  </figure>
+  <div class="dash-header__data">
+    <h3 class="title">{{member.member_name}}</h3>
+    <div class="text">
+      {% if member.expiry > 0 and member.expiry_status == 1 %}
+        <span><strong>Член клуба до</strong>: {{member.paid_until|date("d.m.Y")}}</span>
+
+        {% if member.expiry < 10 %}
+          <span class="danger">(Осталось {{member.expiry_period}})</span>
+        {% endif %}
+
+      {% else %}
+        <span>Вам необходимо оплатить членство в клубе</span>
+      {% endif %}
+
+      <label id="member_training_peaks">
+        {% if merchant %}
+          {% include('forms/'~merchant~'/membership_premium_button.twig') %}
+        {% endif %}
+        <span>
+          {% if member.is_new_premium %}
+            Подписка TrainingPeaks Premium
+          {% else %}
+            {% if member.tariff %}{{member.tariff}}{% endif %}
+
+            {% if not member.premium_expired %} 
+              до {{member.premium_pay_date|date("d.m.Y")}}
+            {% else %}
+              <span style="color: #eb3941">{{ member.premium_expired_text }}</span>
+            {% endif %}
+          {% endif %}
+        </span>
+        
+      </label>
+
+      {#
+      {% if not member.premium_expired %}
+        <label id="member_training_peaks">
+          {% if merchant %}
+            {% include('forms/'~merchant~'/membership_premium_button.twig') %}
+          {% endif %}
+          <span>{% if member.tariff %}{{member.tariff}} до {{member.premium_pay_date|date("d.m.Y")}}{% else %}Подписка TrainingPeaks Premium{% endif %}</span>
+        </label>
+      {% else %}
+        <label id="member_training_peaks">
+          {% if merchant %}
+            {% include('forms/'~merchant~'/membership_premium_button.twig') %}
+          {% endif %}
+          <span>{% if member.tariff %}{{member.tariff}} {{ member.premium_expired_text }}{% endif %}</span>
+        </label>
+      {% endif %}
+      #}
+    </div>
+  </div>
+</section>
+
+{% if tpl %}
+  <section class="dash-info {{tpl.status}}">
+    <h4 class="dash-info__title">{{tpl.title}}</h4>
+    <div class="dash-info__text">{{tpl.message}}</div>
+    <a class="dash-info__close" href="{{function('site_url', 'client/')}}"><i class="ion ion-close-circled"></i></a>
+  </section>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+  <div class="row-flex">
+    {% if merchant %}
+      {% include('forms/'~merchant~'/membership.twig') %}
+
+      {% if member.tariff %}{% include('forms/'~merchant~'/membership_premium_form.twig') %}{% endif %}
+    {% endif %}
+  </div>
+  {% set offers_title = "Акции и предложения" %}
+  
+  {% if member.expiry > 0 and member.expiry_status == 1 %}{% include('offers.twig') %}{% endif %}
+{% endblock %}

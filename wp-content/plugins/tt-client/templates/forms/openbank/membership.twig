@@ -1,0 +1,28 @@
+<div class="col-flex is-3">
+  <form name="MembershipForm" action="ttcli_payment" method="post" id="tt-client-openbank" class="wpcf7-form">
+    <input type="hidden" name="payment_merchant" value="openbank" />
+    <input type="hidden" name="payment_type" value="membership" />
+
+    <input type="hidden" name="orderNumber" value="membership_{{member.member_id}}_{{now|date('ymd-Hi')}}" />
+    <input type="hidden" name="amount" value="{{member.ms_price  * 100}}" />
+    <input type="hidden" name="returnUrl" value="{{function('get_permalink')}}?type=membershipOpenbank" />
+    <input type="hidden" name="clientId" value="{{member.member_id}}" />
+
+    <input type="hidden" name="description" value="Оплата членства в спортивном клубе сроком на {% spaceless %}{{member.ms_period}}{% endspaceless %}" />
+
+    <input type="hidden" name="jsonParams:payment_merchant" value="openbank" />
+    <input type="hidden" name="jsonParams:payment_type" value="membership" />
+    <input type="hidden" name="jsonParams:member_id" value="{{member.member_id}}" />
+    <input type="hidden" name="jsonParams:payment_period" value="{{options.club_period_count}};{{options.club_period_type}}" />
+    <input type="hidden" name="jsonParams:email" value="{{member.member_id_name}}" />
+    {% if member.is_new %}
+        <input type="hidden" name="jsonParams:is_new" value="1" />
+    {% endif %}
+
+    <label class="hidden-xx">Членство в клубе сроком на {{member.ms_period}}</label>
+    <br>
+    <span class="wpcf7-form-control-wrap">
+      <button type="submit" class="submit">Оплатить {{member.ms_price|number_format(0, '.', ' ')}} рублей</button>
+    </span>
+  </form>
+</div>

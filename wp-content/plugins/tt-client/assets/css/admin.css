@@ -1,0 +1,45 @@
+.wrap.ttcli > h1,
+.wrap.ttcli > h2{
+  margin: 0 0 20px;
+  font-size: 24px;
+}
+
+.ttcli-form,
+.ttcli-form *{
+  box-sizing: border-box;
+}
+
+.ttcli-form h2{
+  width: 100%;
+  margin: 0;
+  border-radius: 3px 3px 0 0;
+  background: #ffffff;
+  border: 1px solid #f4f4f4;
+  border-top: 3px solid #3c8dbc;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  color: #444;
+  padding: 10px;
+}
+.ttcli-form .form-table{
+  background-color: #fff;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  border: 1px solid #f4f4f4;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+.ttcli-form h2 + .form-table,
+.ttcli-desc + .form-table{
+  border-radius: 0 0 3px 3px;
+  margin-top: 0;
+  border-top: 0;
+}
+.ttcli-desc{
+  padding: 10px;
+  border: 1px solid #f4f4f4;
+  border-top: 0;
+  background: #ffffff;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+.ttcli-form .form-table th{
+  padding-left: 10px;
+}

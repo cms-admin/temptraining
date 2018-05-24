@@ -1,0 +1,36 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Privilege Widget v1.4\n"
+"POT-Creation-Date: 2015-02-01 14:54+1000\n"
+"PO-Revision-Date: 2015-02-01 14:54+1000\n"
+"Last-Translator: \n"
+"Language-Team: FuzzGuard <info@fuzzguard.com.au>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.4\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-SearchPath-0: C:\\Temp\\Poedit\\projects\\privilege-widget\n"
+
+#: C:\Temp\Poedit\projects\privilege-widget/privWidget.php:51
+msgid "User Restrictions"
+msgstr ""
+
+#: C:\Temp\Poedit\projects\privilege-widget/privWidget.php:59
+msgid "Admin Users"
+msgstr ""
+
+#: C:\Temp\Poedit\projects\privilege-widget/privWidget.php:66
+msgid "Logged Out Users"
+msgstr ""
+
+#: C:\Temp\Poedit\projects\privilege-widget/privWidget.php:73
+msgid "Logged In Users"
+msgstr ""
+
+#: C:\Temp\Poedit\projects\privilege-widget/privWidget.php:80
+msgid "All Users"
+msgstr ""

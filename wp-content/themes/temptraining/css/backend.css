@@ -1,0 +1,47 @@
+#menu-posts-coach .wp-menu-image.dashicons-before{
+  background-image: url("../images/svg/whistle.svg");
+  background-size: auto 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#menu-posts-uniform .wp-menu-image.dashicons-before img{
+  display: none;
+}
+
+#menu-posts-uniform .wp-menu-image.dashicons-before{
+  background-image: url("../images/svg/shirt.svg");
+  background-size: auto 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#menu-posts-uniform .wp-menu-image.dashicons-before img{
+  display: none;
+}
+
+#menu-posts-starts .wp-menu-image.dashicons-before{
+  background-image: url("../images/svg/stopwatch-1.svg");
+  background-size: auto 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#menu-posts-starts .wp-menu-image.dashicons-before img{
+  display: none;
+}
+
+.wp-list-table .column-thumbnail{
+  width: 80px;
+}
+.wp-list-table .column-thumbnail .coach-thumb{
+  width:  60px;
+  height: auto;
+}
+
+.coach-meta-thumbnail{
+  margin: 0 0 10px;
+}
+
+.coach-meta-thumbnail img{
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}

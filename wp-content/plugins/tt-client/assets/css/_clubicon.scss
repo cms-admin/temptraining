@@ -1,0 +1,204 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "clubfont";
+  src:url("../fonts/clubfont.eot");
+  src:url("../fonts/clubfont.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/clubfont.woff") format("woff"),
+    url("../fonts/clubfont.ttf") format("truetype"),
+    url("../fonts/clubfont.svg#clubfont") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "clubfont" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="clubicon-"]:before,
+[class*=" clubicon-"]:before {
+  font-family: "clubfont" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin clubicon($content: ""){
+  font-family: "clubfont" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: $content;
+}
+
+.clubicon-job-search:before {
+  content: "\61";
+}
+.clubicon-salary:before {
+  content: "\62";
+}
+.clubicon-contract:before {
+  content: "\63";
+}
+.clubicon-intelligence:before {
+  content: "\64";
+}
+.clubicon-placeholder:before {
+  content: "\65";
+}
+.clubicon-motivation:before {
+  content: "\66";
+}
+.clubicon-settings:before {
+  content: "\67";
+}
+.clubicon-stopwatch:before {
+  content: "\68";
+}
+.clubicon-diploma:before {
+  content: "\69";
+}
+.clubicon-clipboard:before {
+  content: "\6a";
+}
+.clubicon-target:before {
+  content: "\6b";
+}
+.clubicon-handshake:before {
+  content: "\6c";
+}
+.clubicon-meeting-1:before {
+  content: "\6d";
+}
+.clubicon-networking:before {
+  content: "\6e";
+}
+.clubicon-book:before {
+  content: "\6f";
+}
+.clubicon-desk:before {
+  content: "\70";
+}
+.clubicon-analysis:before {
+  content: "\71";
+}
+.clubicon-businessman-1:before {
+  content: "\72";
+}
+.clubicon-meeting:before {
+  content: "\73";
+}
+.clubicon-worker:before {
+  content: "\74";
+}
+.clubicon-user:before {
+  content: "\75";
+}
+.clubicon-megaphone-1:before {
+  content: "\76";
+}
+.clubicon-video-call:before {
+  content: "\77";
+}
+.clubicon-teamwork-1:before {
+  content: "\78";
+}
+.clubicon-presentation-1:before {
+  content: "\79";
+}
+.clubicon-businessman:before {
+  content: "\7a";
+}
+.clubicon-curriculum:before {
+  content: "\41";
+}
+.clubicon-presentation:before {
+  content: "\42";
+}
+.clubicon-engineer:before {
+  content: "\43";
+}
+.clubicon-conversation:before {
+  content: "\44";
+}
+.clubicon-teamwork:before {
+  content: "\45";
+}
+.clubicon-planning:before {
+  content: "\46";
+}
+.clubicon-relation:before {
+  content: "\47";
+}
+.clubicon-add-user:before {
+  content: "\48";
+}
+.clubicon-administrator:before {
+  content: "\49";
+}
+.clubicon-balance:before {
+  content: "\4a";
+}
+.clubicon-calendar:before {
+  content: "\4b";
+}
+.clubicon-hierarchical-structure-1:before {
+  content: "\4c";
+}
+.clubicon-note:before {
+  content: "\4d";
+}
+.clubicon-database:before {
+  content: "\4e";
+}
+.clubicon-hierarchical-structure:before {
+  content: "\4f";
+}
+.clubicon-id-card:before {
+  content: "\50";
+}
+.clubicon-email:before {
+  content: "\51";
+}
+.clubicon-briefcase:before {
+  content: "\52";
+}
+.clubicon-strategy:before {
+  content: "\53";
+}
+.clubicon-management:before {
+  content: "\54";
+}
+.clubicon-profits-1:before {
+  content: "\55";
+}
+.clubicon-megaphone:before {
+  content: "\56";
+}
+.clubicon-profits:before {
+  content: "\57";
+}
+.clubicon-team:before {
+  content: "\58";
+}

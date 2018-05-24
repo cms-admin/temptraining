@@ -1,0 +1,24 @@
+{% if "now"|date("d") < 29 %} {% set frequency = "now"|date("d") %} {% else %} {% set frequency = 28 %} {% endif %}
+{% if member.premium_pay_date_frequency > 0 %}{% set frequency = member.premium_pay_date_frequency %}{% endif %}
+<input type="checkbox" name="membership_premium" value="{{member.member_id}}" {% if not member.tariff or member.is_new_premium %}data-form='{
+	"action": "ttcli_payment",
+  "post_no_convert": true,
+  "payment_merchant": "{{merchant}}",
+  "payment_type": "membership_premium",
+  "orderNumber": "ms_premium_{{member.member_id}}_{{now|date('ymd-His')}}",
+  "amount": "{{options.club_price_premium * 100}}",
+  "returnUrl": "{{function('get_permalink')}}?type=membershipPremiumOpenbank",
+  "clientId": "{{member.member_id}}",
+  "description": "Оплата подписки на TrainingPeaks Premium сроком на 1 месяц",
+  "jsonParams": {
+    "payment_merchant": "{{merchant}}",
+    "payment_type": "membership_premium",
+    "member_id": "{{member.member_id}}",
+    "client_id": "{{member.client_id}}",
+    "email": "{{member.member_id_name}}",
+    "payment_months": 1,
+    "is_activation": true{% if not member.recurring_id and not member.is_new_premium %},
+    "recFrequency": "{{frequency}}",
+    "recExpiry": "{{ "now"|date_modify("+1 year")|date("Ymd") }}"{% endif %}
+  }
+}'{% endif %} {% if member.is_new_premium %}disabled="disabled"{% elseif member.tariff %}checked="checked" data-tariff="{{member.tariff}}"{% endif %} />

@@ -1,0 +1,13 @@
+.toplevel_page_ttcli > .dashicons-before::before{
+  position: absolute;
+  top: 0;
+  left: 7px;
+  width: 36px;
+  height: 34px;
+  padding: 0;
+  background-image: url("../icons/cash.svg");
+  background-size: 22px;
+  background-position: left center;
+  background-repeat: no-repeat;
+  content: '';
+}

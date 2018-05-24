@@ -1,0 +1,20 @@
+.wppcp-attachments-display-panel{
+    padding: 20px;
+    background: #f8f8f8;
+    border: 1px solid #cfcfcf;
+}
+
+.wppcp-attachments-display-panel-title{
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px;
+}
+
+.wppcp-attachments-display-panel-desc{
+    margin: 20px 0;
+}
+
+.wppcp-attachments-display-panel-file{
+	margin: 5px 0;
+}

@@ -1,0 +1,50 @@
+<div class="col-flex is-2-3 is-2-3-tab is-2-3-lap">
+  <form id="tt-client-yakassa" class="wpcf7-form" action="ttcli_yakassa_payment"  method="post">
+    <input type="hidden" name="type" value="tariff" />
+    <div class="row">
+      <div class="col-sm-4 col-xm-4 col-md-4">
+        <label class="hidden-xx">Выберите платежный период:</label>
+        <br>
+        <span class="wpcf7-form-control-wrap menu-subject">
+          <select name="month_count" class="wpcf7-form-control wpcf7-select" data-month-count="">
+            <option value="1" selected>Месяц</option>
+            <option value="2">2 месяца</option>
+            <option value="3">3 месяца</option>
+            <option value="4">4 месяца</option>
+            <option value="6">6 месяцев</option>
+            <option value="12">Год</option>
+          </select>
+        </span>
+      </div>
+
+      <div class="col-sm-4 col-xm-4 col-md-4">
+        <label class="hidden-xx">Выберите способ оплаты:</label>
+        <br>
+        <span class="wpcf7-form-control-wrap menu-subject">
+          <select name="payment_type" class="wpcf7-form-control wpcf7-select">
+            <option value="bank_card" selected>Банковская карта</option>
+            <option value="alfabank">Альфа-банк</option>
+            <option value="sberbank">Сбербанк онлайн</option>
+          </select>
+        </span>
+      </div>
+
+      <div class="col-sm-4 col-xm-4 col-md-4">
+        <label class="hidden-xx">&nbsp;</label>
+        <br>
+        <span class="wpcf7-form-control-wrap">
+          <input name="client_id_name" value="{{ client.client_id_name }}" type="hidden"/>
+          <input name="sum" value="{{ client.tarif_cost|number_format(0, '.', '') }}" type="hidden"       
+            data-tariff-sum="" />
+
+          <button type="submit" id="button-payment-client" class="submit"
+            data-tarif-name="{{ client.client_tarif_name }}"
+            month-price="{{ client.tarif_cost|number_format(0, '.', '') }}"
+            data-month="1"
+            data-price="{{ client.tarif_cost|number_format(0, '.', '') }}"
+            data-id="{{ client.ID }}" >Оплатить {{ client.tarif_cost|number_format(0, '.', '') }} р.</button>
+        </span>
+      </div>
+    </div>
+  </form>
+</div>

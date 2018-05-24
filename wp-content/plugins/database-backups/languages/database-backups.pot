@@ -1,0 +1,167 @@
+# Copyright (C) 2016 Database Backups
+# This file is distributed under the same license as the Database Backups package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Database Backups 1.2.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/database-backups\n"
+"POT-Creation-Date: 2016-07-21 11:02:11+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: database-backups.php:94
+msgid "Weekly"
+msgstr ""
+
+#: database-backups.php:99
+msgid "Monthly"
+msgstr ""
+
+#: database-backups.php:408 database-backups.php:529
+msgid "Settings"
+msgstr ""
+
+#. #-#-#-#-#  plugin.pot (Database Backups 1.2.0)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: database-backups.php:476 database-backups.php:528
+msgid "Database Backups"
+msgstr ""
+
+#: database-backups.php:490
+msgid "Backup Created"
+msgstr ""
+
+#: database-backups.php:492 database-backups.php:503
+msgid "Close"
+msgstr ""
+
+#: database-backups.php:501
+msgid "Settings Saved"
+msgstr ""
+
+#: database-backups.php:534
+msgid "Directory name"
+msgstr ""
+
+#: database-backups.php:543
+msgid "Use limits"
+msgstr ""
+
+#: database-backups.php:548
+msgid "Set round value if you see PHP memory error. 0 - don't use limits"
+msgstr ""
+
+#: database-backups.php:552
+msgid "Use prefix"
+msgstr ""
+
+#: database-backups.php:555
+msgid "Backup only WP tables with prefix"
+msgstr ""
+
+#: database-backups.php:560
+msgid "Enable GZip compression"
+msgstr ""
+
+#: database-backups.php:563
+msgid "Allow to pack your backup in GZ archive"
+msgstr ""
+
+#: database-backups.php:567
+msgid "Enable converting to UTF-8"
+msgstr ""
+
+#: database-backups.php:570
+msgid ""
+"You can check this option if have problems with encoding when import database"
+msgstr ""
+
+#: database-backups.php:574
+msgid "Enable auto backups"
+msgstr ""
+
+#: database-backups.php:578
+msgid "Disabled"
+msgstr ""
+
+#: database-backups.php:588
+msgid "Enable auto delete"
+msgstr ""
+
+#: database-backups.php:592
+msgid "Check this option if you want auto deleting the old backups"
+msgstr ""
+
+#: database-backups.php:596
+msgid "Delete after * days"
+msgstr ""
+
+#: database-backups.php:600
+msgid "How many days to store the backups. 0 - for disable this option"
+msgstr ""
+
+#: database-backups.php:604
+msgid "Delete after * copies"
+msgstr ""
+
+#: database-backups.php:608
+msgid "How many copies of backups to store. 0 - for disable this option"
+msgstr ""
+
+#: database-backups.php:617
+msgid "All backups"
+msgstr ""
+
+#: database-backups.php:620
+msgid "No backups yet"
+msgstr ""
+
+#: database-backups.php:624
+msgid "ID"
+msgstr ""
+
+#: database-backups.php:626
+msgid "File Name"
+msgstr ""
+
+#: database-backups.php:628
+msgid "Size"
+msgstr ""
+
+#: database-backups.php:630
+msgid "Date"
+msgstr ""
+
+#: database-backups.php:632
+msgid "Actions"
+msgstr ""
+
+#: database-backups.php:646
+msgid "Download"
+msgstr ""
+
+#: database-backups.php:651
+msgid "Delete"
+msgstr ""
+
+#: database-backups.php:667
+msgid "Do backup"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Simple Plugin that allows do backup of database tables. Manually or auto. "
+"Простой плагин, который позволяет делать бэкапы вашей базы данных вручную, "
+"либо в атоматическом режиме."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "AGriboed"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://v1rus.ru/"
+msgstr ""

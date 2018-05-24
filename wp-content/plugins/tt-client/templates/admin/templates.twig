@@ -1,0 +1,174 @@
+{% extends "admin/index.twig" %}
+
+{% block header_title %}
+  <h2 class="ttcli-head__title">{{__('Шаблоны писем', 'tt-client')}}</h2>
+{% endblock %}
+
+{% block header_data %}{% endblock %}
+
+{% block header_actions %}
+<div class="grid__col-lg-2">
+  <nav class="ttcli-head__menu">
+    <a class="ttcli-head__menu-title bg-grey-o" href="{{function('admin_url', 'admin.php?page=ttcli')}}">
+      <i class="ti-back-left"></i> <span>{{__('Назад', 'tt-client')}}</span>
+    </a>
+  </nav>
+</div>
+<div class="grid__col-lg-2">
+  <nav class="ttcli-head__menu">
+    <button class="ttcli-head__menu-title bg-green" data-save-form="ttcli_templates_form">
+      <i class="ti-save"></i> <span>{{__('Сохранить', 'tt-client')}}</span>
+    </button>
+  </nav>
+</div>
+{% endblock %}
+
+{% block content %}
+<form id="ttcli_templates_form" action="ttcli_save_templates">
+  <input type="hidden" name="last_update" value="{% if options.last_update %}{{options.last_update}}{% else %}0{% endif %}" />
+
+  <div class="ttcli-form">
+    <section class="ttcli-form__head">
+      <h4 class="ttcli-form__head-title">{{__('Шаблоны уведомлений', 'tt-client')}}</h4>
+    </section>
+
+    <div class="grid">
+      <div class="grid__col-md-6">
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="ttcli_opt_email_subject_order">{{__('Тема сообщения об оплате', 'tt-client')}}</label>
+          <input class="ttcli-form__control-string" id="ttcli_opt_email_subject_order" name="email_subject_order" value="{{options.email_subject_order}}" data-validation="required"  />
+        </div>
+
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="ttcli_opt_email_template_order">{{__('Шаблон сообщения об оплате', 'tt-client')}}</label>
+          <div class="dash-editor postarea wp-editor-expand">
+            {% set template_editor_order = {'wpautop': true, 'media_buttons': false, 'textarea_name': 'email_template_order', 'textarea_rows': 8, 'teeny': true}  %}
+            {{function('wp_editor', function("stripslashes", options.email_template_order), 'ttcli_opt_email_template_order', template_editor_order)}}
+          </div>
+          <div class="ttcli-form__control-hint">
+            Доступные переменные: <code>{клиент}</code>, <code>{тренер}</code>, <code>{сумма}</code>, <code>{подписка}</code>, <code>{тариф}</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid__col-md-6">
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="ttcli_opt_email_subject_order_auto">{{__('Тема сообщения об автоматической оплате', 'tt-client')}}</label>
+          <input class="ttcli-form__control-string" id="ttcli_opt_email_subject_order_auto" name="email_subject_order_auto" value="{{options.email_subject_order_auto}}" data-validation="required"  />
+        </div>
+
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="ttcli_opt_email_template_order_auto">{{__('Шаблон сообщения об автоматической оплате', 'tt-client')}}</label>
+          <div class="dash-editor postarea wp-editor-expand">
+            {% set template_editor_order_auto = {'wpautop': true, 'media_buttons': false, 'textarea_name': 'email_template_order_auto', 'textarea_rows': 8, 'teeny': true}  %}
+            {{function('wp_editor', function("stripslashes", options.email_template_order_auto), 'ttcli_opt_email_template_order_auto', template_editor_order_auto)}}
+          </div>
+          <div class="ttcli-form__control-hint">
+            Доступные переменные: <code>{клиент}</code>, <code>{тренер}</code>, <code>{сумма}</code>, <code>{подписка}</code>, <code>{тариф}</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      {# сообщения о предстоящей автоматической оплате #}
+      <div class="grid__col-md-6">
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="ttcli_opt_email_subject_preorder_auto">
+            {{__('Тема сообщения о предстоящей автоматической оплате', 'tt-client')}}
+          </label>
+          <input class="ttcli-form__control-string" id="ttcli_opt_email_subject_preorder_auto" name="email_subject_preorder_auto" 
+            value="{{options.email_subject_preorder_auto}}" data-validation="required"  />
+        </div>
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="ttcli_opt_email_template_preorder_auto">{{__('Шаблон сообщения о предстоящей автоматической оплате', 'tt-client')}}</label>
+          <div class="dash-editor postarea wp-editor-expand">
+            {% set template_editor_preorder_auto = {'wpautop': true, 'media_buttons': false, 'textarea_name': 'email_template_preorder_auto', 'textarea_rows': 8, 'teeny': true}  %}
+            {{function('wp_editor', function("stripslashes", options.email_template_preorder_auto), 'ttcli_opt_email_template_preorder_auto', template_editor_preorder_auto)}}
+          </div>
+
+          <div class="ttcli-form__control-hint">
+            Доступные переменные: <code>{клиент}</code>, <code>{дни}</code>, <code>{карта}</code>, <code>{сумма}</code>, <code>{подписка}</code>, <code>{тариф}</code>
+          </div>
+        </div>
+      </div>
+
+      {# сообщения об окончании срока действия связки #}
+      <div class="grid__col-md-6">
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="ttcli_opt_email_subject_recurring_end">
+            {{__('Тема сообщения об окончании срока действия связки', 'tt-client')}}
+          </label>
+          <input class="ttcli-form__control-string" id="ttcli_opt_email_subject_recurring_end" name="email_subject_recurring_end" 
+            value="{{options.email_subject_recurring_end}}" data-validation="required"  />
+        </div>
+
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="ttcli_opt_email_template_recurring_end">
+            {{__('Шаблон сообщения об окончании срока действия связки', 'tt-client')}}
+          </label>
+          <div class="dash-editor postarea wp-editor-expand">
+            {% set template_editor_recurring_end = {'wpautop': true, 'media_buttons': false, 'textarea_name': 'email_template_recurring_end', 'textarea_rows': 8, 'teeny': true}  %}
+            {{function('wp_editor', function("stripslashes", options.email_template_recurring_end), 'ttcli_opt_email_template_recurring_end', template_editor_recurring_end)}}
+          </div>
+
+          <div class="ttcli-form__control-hint">
+            Доступные переменные: <code>{клиент}</code>, <code>{дни}</code>, <code>{карта}</code>, <code>{тариф}</code>
+          </div>
+        </div>
+      </div>
+
+      {# сообщение новому члену в клубе #}
+      <div class="grid__col-md-6">
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label">
+            {{__('Тема сообщения новому члену в клубе', 'tt-client')}}
+          </label>
+          <input class="ttcli-form__control-string" name="club_membership_start:subject" 
+            value="{{options.club_membership_start.subject}}" data-validation="required"  />
+        </div>
+
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label">
+            {{__('Шаблон сообщения новому члену в клубе', 'tt-client')}}
+          </label>
+          <div class="dash-editor postarea wp-editor-expand">
+            {% set template_editor_club_membership_start = {'wpautop': true, 'media_buttons': false, 'textarea_name': 'club_membership_start:message', 'textarea_rows': 8, 'teeny': true}  %}
+            {{function('wp_editor', function("stripslashes", options.club_membership_start.message), 'ttcli_template_editor_club_membership_start', template_editor_club_membership_start)}}
+          </div>
+
+          <div class="ttcli-form__control-hint">
+            Доступные переменные: <code>{клиент}</code>, <code>{цена}</code>, <code>{период}</code>
+          </div>
+        </div>
+      </div>
+
+      {# сообщения об окончании срока действия членства в клубе #}
+      <div class="grid__col-md-6">
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label">
+            {{__('Тема сообщения об окончании срока действия членства в клубе', 'tt-client')}}
+          </label>
+          <input class="ttcli-form__control-string" name="club_membership_end:subject" 
+            value="{{options.club_membership_end.subject}}" data-validation="required"  />
+        </div>
+
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label">
+            {{__('Шаблон сообщения об окончании срока действия членства в клубе', 'tt-client')}}
+          </label>
+          <div class="dash-editor postarea wp-editor-expand">
+            {% set template_editor_club_membership_end = {'wpautop': true, 'media_buttons': false, 'textarea_name': 'club_membership_end:message', 'textarea_rows': 8, 'teeny': true}  %}
+            {{function('wp_editor', function("stripslashes", options.club_membership_end.message), 'ttcli_template_editor_club_membership_end', template_editor_club_membership_end)}}
+          </div>
+
+          <div class="ttcli-form__control-hint">
+            Доступные переменные: <code>{клиент}</code>, <code>{цена}</code>, <code>{срок}</code>, <code>{период}</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,258 @@
+{% extends "admin/index.twig" %}
+
+{% block header_title %}
+  <h2 class="ttcli-head__title">{{__('Настройки плагина', 'tt-client')}}</h2>
+{% endblock %}
+
+{% block header_data %}{% endblock %}
+
+{% block header_actions %}
+<div class="grid__col-lg-2">
+  <nav class="ttcli-head__menu">
+    <a class="ttcli-head__menu-title bg-grey-o" href="{{function('admin_url', 'admin.php?page=ttcli')}}">
+      <i class="ti-back-left"></i> <span>{{__('Назад', 'tt-client')}}</span>
+    </a>
+  </nav>
+</div>
+<div class="grid__col-lg-2">
+  <nav class="ttcli-head__menu">
+    <button class="ttcli-head__menu-title bg-green" data-save-form="ttcli_options_form">
+      <i class="ti-save"></i> <span>{{__('Сохранить', 'tt-client')}}</span>
+    </button>
+  </nav>
+</div>
+{% endblock %}
+
+{% block content %}
+<form id="ttcli_options_form" action="ttcli_save_options">
+  <input type="hidden" name="last_update" value="{% if options.last_update %}{{options.last_update}}{% else %}0{% endif %}" />
+  <div class="grid">
+    <div class="grid__col-md-4">
+      <div class="ttcli-form">
+        <section class="ttcli-form__head">
+          <h4 class="ttcli-form__head-title">{{__('Способы оплаты', 'tt-client')}}</h4>
+        </section>
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="ttcli_opt_yakassa_position">{{__('Яндекс касса', 'tt-client')}}</label>
+          <select id="ttcli_opt_yakassa_position" class="nice-select" name="yakassa_position">
+            <option value="0">{{__('Не используется', 'tt-client')}}</option>
+            <option value="1" {% if options.yakassa_position == 1 %}selected="selected"{% endif %}>1</option>
+            <option value="2" {% if options.yakassa_position == 2 %}selected="selected"{% endif %}>2</option>
+          </select>
+        </div>
+
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="ttcli_opt_openbank_position">{{__('Банк Открытие', 'tt-client')}}</label>
+          <select id="ttcli_opt_openbank_position" class="nice-select" name="openbank_position">
+            <option value="0">{{__('Не используется', 'tt-client')}}</option>
+            <option value="1" {% if options.openbank_position == 1 %}selected="selected"{% endif %}>1</option>
+            <option value="2" {% if options.openbank_position == 2 %}selected="selected"{% endif %}>2</option>
+          </select>
+        </div>
+
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="ttcli_opt_coaches_tax">{{__('Величина налога в %', 'tt-client')}}</label>
+          <input class="ttcli-form__control-string" id="ttcli_opt_coaches_tax" name="coaches_tax" value="{{options.coaches_tax}}"  />
+        </div>
+      </div>
+    </div>
+
+    <div class="grid__col-md-4">
+      <div class="ttcli-form">
+        <section class="ttcli-form__head">
+          <h4 class="ttcli-form__head-title">{{__('Яндекс Касса', 'tt-client')}}</h4>
+        </section>
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="ttcli_opt_yakassa_shopid">{{__('Идентификатор магазина (shopId)', 'tt-client')}}</label>
+          <input class="ttcli-form__control-string" id="ttcli_opt_yakassa_shopid" name="yakassa_shopid" value="{{options.yakassa_shopid}}"  />
+        </div>
+
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="ttcli_opt_yakassa_scid">{{__('Идентификатор витрины магазина (scid)', 'tt-client')}}</label>
+          <input class="ttcli-form__control-string" id="ttcli_opt_yakassa_scid" name="yakassa_scid" value="{{options.yakassa_scid}}"  />
+        </div>
+
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="ttcli_opt_yakassa_url">{{__('Секретный ключ', 'tt-client')}}</label>
+          <input class="ttcli-form__control-string" id="ttcli_opt_yakassa_secret_key" name="yakassa_secret_key" value="{{options.yakassa_secret_key}}" />
+        </div>
+      </div>
+    </div>
+
+    <div class="grid__col-md-4">
+      <div class="ttcli-form">
+        <section class="ttcli-form__head has-tabs">
+          <h4 class="ttcli-form__head-title">{{__('Банк Открытие', 'tt-client')}}</h4>
+          <ul class="ttcli-form__head-tabs">
+            <li>
+              <a href="#openbank_default">Простой</a>
+            </li>
+            <li>
+              <a href="#openbank_ssl">SSL</a>
+            </li>
+          </ul>
+        </section>
+        <div class="ttcli-tabs__container">
+          <!-- Настройки для мерчанта по-умолчанию -->
+          <div id="openbank_default" class="ttcli-tabs__content is-active">
+            <div class="ttcli-form__control">
+              <label class="ttcli-form__control-label" for="ttcli_opt_openbank_user">{{__('Логин магазина', 'tt-client')}}</label>
+              <input class="ttcli-form__control-string" id="ttcli_opt_openbank_user" name="openbank_user" value="{{options.openbank_user}}" />
+            </div>
+
+            <div class="ttcli-form__control">
+              <label class="ttcli-form__control-label" for="ttcli_opt_openbank_pass">{{__('Пароль магазина', 'tt-client')}}</label>
+              <input class="ttcli-form__control-string" id="ttcli_opt_openbank_pass" name="openbank_pass" value="{{options.openbank_pass}}" />
+            </div>
+          </div>
+          <!-- Настройки для мерчанта SSL -->
+          <div id="openbank_ssl" class="ttcli-tabs__content">
+            <div class="ttcli-form__control">
+              <label class="ttcli-form__control-label" for="ttcli_opt_openbank_user_ssl">
+                {{__('Логин магазина SSL', 'tt-client')}}
+              </label>
+              <input class="ttcli-form__control-string" id="ttcli_opt_openbank_user_ssl" name="openbank_user_ssl" value="{{options.openbank_user_ssl}}" />
+            </div>
+
+            <div class="ttcli-form__control">
+              <label class="ttcli-form__control-label" for="ttcli_opt_openbank_pass_ssl">
+                {{__('Пароль магазина SSL', 'tt-client')}}
+              </label>
+              <input class="ttcli-form__control-string" id="ttcli_opt_openbank_pass_ssl" name="openbank_pass_ssl" value="{{options.openbank_pass_ssl}}" />
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="ttcli_opt_openbank_url">{{__('Адрес для отправки формы', 'tt-client')}}</label>
+          <input class="ttcli-form__control-string" id="ttcli_opt_openbank_url" name="openbank_url" value="{{options.openbank_url}}" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="grid__col-md-8">
+      <div class="ttcli-form">
+        <section class="ttcli-form__head">
+          <h4 class="ttcli-form__head-title">{{__('Настройки уведомлений', 'tt-client')}}</h4>
+        </section>
+
+        <div class="grid">
+          <div class="grid__col-md-4">
+            <div class="ttcli-form__control">
+              <label class="ttcli-form__control-label" for="ttcli_opt_email_address">{{__('Email отправителя', 'tt-client')}}</label>
+              <input class="ttcli-form__control-string" id="ttcli_opt_email_address" name="email_address" value="{{options.email_address}}" data-validation="email"  />
+            </div>
+          </div>
+
+          <div class="grid__col-md-4">
+            <div class="ttcli-form__control">
+              <label class="ttcli-form__control-label" for="ttcli_opt_email_name">{{__('Имя отправителя', 'tt-client')}}</label>
+              <input class="ttcli-form__control-string" id="ttcli_opt_email_name" name="email_name" value="{{options.email_name}}" data-validation="required"  />
+            </div>
+          </div>
+
+          <div class="grid__col-md-4">
+            <div class="ttcli-form__control">
+              <label class="ttcli-form__control-label" for="ttcli_opt_admin_noty">{{__('Email для уведомлений', 'tt-client')}}</label>
+              <input class="ttcli-form__control-string" id="ttcli_opt_admin_noty" name="admin_noty" value="{{options.admin_noty}}" data-validation="email"  />
+            </div>
+          </div>
+
+          <div class="grid__col-md-12">
+            <div class="ttcli-form__control">
+              <label class="ttcli-form__control-label" for="ttcli_opt_alert_reccuring">{{__('Предупреждения об автоплатеже', 'tt-client')}}</label>
+              <div class="dash-editor postarea wp-editor-expand">
+                {% set template_editor_alert_reccuring = {'wpautop': true, 'media_buttons': false, 'textarea_name': 'alert_reccuring', 'textarea_rows': 5, 'teeny': true}  %}
+                {{function('wp_editor', options.alert_reccuring, 'ttcli_opt_alert_reccuring', template_editor_alert_reccuring)}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# Блок настройки спортивного клуба ----------------------------------------------------------------------------- #}
+    <div class="grid__col-md-4">
+      <div class="ttcli-form">
+        <section class="ttcli-form__head has-tabs">
+          <h4 class="ttcli-form__head-title">{{__('Настройки спортивного клуба', 'tt-client')}}</h4>
+          <ul class="ttcli-form__head-tabs">
+            <li><a href="#club_default"><i class="ti-settings"></i></a></li>
+            <li><a href="#club_notify"><i class="ti-alarm-clock"></i></a></li>
+          </ul>
+        </section>
+
+        <div class="ttcli-tabs__container">
+          {# Общие настройки спортивного клуба #}
+          <div id="club_default" class="ttcli-tabs__content is-active">
+            {# Способ оплаты #}
+            <div class="ttcli-form__control">
+              <label class="ttcli-form__control-label" for="ttcli_club_merchant">{{__('Способ оплаты', 'tt-client')}}</label>
+              <select id="ttcli_club_merchant" class="nice-select" name="club_merchant">
+                <option value="{{options.yakassa_position}}" {% if options.club_merchant == options.yakassa_position %}selected="selected"{% endif %}>Яндекс Касса</option>
+                <option value="{{options.openbank_position}}" {% if options.club_merchant == options.openbank_position %}selected="selected"{% endif %}>Банк Открытие</option>
+              </select>
+            </div>
+            {# Стоимость подписки по умолчанию #}
+            <div class="ttcli-form__control">
+              <label class="ttcli-form__control-label" for="ttcli_club_price">{{__('Стоимость подписки', 'tt-client')}}</label>
+              <input class="ttcli-form__control-string" id="ttcli_club_price" name="club_price" value="{{options.club_price}}" data-validation="number"  />
+            </div>
+            {# Период подписки по умолчанию #}
+            <div class="ttcli-form__control">
+              <label class="ttcli-form__control-label" for="ttcli_club_period_count">{{__('Период подписки', 'tt-client')}}</label>
+              <div class="grid">
+                <div class="grid__col-md-4">
+                  <input class="ttcli-form__control-string" id="ttcli_club_period_count" name="club_period_count" value="{{options.club_period_count}}" data-validation="number"  />
+                </div>
+                <div class="grid__col-md-8">
+                  <select id="ttcli_club_period" class="nice-select" name="club_period_type">
+                    <option value="days" {% if options.club_period_type == 'days' %}selected="selected"{% endif %}>День</option>
+                    <option value="months" {% if options.club_period_type == 'months' %}selected="selected"{% endif %}>Месяц</option>
+                    <option value="years" {% if options.club_period_type == 'years' %}selected="selected"{% endif %}>Год</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            {# Стоимость TrainingPeaks Premium #}
+            <div class="ttcli-form__control">
+              <label class="ttcli-form__control-label" for="ttcli_club_price_premium">{{__('Стоимость TrainingPeaks Premium', 'tt-client')}}</label>
+              <input class="ttcli-form__control-string" id="ttcli_club_price_premium" name="club_price_premium" value="{{options.club_price_premium}}" data-validation="number"  />
+            </div>
+          </div>
+
+          {# Настройки уведомлений спортивного клуба #}
+          <div id="club_notify" class="ttcli-tabs__content">
+            {# Окончание членства #}
+            <div class="ttcli-form__control">
+              <label class="ttcli-form__control-label">
+                {{__('Напоминание об окончании членства', 'tt-client')}}
+              </label>
+              <div class="grid">
+                <div class="grid__col-md-4">
+                  <input class="ttcli-form__control-string" name="club_notify:membership_count" value="{{options.club_notify.membership_count}}" data-validation="number"  />
+                </div>
+                <div class="grid__col-md-8">
+                  <select class="nice-select" name="club_notify:membership_type">
+                    <option value="days" {% if options.club_notify.membership_type == 'days' %}selected="selected"{% endif %}>День</option>
+                    <option value="months" {% if options.club_notify.membership_type == 'months' %}selected="selected"{% endif %}>Месяц</option>
+                    <option value="years" {% if options.club_notify.membership_type == 'years' %}selected="selected"{% endif %}>Год</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  
+
+</form>
+{% endblock %}

@@ -1,0 +1,4 @@
+#AuthType Basic
+#AuthName "wp-admin/"
+#AuthUserFile "/var/www/u0249987/data/.htpasswds/.htpasswd"
+#require valid-user

@@ -1,0 +1,59 @@
+<div class="col-flex is-9">
+  {% if "now"|date("d") < 29 %} {% set frequency = "now"|date("d") %} {% else %} {% set frequency = 28 %} {% endif %}
+  {% if member.premium_pay_date_frequency > 0 %}{% set frequency = member.premium_pay_date_frequency %}{% endif %}
+  <form id="membershipPremiumForm" action="ttcli_payment" method="post" class="wpcf7-form">
+    {# Параметры платежа #}
+    <input type="hidden" name="payment_merchant" value="{{merchant}}" />
+    <input type="hidden" name="payment_type" value="membership_premium" />
+    <input type="hidden" name="orderNumber" value="ms_premium_{{member.member_id}}_{{now|date('ymd-His')}}" />
+    <input type="hidden" name="amount" value="{{member.premium_cost * 100}}" />
+    <input type="hidden" name="returnUrl" value="{{function('get_permalink')}}?type=membershipPremiumOpenbank" />
+    <input type="hidden" name="clientId" value="{{member.member_id}}" />
+    <input type="hidden" name="description" value="Оплата подписки на TrainingPeaks Premium сроком на 1 месяц" />
+
+    <input type="hidden" name="jsonParams:payment_merchant" value="{{merchant}}" />
+    <input type="hidden" name="jsonParams:payment_type" value="membership_premium" />
+    <input type="hidden" name="jsonParams:member_id" value="{{member.member_id}}" />
+    <input type="hidden" name="jsonParams:client_id" value="{{member.client_id}}" />
+    <input type="hidden" name="jsonParams:email" value="{{member.member_id_name}}" />
+    <input type="hidden" name="jsonParams:payment_months" value="1" />
+    {% if not member.recurring_id %}
+      <input type="hidden" name="jsonParams:recFrequency" value="{{frequency}}" />
+      <input type="hidden" name="jsonParams:recExpiry" value="{{ "now"|date_modify("+1 year")|date("Ymd") }}" />
+    {% endif %}
+
+    <div class="row">
+      <div class="col-sm-6 col-xm-4 col-md-4">
+        <label>Период подписки TrainingPeaks Premium:</label>
+        <br>
+        <span class="wpcf7-form-control-wrap menu-subject">
+          <select class="wpcf7-form-control wpcf7-select" id="membershipPremiumFormSelect" data-description="Оплата подписки на TrainingPeaks Premium сроком на">
+            <option value="1" selected>Месяц</option>
+            <option value="2">2 месяца</option>
+            <option value="3">3 месяца</option>
+            <option value="4">4 месяца</option>
+            <option value="6">6 месяцев</option>
+             <option value="12">Год</option>
+          </select>
+        </span>
+      </div>
+      {# Кнопка оплаты #}
+      <div class="col-sm-6 col-xm-4 col-md-4">
+        <label class="hidden-xx">&nbsp;</label>
+        <br>
+        <span class="wpcf7-form-control-wrap">
+          <button type="submit" id="membershipPremiumFormButton" class="submit" data-price="{{member.premium_cost}}">
+            Оплатить {{member.premium_cost}} рублей
+          </button>
+        </span>
+      </div>
+
+      {% if member.recurring_id %}
+        <div class="col-sm-6 col-xm-4 col-md-4">
+          <label>Подключен автоплатеж {{member.recurring_frequency}} числа месяца</label>
+          <span id="openbank_cancel_binding" data-client-id="{{member.client_id}}" class="submit is-danger">Отключить</span>
+        </div>
+      {% endif %}
+    </div>
+  </form>
+</div>

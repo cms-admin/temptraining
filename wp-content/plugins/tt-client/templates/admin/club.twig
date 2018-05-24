@@ -1,0 +1,207 @@
+{% extends "admin/index.twig" %}
+
+{% block header_title %}
+  <h2 class="ttcli-head__title">{{__('Спортивный клуб', 'tt-client')}}</h2>
+{% endblock %}
+
+{% block header_data %}
+<ul class="ttcli-head__data">
+  <li class="ttcli-head__data-item">
+    <span class="text">{{__('Члены клуба', 'tt-client')}}</span>
+    <span class="counter bg-green">{{members_cnt}}</span>
+  </li>
+
+  <li class="ttcli-head__data-item">
+    <span class="text">{{__('Премиум подписки', 'tt-client')}}</span>
+    <span class="counter bg-blue">{{premium_cnt}}</span>
+  </li>
+</ul>
+{% endblock %}
+
+{% block header_actions %}
+  <div class="grid__col-lg-2"></div>
+  <div class="grid__col-lg-2">
+    <nav class="ttcli-head__menu">
+      <button class="ttcli-head__menu-title bg-green" data-save-form="ttcli_club_page_options">
+        <i class="ti-save"></i> <span>{{__('Сохранить', 'tt-client')}}</span>
+      </button>
+    </nav>
+  </div>
+{% endblock %}
+
+
+{% block content %}
+  <form id="ttcli_club_page_options" action="ttcli_save_club_page">
+    <div class="grid">
+      <div class="grid__col-md-9">
+        <div class="ttcli-form">
+          <section class="ttcli-form__head">
+            <h4 class="ttcli-form__head-title"><i class="ti-smallcap"></i> {{__('Тексты лэндинга', 'tt-client')}}</h4>
+          </section>
+
+          {# Блок вступления #}
+          <div class="ttcli-form__control">
+            <label class="ttcli-form__control-label">{{__('Вступление', 'tt-client')}}</label>
+                  
+            <input class="ttcli-form__control-string" name="intro:title" value="{{club_options.intro.title}}" />
+                  
+            <div class="dash-editor postarea wp-editor-expand">
+              {% set club_editor_intro_text = {'wpautop': true, 'media_buttons': false, 'textarea_name': 'intro:text', 'textarea_rows': 8, 'teeny': true}  %}
+              {{function('wp_editor', club_options.intro.text, 'ttcli_opt_club_intro_text', club_editor_intro_text)}}
+            </div>
+          </div>
+
+          {# Цель клуба #}
+          <div class="ttcli-form__control">
+            <label class="ttcli-form__control-label">{{__('Цель клуба', 'tt-client')}}</label>
+            <div class="dash-editor postarea wp-editor-expand">
+              {% set club_editor_target_text = {'wpautop': true, 'media_buttons': false, 'textarea_name': 'target:text', 'textarea_rows': 8, 'teeny': true}  %}
+              {{function('wp_editor', function('stripslashes', club_options.target.text), 'ttcli_opt_club_target_text', club_editor_target_text)}}
+            </div>
+          </div>
+          
+          {# Список преимуществ клуба #}
+          <div class="ttcli-form__control">
+            <div class="grid">
+              <div class="grid__col-md-4">
+                <label class="ttcli-form__control-label">{{__('Преимущество', 'tt-client')}} #1</label>
+                
+                <input class="ttcli-form__control-string" name="target:list1_title" value="{{club_options.target.list1_title}}" />
+                
+                {% set club_editor_target_list1_text = {'wpautop': true, 'media_buttons': false, 'textarea_name': 'target:list1_text', 'textarea_rows': 5, 'teeny': true}  %}
+                
+                {{function('wp_editor', club_options.target.list1_text, 'ttcli_opt_club_target_list1_text', club_editor_target_list1_text)}}
+              </div>
+
+              <div class="grid__col-md-4">
+                <label class="ttcli-form__control-label">{{__('Преимущество', 'tt-client')}} #2</label>
+                
+                <input class="ttcli-form__control-string" name="target:list2_title" value="{{club_options.target.list2_title}}" />
+                
+                {% set club_editor_target_list2_text = {'wpautop': true, 'media_buttons': false, 'textarea_name': 'target:list2_text', 'textarea_rows': 5, 'teeny': true}  %}
+                
+                {{function('wp_editor', club_options.target.list2_text, 'ttcli_opt_club_target_list2_text', club_editor_target_list2_text)}}
+              </div>
+
+              <div class="grid__col-md-4">
+                <label class="ttcli-form__control-label">{{__('Преимущество', 'tt-client')}} #3</label>
+                
+                <input class="ttcli-form__control-string" name="target:list3_title" value="{{club_options.target.list3_title}}" />
+                
+                {% set club_editor_target_list3_text = {'wpautop': true, 'media_buttons': false, 'textarea_name': 'target:list3_text', 'textarea_rows': 5, 'teeny': true}  %}
+                
+                {{function('wp_editor', club_options.target.list3_text, 'ttcli_opt_club_target_list3_text', club_editor_target_list3_text)}}
+              </div>
+            </div>
+          </div>
+
+          {# Подробнее о преимуществах клуба #}
+          <div class="ttcli-form__control">
+            <label class="ttcli-form__control-label">{{__('Подробнее о преимуществах клуба', 'tt-client')}}</label>
+            <div class="dash-editor postarea wp-editor-expand">
+              {% set club_editor_benefits = {'wpautop': true, 'media_buttons': false, 'textarea_name': 'benefits', 'textarea_rows': 8, 'teeny': true}  %}
+              {{function('wp_editor', function('stripslashes', club_options.benefits), 'ttcli_opt_club_benefits', club_editor_benefits)}}
+            </div>
+          </div>
+
+          {# Пожелания членам клуба #}
+          <div class="ttcli-form__control">
+            <label class="ttcli-form__control-label">{{__('Пожелания членам клуба', 'tt-client')}}</label>
+            <input class="ttcli-form__control-string" name="wishes:title" value="{{club_options.wishes.title}}" />
+            <div class="dash-editor postarea wp-editor-expand">
+              {% set club_editor_wishes_text = {'wpautop': true, 'media_buttons': false, 'textarea_name': 'wishes:text', 'textarea_rows': 8, 'teeny': true}  %}
+              {{function('wp_editor', function('stripslashes', club_options.wishes.text), 'ttcli_opt_club_wishes_text', club_editor_wishes_text)}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid__col-md-3">
+        <div class="ttcli-form">
+          <section class="ttcli-form__head">
+            <h4 class="ttcli-form__head-title"><i class="ti-dashboard"></i> {{__('Общие', 'tt-client')}}</h4>
+          </section>
+
+          {# Email для уведомлений #}
+          <div class="ttcli-form__control">
+            <label class="ttcli-form__control-label">{{__('Email для уведомлений', 'tt-client')}}</label>
+            <input class="ttcli-form__control-string" name="admin_email" value="{{club_options.admin_email}}" />
+          </div>
+
+          <div class="ttcli-form__control">
+            <div class="grid">
+              {# Счетчик членов клуба #}
+              <div class="grid__col-md-6">  
+                <label class="ttcli-form__control-label">
+                  {{__('Нас уже', 'tt-client')}}
+                </label>
+                <input class="ttcli-form__control-string" name="counters:members" value="{{club_options.counters.members}}" />
+              </div>
+              {# Счетчик денег в фонде клуба #}
+              <div class="grid__col-md-6">
+                <label class="ttcli-form__control-label">{{__('В фонде клуба', 'tt-client')}}</label>
+                <input class="ttcli-form__control-string" name="counters:money" value="{{club_options.counters.money}}" />
+              </div>
+            </div>
+          </div>
+
+          <div class="ttcli-form__control">
+            <label class="ttcli-form__control-label">{{__('Список рассылки', 'tt-client')}}</label>
+            <select id="ttcli_club_mail_list" class="nice-select" name="mail_list">
+              <option value="0">{{__('Не используется', 'tt-client')}}</option>
+              {% for list in mail_list %}
+                <option value="{{list.id}}" {% if club_options.mail_list == list.id %}selected="selected"{% endif %}>{{list.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          {# Каптча #}
+          <div class="ttcli-form__control">
+            <label class="ttcli-form__control-label">
+              <input type="checkbox" name="captcha" data-js="switch" data-switch-options='{"size": "small"}' value="1"
+                {% if club_options.captcha %} checked="checked"{% endif %}>
+              <span>{{__('Использовать каптчу', 'tt-client')}}</span>
+            </label>
+          </div>
+        </div>
+
+
+        <div class="ttcli-form">
+          <section class="ttcli-form__head">
+            <h4 class="ttcli-form__head-title"><i class="ti-gallery"></i> {{__('Фото лэндинга', 'tt-client')}}</h4>
+          </section>
+
+          <div class="ttcli-form__control">
+                <label class="ttcli-form__control-label">
+                  {{__('Счетчики', 'tt-client')}}
+                </label>
+
+                <div id="ttcli_opt_club_counters_bg" class="ttcli-form__upload">
+                  <img src="{% if club_options.bg.counters %}{{function('wp_get_attachment_image_url', club_options.bg.counters, 'medium')}}{% else %}{{path_icons}}background.svg{% endif %}" />
+                  <input type="hidden" name="bg:counters" value="{{club_options.bg.counters}}" />
+                </div>
+                
+                <button class="ttcli-form__button" data-toggle="upload" rel="ttcli_opt_club_counters_bg">
+                  {% if club_options.bg.counters %}{{__('Редактировать', 'tt-client')}}{% else %}{{__('Выбрать изображение', 'tt-client')}}{% endif %}
+                </button>
+              </div>
+
+          <div class="ttcli-form__control">
+                <label class="ttcli-form__control-label">
+                  {{__('Преимущества', 'tt-client')}}
+                </label>
+
+                <div id="ttcli_opt_club_benefits_bg" class="ttcli-form__upload">
+                  <img src="{% if club_options.bg.benefits %}{{function('wp_get_attachment_image_url', club_options.bg.benefits, 'medium')}}{% else %}{{path_icons}}background.svg{% endif %}" />
+                  <input type="hidden" name="bg:benefits" value="{{club_options.bg.benefits}}" />
+                </div>
+                
+                <button class="ttcli-form__button" data-toggle="upload" rel="ttcli_opt_club_benefits_bg">
+                  {% if club_options.bg.benefits %}{{__('Редактировать', 'tt-client')}}{% else %}{{__('Выбрать изображение', 'tt-client')}}{% endif %}
+                </button>
+              </div>
+        </div>
+      </div>
+    </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,352 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Temptraining\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-12 19:24+0000\n"
+"PO-Revision-Date: 2016-10-12 19:39+0000\n"
+"Last-Translator: erkoam <erkoam@mail.ru>\n"
+"Language-Team: Russian\n"
+"Language: ru-RU\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
+"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#: functions.php:247
+msgid "Main bottom left"
+msgstr "Главная: снизу слева"
+
+#: functions.php:256
+msgid "Main bottom right"
+msgstr "Главная: снизу справа"
+
+#: functions.php:265
+msgid "Footer"
+msgstr "Подвал"
+
+#: inc/customizer.php:124
+msgid "Footer settings"
+msgstr "Настройка подвала"
+
+#: inc/customizer.php:135
+msgid "Facebook"
+msgstr "Ссылка Facebook"
+
+#: inc/customizer.php:148
+msgid "Vkontakte"
+msgstr "Ссылка Вконтакте"
+
+#: inc/customizer.php:161
+msgid "Twitter"
+msgstr "Ссылка Twitter"
+
+#: inc/customizer.php:174
+msgid "Google+"
+msgstr "Ссылка Google+"
+
+#: inc/customizer.php:187
+msgid "Youtube"
+msgstr "Ссылка Youtube"
+
+#: inc/home_partners.php:22
+msgid "Our partners"
+msgstr "Наши партнеры"
+
+#: functions.php:9
+msgid "Coaches"
+msgstr "Тренеры"
+
+#: functions.php:10
+msgid "Coach"
+msgstr "Тренер"
+
+#: functions.php:11
+msgid "New coach"
+msgstr "Новый тренер"
+
+#: functions.php:24 functions.php:92 functions.php:149
+msgid "Additional fields"
+msgstr "Дополнительные поля"
+
+#: functions.php:30
+msgid "Coach's Specialization"
+msgstr "Специализация тренера"
+
+#: functions.php:43
+msgid "Banners"
+msgstr "Баннеры"
+
+#: functions.php:44
+msgid "Banner"
+msgstr "Баннер"
+
+#: functions.php:45
+msgid "New banner"
+msgstr "Новый баннер"
+
+#: functions.php:46
+msgid "Banner image"
+msgstr "Изображение баннера"
+
+#: functions.php:63
+msgctxt "taxonomy general name"
+msgid "Groups"
+msgstr "Группы"
+
+#: functions.php:64
+msgctxt "taxonomy singular name"
+msgid "Group"
+msgstr "Группа"
+
+#: functions.php:65
+msgid "All Groups"
+msgstr "Все группы"
+
+#: functions.php:68
+msgid "Edit Group"
+msgstr "Редактировать группу"
+
+#: functions.php:69
+msgid "Update Group"
+msgstr "Обновить группу"
+
+#: functions.php:70
+msgid "Add New Group"
+msgstr "Добавить группу"
+
+#: functions.php:71
+msgid "New Group Name"
+msgstr "Имя новой группы"
+
+#: functions.php:72
+msgid "Groups"
+msgstr "Группы"
+
+#: functions.php:96
+msgid "Banner link"
+msgstr "Ссылка баннера"
+
+#: functions.php:134
+msgid "Uniforms"
+msgstr "Форма"
+
+#: functions.php:135 inc/home_uniform.php:14
+msgid "Uniform"
+msgstr "Форма"
+
+#: functions.php:136
+msgid "New uniform"
+msgstr "Добавить форму"
+
+#: functions.php:153
+msgid "Uniform's price"
+msgstr "Стоимость формы"
+
+#: functions.php:176
+msgid "Primary Menu"
+msgstr "Основное меню"
+
+#: functions.php:222
+msgid "Prices table"
+msgstr "Тарифы"
+
+#: functions.php:224
+msgid "Display the site prices"
+msgstr "Показывает тарифы на сайте"
+
+#: functions.php:229
+msgid "News left"
+msgstr "Новости слева"
+
+#: functions.php:231
+msgid "Widgets for home page left side"
+msgstr "Виджет для левой части главной страницы"
+
+#: functions.php:238
+msgid "News right"
+msgstr "Новости справа"
+
+#: functions.php:240
+msgid "Widgets for home page right side"
+msgstr "Виджет для правой части главной страницы"
+
+#: functions.php:332
+msgid "Page %s"
+msgstr "Страница %s"
+
+#: functions.php:344
+msgid "Not specified"
+msgstr "Значение не задано"
+
+#: functions.php:398 inc/home_slider.php:52 widgets/content-accordeon.php:47 
+#: widgets/content-list.php:40
+msgid "Read more"
+msgstr "Подробнее"
+
+#: inc/customizer.php:5
+msgid "Header settings"
+msgstr "Настройки шапки"
+
+#: inc/customizer.php:6
+msgid "Allows you to customize the title and contacts in the header"
+msgstr "Позволяет задать заголовок и контакты в шапке"
+
+#: inc/customizer.php:17
+msgid "Header title"
+msgstr "Заголовок в шапке"
+
+#: inc/customizer.php:30
+msgid "Header phone"
+msgstr "Телефон в шапке"
+
+#: inc/customizer.php:43
+msgid "Header email"
+msgstr "E-mail в шапке"
+
+#: inc/customizer.php:56
+msgid "Header address"
+msgstr "Адрес в шапке"
+
+#: inc/customizer.php:70
+msgid "Header work time"
+msgstr "Время работы в шапке"
+
+#: inc/customizer.php:81
+msgid "Slider settings"
+msgstr "Настройки слайдера"
+
+#: inc/customizer.php:82
+msgid "Slider on homepage"
+msgstr "Слайдер на главной странице"
+
+#: inc/customizer.php:105
+msgid "Main slider"
+msgstr "Основной слайдер"
+
+#: inc/customizer.php:114
+msgid "Partners slider"
+msgstr "Слайдер партнеров"
+
+#: inc/home_coaches.php:13
+msgid "Our coaches"
+msgstr "Наши тренеры"
+
+#: inc/home_coaches.php:58
+msgid "Followers reports"
+msgstr "Отзывы учеников"
+
+#: inc/home_coaches.php:62
+msgid "Yet reports"
+msgstr "Пока нет отзывов"
+
+#. Widget name will appear in UI
+#: inc/temptraining_widgets.php:12
+msgid "Price table Widget"
+msgstr "Виджет тарифов"
+
+#: inc/temptraining_widgets.php:14
+msgid "Widget for site price table"
+msgstr "Виджет для таблицы тарифов на сайте"
+
+#: inc/temptraining_widgets.php:29
+msgid "Price table title"
+msgstr "Заголовок тарифа"
+
+#: inc/temptraining_widgets.php:30
+msgid "Price table sum"
+msgstr "Стоимость тарифа"
+
+#: inc/temptraining_widgets.php:31
+msgid "Price table currency"
+msgstr "Единица измерения стоимости тарифа"
+
+#: inc/temptraining_widgets.php:32
+msgid "Price table text"
+msgstr "Описание тарифа"
+
+#: inc/temptraining_widgets.php:33
+msgid "Price table link"
+msgstr "Ссылка тарифа"
+
+#: inc/temptraining_widgets.php:37
+msgid "Price title"
+msgstr "Заголовок тарифа"
+
+#: inc/temptraining_widgets.php:42
+msgid "Price sum"
+msgstr "Стоимость тарифа"
+
+#: inc/temptraining_widgets.php:47
+msgid "Price currency"
+msgstr "Единица измерения стоимости тарифа"
+
+#: inc/temptraining_widgets.php:52
+msgid "Price text"
+msgstr "Описание тарифа"
+
+#: inc/temptraining_widgets.php:57
+msgid "Price link"
+msgstr "Ссылка тарифа"
+
+#. Widget name will appear in UI
+#: inc/temptraining_widgets.php:88
+msgid "Latest news"
+msgstr "Последние новости"
+
+#: inc/temptraining_widgets.php:90
+msgid "Shows a list of latest news"
+msgstr "Отображает список последних новостей"
+
+#: inc/temptraining_widgets.php:114 inc/temptraining_widgets.php:124
+msgid "Widget title"
+msgstr "Заголовок виджета"
+
+#: inc/temptraining_widgets.php:115 inc/temptraining_widgets.php:131
+msgid "Widget description"
+msgstr "Описание виджета"
+
+#: inc/temptraining_widgets.php:116 inc/temptraining_widgets.php:147
+msgid "Category"
+msgstr "Категория"
+
+#: inc/temptraining_widgets.php:154
+msgid "Posts limit"
+msgstr "Количество новостей"
+
+#: inc/temptraining_widgets.php:161
+msgid "Widget type"
+msgstr "Тип виджета"
+
+#: inc/temptraining_widgets.php:166
+msgid "Content list"
+msgstr "Список"
+
+#: inc/temptraining_widgets.php:170
+msgid "Content accordeon"
+msgstr "Аккордеон"
+
+#: widgets/price-table.php:30
+msgid "Begin"
+msgstr "Начать"
+
+#. Name of the theme
+msgid "Temptraining"
+msgstr "ТЕМП"
+
+#. Description of the theme
+msgid "Updated design for training center athletes \"TEMP\"."
+msgstr "Обновленный дизайн для центра подготовки спортсменов \"ТЕМП\"."
+
+#. URI of the theme
+msgid "https://temptraining.ru/"
+msgstr "https://temptraining.ru/"
+
+#. Author of the theme
+msgid "Alexander Erko"
+msgstr "Александр Ерко"
+
+#. Author URI of the theme
+msgid "https://cms-admin.ru/"
+msgstr "https://cms-admin.ru/"

@@ -1,0 +1,225 @@
+<section class="club-brand" {% if club.bg.counters %}style="background-image: url({{function('wp_get_attachment_image_url', club.bg.counters, 'original')}});"{% endif %}>
+
+  <svg class="club-brand__wave" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 140" preserveAspectRatio="xMidYMid meet">
+    <path fill-rule="evenodd"  d="M-0.000,59.151 C-0.000,59.151 359.057,-73.917 685.316,59.151 C1118.287,235.743 1920.000,59.151 1920.000,59.151 L1920.000,140.000 L-0.000,140.000 L-0.000,59.151 Z"/>
+  </svg>
+
+  <div class="container">
+    <div class="grid grid--align-center grid--justify-center">
+      <div class="grid__col-xxs-12 grid__col-sm-10 grid__col-md-10 grid__col-lg-8">
+        <figure class="club-brand__logo">
+          <span>{{__('КЛУБ', 'tt-client')}}</span>
+          <span>{{__('ТЕМП', 'tt-client')}}</span>
+        </figure>
+      </div>
+    </div>
+
+    <div class="club-brand__counter-members">
+      <span>{{__('Нас уже', 'tt-client')}}</span>
+      <figure id="counter_members" data-countup="" data-countup-options='{
+        "start": 0,
+        "end": {{count_members}},
+        "decimals": 0,
+        "duration": 1
+      }'>0</figure>
+      <span>{{count_members_str}}</span>
+    </div>
+
+    <div class="club-brand__counter-money">
+      <span>{{__('В фонде', 'tt-client')}}</span>
+      <figure id="counter_money" data-countup="" data-countup-options='{
+        "start": 0,
+        "end": {{count_money}},
+        "decimals": 0,
+        "duration": 1
+      }'>0</figure>
+      <span>{{count_money_str}}</span>
+    </div>
+  </div>
+  
+  
+</section>
+
+<section class="club-intro">
+  <div class="container">
+    <h2 class="club-intro__title">{{club.intro.title}}</h2>
+
+    <div class="grid">
+      {% set intro = {'1': 'stopwatch', '2': 'teamwork', '3': 'motivation', '4': 'email'} %}
+      {% for item in intro_text %}
+        <div class="grid__col-sm-6 grid__col-md-3">
+          <div class="club-intro__item">
+            <figure class="club-intro__item-icon">
+              <i class="clubicon-{{ intro[loop.index] }}"></i>
+            </figure>
+            <div class="club-intro__item-text">{{item}}</div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <button class="club-intro__button" data-action="membership" rel="club_membership">
+      <span>{{__('Мы представляем вам клуб ТЕМП', 'tt-client')}}</span>
+    </button>
+  </div>
+  
+</section>
+
+<section class="club-target">
+  <div class="container">
+    <div class="grid">
+      <div class="grid__col-xxs-12 grid__col-md-6">
+        <div class="grid grid--align-center">
+          <div class="grid__col-xxs-4 grid__col-md-12">
+            <figure class="club-target__logo">
+              <i class="clubicon-target"></i>
+            </figure>
+          </div>
+          <div class="grid__col-xxs-8 grid__col-md-12">
+            <h3 class="club-target__title">Цели клуба</h3>
+          </div>
+        </div>
+        
+        <div class="club-target__text">{{club.target.text}}</div>
+        <div>
+          <button class="club-target__button" data-action="membership" rel="club_membership">
+            <span>{{__('Вступить в клуб', 'tt-client')}}</span>
+          </button>
+        </div>
+        
+      </div>
+
+      <div class="grid__col-md-6">
+        <div class="club-target__list">
+          <div class="grid grid--justify-end">
+            <div class="grid__col-sm-4 grid__col-md-6">
+              <div class="club-target__item is-first">
+                <figure class="club-target__item-icon">
+                  <i class="clubicon-contract"></i>
+                </figure>
+                <h4 class="club-target__item-title">{{club.target.list1_title}}</h4>
+                <div class="club-target__item-text">{{club.target.list1_text}}</div>
+              </div>
+            </div>
+
+            <div class="grid__col-sm-4 grid__col-md-6">
+              <div class="club-target__item is-second">
+                <figure class="club-target__item-icon">
+                  <i class="clubicon-profits-1"></i>
+                </figure>
+                <h4 class="club-target__item-title">{{club.target.list2_title}}</h4>
+                <div class="club-target__item-text">{{club.target.list2_text}}</div>
+              </div>
+            </div>
+
+            <div class="grid__col-sm-4 grid__col-md-6">
+              <div class="club-target__item is-third">
+                <figure class="club-target__item-icon">
+                  <i class="clubicon-presentation"></i>
+                </figure>
+                <h4 class="club-target__item-title">{{club.target.list3_title}}</h4>
+                <div class="club-target__item-text">{{club.target.list3_text}}</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="club-benefits" {% if club.bg.benefits %}style="background-image: url({{function('wp_get_attachment_image_url', club.bg.benefits, 'original')}});"{% endif %}>
+  <svg class="club-benefits__wave-one" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 134" preserveAspectRatio="xMidYMid meet">
+    <path fill-rule="evenodd" d="M-0.000,0.000 L1920.000,0.000 L1920.000,99.837 C1920.000,99.837 1602.950,176.666 1254.566,99.837 C666.039,-29.951 -0.000,99.837 -0.000,99.837 L-0.000,0.000 Z"/>
+  </svg>
+  <svg class="club-benefits__wave-two" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 114" preserveAspectRatio="xMidYMid meet">
+    <path fill-rule="evenodd" d="M-0.000,0.000 L1921.000,0.000 L1921.000,99.590 C1921.000,99.590 776.991,8.243 294.452,99.590 C123.251,132.000 -0.000,99.590 -0.000,99.590 L-0.000,0.000 Z"/>
+  </svg>
+  <svg class="club-benefits__wave-three" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 154" preserveAspectRatio="xMidYMid meet">
+    <path fill-rule="evenodd" d="M1920.000,-0.000 L0.000,-0.000 L0.000,100.000 C0.000,100.000 828.286,221.524 1370.701,100.000 C1665.096,34.043 1920.000,100.000 1920.000,100.000 L1920.000,-0.000 Z"/>
+  </svg>
+
+  <div class="container">
+    {{function('stripslashes', club.benefits)}}
+  </div>
+  <svg class="club-benefits__wave-bottom" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" vviewBox="0 0 1920 140" preserveAspectRatio="xMidYMid meet">
+    <path fill-rule="evenodd"  d="M-0.000,59.151 C-0.000,59.151 359.057,-73.917 685.316,59.151 C1118.287,235.743 1920.000,59.151 1920.000,59.151 L1920.000,140.000 L-0.000,140.000 L-0.000,59.151 Z"/>
+  </svg>
+</section>
+
+<section class="club-wishes">
+  <div class="container">
+    <h3 class="club-wishes__title">{{club.wishes.title}}</h3>
+
+    <div class="grid">
+      <div class="grid__col-md-6">
+        <div class="club-wishes__text">{{function('stripslashes', club.wishes.text)}}</div>
+
+        <div>
+          <button class="club-wishes__button" data-action="membership" rel="club_membership">
+            <span>{{__('Вступить в клуб', 'tt-client')}}</span>
+          </button>
+        </div>
+      </div>
+      <div class="grid__col-md-6">
+        <iframe class="club-wishes__frame" allowtransparency frameborder="0" src="https://www.strava.com/clubs/300952/latest-rides/3104c43858e1ecfb213b46f600baa1541b5cb74c?show_rides=true" ></iframe>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+
+<form id="club_membership" class="club-form" action="ttcli_member_register">
+  <div class="club-form__content">
+    <div class="club-form__header">
+      <h3 class="club-form__header-title">{{__('Вступить в клуб', 'tt-client')}}</h3>
+      <span data-toggle="close" class="club-form__header-close">×</span>
+    </div>
+
+    <div class="club-form__body">
+      <div class="club-form__control">
+        <div class="grid">
+          <div class="grid__col-xxs-12 grid__col-md-6">
+            <label for="member_name" class="club-form__label">Ваше имя</label>
+            <input type="text" id="member_name" name="member_name" class="club-form__input" placeholder="Имя" />
+          </div>
+          <div class="grid__col-xxs-12 grid__col-md-6">
+            <label for="member_soname" class="club-form__label">Ваше фамилия</label>
+            <input type="text" id="member_soname" name="member_soname" class="club-form__input" placeholder="Фамилия" />
+          </div>
+        </div>
+      </div>
+
+      <div class="club-form__control">
+        <label for="member_email" class="club-form__label">Корректный email для регистрации</label>
+        <input type="text" id="member_email" name="member_email" class="club-form__input" placeholder="Электронная почта" />
+      </div>
+
+      <div class="club-form__control">
+        <div class="grid grid--align-center">
+          <div class="grid__col-xxs-12 grid__col-md-6">
+            <label class="club-form__label-checkbox">
+              <input type="checkbox" id="member_rules" name="member_rules" value="1" class="club-form__checkbox" 
+                data-js="switch" data-switch-options='{"size": "small"}' />
+              <span>Согласен с <a href="{{function('home_url')}}/public-offer-club/" target="_blank">правилами клуба</a></span>
+            </label>
+          </div>
+
+          <div class="grid__col-xxs-12 grid__col-md-6">
+            <button type="submit" class="club-form__submit">
+              <span class="default">Регистрация</span>
+              <span class="loading">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</form>

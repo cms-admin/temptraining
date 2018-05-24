@@ -1,0 +1,212 @@
+# Copyright (C) 2016 Database Backups
+# This file is distributed under the same license as the Database Backups package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Database Backups\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/database-backups\n"
+"POT-Creation-Date: 2016-08-12 11:22+0300\n"
+"PO-Revision-Date: 2016-08-12 11:33+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: be_BY\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: database-backups.php:110
+msgid "Once Weekly"
+msgstr "Кожны тыдзень"
+
+#: database-backups.php:114
+msgid "Twice Weekly"
+msgstr "Два разы на тыдзень"
+
+#: database-backups.php:118
+msgid "Once Monthly"
+msgstr "Кожны месяц"
+
+#: database-backups.php:122
+msgid "Twice Monthly"
+msgstr "Два разы на месяц"
+
+#: database-backups.php:500
+msgid "Database Backup was not created at"
+msgstr "\tDatabase Backup быў створаны"
+
+#: database-backups.php:501
+msgid "Database Backup was not created. Please check settings."
+msgstr "Database Backup не быў створаны. Праверце налады."
+
+#: database-backups.php:502 database-backups.php:506 database-backups.php:819
+msgid "Date"
+msgstr "Дата"
+
+#: database-backups.php:504
+msgid "Database Backup was created at "
+msgstr "\tDatabase Backup быў створаны на"
+
+#: database-backups.php:505
+msgid "Database Backup successfully created."
+msgstr "Database Backup быў створаны паспяхова"
+
+#: database-backups.php:507 database-backups.php:817
+msgid "Size"
+msgstr ""
+
+#: database-backups.php:508
+msgid "Extension"
+msgstr "Пашырэнне"
+
+#: database-backups.php:509 database-backups.php:839
+msgid "Download"
+msgstr "Спампаваць"
+
+#: database-backups.php:576 database-backups.php:704
+msgid "Settings"
+msgstr "Налады"
+
+#: database-backups.php:649 database-backups.php:703
+msgid "Database Backups"
+msgstr "Database Backups"
+
+#: database-backups.php:662
+msgid "Backup Created"
+msgstr "Backup быў створаны"
+
+#: database-backups.php:664 database-backups.php:675
+msgid "Close"
+msgstr "\tЗачынiць"
+
+#: database-backups.php:673
+msgid "Settings Saved"
+msgstr "\tНалады захаваны"
+
+#: database-backups.php:709
+msgid "Directory name"
+msgstr "Iмя дыректорыi"
+
+#: database-backups.php:718
+msgid "Use limits"
+msgstr "Выкарыстоўваць лiмiты"
+
+#: database-backups.php:723
+msgid "Set round value if you see PHP memory error. 0 - don't use limits"
+msgstr ""
+"Задайце цэлае значэнне, калi бачыце PHP memory error. 0 - не выкарыстоўваць "
+"лiмiты"
+
+#: database-backups.php:727
+msgid "Use prefix"
+msgstr "Выкарыстоўваць прэфiкс"
+
+#: database-backups.php:730
+msgid "Backup only WP tables with prefix"
+msgstr "Backup толькi WP таблiцаў"
+
+#: database-backups.php:735
+msgid "Clean database"
+msgstr "Чыстая база"
+
+#: database-backups.php:738
+msgid ""
+"Don't save in backup file: posts/page revisions, posts/page in trash, spam "
+"comments, comments in trash"
+msgstr ""
+"Не захоўваць у файле бэкапа: рэвiзii пастоў/старонак, пасты/старонкi у "
+"сьмеццi, спам, камянтарыi у смеццi"
+
+#: database-backups.php:742
+msgid "Notification to admin"
+msgstr "\tАпавящаць адмiна"
+
+#: database-backups.php:745
+msgid "Send Email to admin with result of backup operation"
+msgstr "Адсылаць Email да адмiна з рэзультатам аперацыi"
+
+#: database-backups.php:749
+msgid "Enable GZip compression"
+msgstr "Ўключыць GZip кампрэсiю"
+
+#: database-backups.php:752
+msgid "Allow to pack your backup in GZ archive"
+msgstr "Дазволiць пакаваць бэкап у GZ архiў"
+
+#: database-backups.php:756
+msgid "Enable converting to UTF-8"
+msgstr "Ўключыць канвертацыю у UTF-8"
+
+#: database-backups.php:759
+msgid ""
+"You can check this option if have problems with encoding when import database"
+msgstr ""
+"Выкарыстоўвайце гэту опцыю, калi маеце якiя небудзь праблемы пры iмпарце базы"
+
+#: database-backups.php:763
+msgid "Enable auto backups"
+msgstr "Ўключыць аўта бэкапы"
+
+#: database-backups.php:767
+msgid "Disabled"
+msgstr "Адключана"
+
+#: database-backups.php:777
+msgid "Enable auto delete"
+msgstr "Ўключыць аўта выдаленне"
+
+#: database-backups.php:781
+msgid "Check this option if you want auto deleting the old backups"
+msgstr ""
+"Выкарыстоўвайце гэтую опцыю, калi хочаце выдаляць старыя бэкапы аўтаматычна."
+
+#: database-backups.php:785
+msgid "Delete after * days"
+msgstr "Выдаляць праз * дзен"
+
+#: database-backups.php:789
+msgid "How many days to store the backups. 0 - for disable this option"
+msgstr "Як доўга захоўваць бэкапы. 0 - не выкарыстоўваць"
+
+#: database-backups.php:793
+msgid "Delete after * copies"
+msgstr "\tВыдаляць пасля * копiй"
+
+#: database-backups.php:797
+msgid "How many copies of backups to store. 0 - for disable this option"
+msgstr "Як шмат копiй захоуваць. 0 - не выкарстоўваць опцыю\tD"
+
+#: database-backups.php:806
+msgid "All backups"
+msgstr "Усе бэкапы"
+
+#: database-backups.php:809
+msgid "No backups yet"
+msgstr "\tЯшчэ нiма бэкапаў"
+
+#: database-backups.php:813
+msgid "ID"
+msgstr "\tID"
+
+#: database-backups.php:815
+msgid "File Name"
+msgstr "Назва файлу"
+
+#: database-backups.php:821
+msgid "Actions"
+msgstr "Дзеяннi"
+
+#: database-backups.php:844
+msgid "Delete"
+msgstr "Выдалiць"
+
+#: database-backups.php:862
+msgid "Do backup"
+msgstr "Зрабiць бэкап"
+
+#~ msgid "Weekly"
+#~ msgstr "Кожны тыдзень"

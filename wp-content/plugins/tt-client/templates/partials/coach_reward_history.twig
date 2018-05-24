@@ -1,0 +1,51 @@
+<div id="totalRewardHistory" class="dash-coaches" style="display: none;" data-list=""
+  {% if reward_history|length > 5 %} data-list-pages="5"{% endif %}
+  data-list-options='{"valueNames": ["date", "sum"], "listClass": "history-list"}'>
+  <ul class="history-list has-separate">
+    {% for reward in reward_history %}
+    <li>
+      <div class="client-row history-row">
+        <i class="jstree-icon jstree-themeicon" role="presentation"></i>
+      
+        <span class="fix-2">
+          <i class="ion ion-calendar"></i>&nbsp;
+          <span class="date {% if reward.pays %} slide-toggle{% endif %}"
+            {% if reward.pays %} rel="#reward_history_{{reward.id}}"{% endif %}>
+            {{reward.payment_date|date("d.m.Y")}}
+          </span>
+        </span>
+
+        {% if reward.type == 1 %}
+          <span class="fix-2"><i class="ion ion-card"></i>&nbsp;<span>Вознаграждение</span></span>
+        {% else %}
+          <span class="fix-2"><i class="ion ion-calculator"></i>&nbsp;<span>Налог</span></span>
+        {% endif %}
+
+        <span class="fix-2">
+          <i class="ion ion-cash"></i>&nbsp;
+          <span class="sum">{{reward.amount|number_format(2, '.', ' ')}}</span>
+        </span>
+      </div>
+      {# ДЕТАЛИЗАЦИЯ ВЫПЛАТЫ ТРЕНЕРА #}
+      {% if reward.pays %}
+      <div id="reward_history_{{reward.id}}" style="display: none">
+        <ul class="history-list has-pays">
+          {% for pay in reward.pays %}
+          <li class="client-row history-row">
+            <i class="jstree-icon jstree-themeicon" role="presentation"></i>
+            <span class="fix-2 client-row__placeholder"></span>
+            <span class="fix-2">{{pay.client_name}}</span>
+            <span class="fix-1">{{pay.wage|number_format(0, '.', ' ')}}</span>
+            <span class="fix-1">{{pay.period}} {{pay.period_title}}</span>
+            <span class="fix-2">{{pay.client_tarif_name}}</span>
+            <span>{{pay.date|date("d.m.Y")}}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>   
+  {% if reward_history|length > 5 %}<div class="listjs-pagination"></div>{% endif %}
+</div>

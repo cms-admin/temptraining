@@ -1,0 +1,38 @@
+<header class="entry-header">
+  <h2 class="entry-title">{% if offers_title %}{{offers_title}}{% else %}Предложения для наших учеников{% endif %}</h2>
+</header>
+
+<div class="archive-thumbs small-thumbs">
+  <div class="row-flex">
+    {% for offer in offers %}
+      <div class="col-flex is-1-3 is-1-2-lap is-1-2-tab">
+        <article id="post-{{offer.ID}}" class="{{offer.post_class}}">
+          <div class="post-header" data-magnific-popup="" data-magnific-popup-options='{
+            "type": "image",
+            "delegate": "a",
+            "mainClass": "mfp-fade",
+            "gallery": {
+              "enabled": false
+            }
+          }'>
+            <figure class="post-thumbnail">
+              <a href="{{function('get_the_post_thumbnail_url', offer)}}">
+                <img class="img-responsive" src="{{function('get_the_post_thumbnail_url', offer)}}" alt="{{offer.post_title}}">
+              </a>
+            </figure>
+            <h3 class="post-title">{{offer.post_title}}</h3>
+          </div>
+
+
+          <div class="post-body">
+
+            <div class="post-text">
+              {{offer.post_content}}
+            </div>
+
+          </div>
+        </article>
+      </div>
+    {% endfor %}
+  </div>
+</div>

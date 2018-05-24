@@ -1,0 +1,44 @@
+<div id="dashCoachAdminClients" class="dash-coaches is-coach jstree" style="display: none;">
+  <ul>
+    {% for client in clients %}
+      {% if client.notify == 1 %}
+        {% set noty_class = 'active' %}
+        {% set noty_icon = 'ion-android-notifications' %}
+      {% else %}
+        {% set noty_class = 'disable' %}
+        {% set noty_icon = 'ion-android-notifications-off' %}
+      {% endif %}
+      <li id="client_{{client.client_id}}" class="client-row{% if client.history %} has-history{% endif %}">
+        <span class="fix-2">{{client.client_name}}</span>
+        <span class="fix-2 hidden-xm hidden-sm hidden-xs hidden-xx">{{client.client_id_name}}</span>
+        <span class="fix-flex hidden-sm hidden-xs hidden-xx">{{client.client_tarif_name}}</span>
+        <span class="fix-1 visible-sm visible-xs visible-xx">{{client.tarif_cost}}</span>
+        <span class="fix-1 fix-xs-1 fix-xx-2 {{client.pay_class}}">
+          {% if client.pay_date != '0000-00-00 00:00:00' %}{{client.pay_date|date("d.m.Y")}}{% else %}не установлено{% endif %}
+          {% if client.pay_interval %} ({{client.pay_interval}}){% endif %}
+        </span>
+        <span class="{{noty_class}}"><i class="ion {{noty_icon}}"></i></span>
+        {% if client.history %}
+          <button class="jstree-toggle client-row__btn">
+            <img src="{{icons_url}}credit-card-2.svg" alt="История платежей" />
+          </button>
+          <ul>
+            {% for pay in client.history %}
+              <li class="client-row{% if pay.wait %} is-waiting{% endif %}">
+                <span class="fix-2 client-row__placeholder"></span>
+                <span class="fix-2">{% if pay.wait %}не выплачено{% else %}выплачено{% endif %}</span>
+                <span class="fix-2">{{pay.wage|number_format(2, '.', ' ')}} руб.</span>
+                <span class="fix-2">{{pay.period_title}}</span>
+                <span class="fix-flex">{{pay.date|date("d.m.Y")}}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <span class="client-row__btn">
+            <img src="{{icons_url}}credit-card-1.svg" alt="История платежей" />
+          </span>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

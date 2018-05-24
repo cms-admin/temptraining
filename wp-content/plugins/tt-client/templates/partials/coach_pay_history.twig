@@ -1,0 +1,20 @@
+<div id="totalPayHistory" class="dash-coaches" style="display: none;" data-list="" 
+  {% if pays|length > 5 %}data-list-pages="5"{% endif %}
+  data-list-options='{"valueNames": ["date", "sum"], "listClass": "history-list"}'>
+  <ul class="history-list">
+    {% for pay in pays %}
+    <li id="coach_pay_{{pay.id}}" class="client-row history-row">
+      <i class="jstree-icon jstree-themeicon" role="presentation"></i>
+      <span class="fix-2">
+        <i class="ion ion-calendar"></i>&nbsp;
+        <span class="date">{{pay.date|date("d.m.Y")}}</span>
+      </span>
+      <span class="fix-2">
+        <i class="ion ion-person"></i>&nbsp;
+        <span class="date">{{pay.client_name}}</span>
+      </span>
+      <span class="fix-flex sum">{{pay.wage|number_format(0, '.', ' ')}}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

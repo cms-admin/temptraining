@@ -1,0 +1,216 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2016-08-12 11:17+0300\n"
+"PO-Revision-Date: 2016-08-12 11:17+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: database-backups.php:110
+msgid "Once Weekly"
+msgstr "Raz w tygodniu"
+
+#: database-backups.php:114
+msgid "Twice Weekly"
+msgstr "Dwa razy w tygodniu"
+
+#: database-backups.php:118
+msgid "Once Monthly"
+msgstr "Raz w miesiąc"
+
+#: database-backups.php:122
+msgid "Twice Monthly"
+msgstr "Dwa razy w miesiącu"
+
+#: database-backups.php:500
+msgid "Database Backup was not created at"
+msgstr "Database Backup został stworzony"
+
+#: database-backups.php:501
+msgid "Database Backup was not created. Please check settings."
+msgstr "Database Backup nie został stworzony"
+
+#: database-backups.php:502 database-backups.php:506 database-backups.php:819
+msgid "Date"
+msgstr "Data"
+
+#: database-backups.php:504
+msgid "Database Backup was created at "
+msgstr "Database Backup został stworzony na"
+
+#: database-backups.php:505
+msgid "Database Backup successfully created."
+msgstr "Database Backup został utworzony pomyślnie."
+
+#: database-backups.php:507 database-backups.php:817
+msgid "Size"
+msgstr "Rozmiar"
+
+#: database-backups.php:508
+msgid "Extension"
+msgstr "Rozszerzenie"
+
+#: database-backups.php:509 database-backups.php:839
+msgid "Download"
+msgstr "Ściągać"
+
+#: database-backups.php:576 database-backups.php:704
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: database-backups.php:649 database-backups.php:703
+msgid "Database Backups"
+msgstr "Database Backups"
+
+#: database-backups.php:662
+msgid "Backup Created"
+msgstr "Kopia utworzona"
+
+#: database-backups.php:664 database-backups.php:675
+msgid "Close"
+msgstr "Zamknąć"
+
+#: database-backups.php:673
+msgid "Settings Saved"
+msgstr "Ustawienia zapisane"
+
+#: database-backups.php:709
+msgid "Directory name"
+msgstr "Nazwa katalogu"
+
+#: database-backups.php:718
+msgid "Use limits"
+msgstr "Wykorzystać limity"
+
+#: database-backups.php:723
+msgid "Set round value if you see PHP memory error. 0 - don't use limits"
+msgstr ""
+"Ustawić wartość całkowitą jeżeli widzisz PHP Memory Error. 0 - nie używać "
+"limity"
+
+#: database-backups.php:727
+msgid "Use prefix"
+msgstr "Użyj prefiksu"
+
+#: database-backups.php:730
+msgid "Backup only WP tables with prefix"
+msgstr "Kopiować tylko tabele WP z prefiksem"
+
+#: database-backups.php:735
+msgid "Clean database"
+msgstr "Czysta baza danych"
+
+#: database-backups.php:738
+msgid ""
+"Don't save in backup file: posts/page revisions, posts/page in trash, spam "
+"comments, comments in trash"
+msgstr ""
+"Nie zapisuj w plik kopii: rewizji postow/stron, posty/strony w śmiecie, "
+"spam, komentarze w śmiecie"
+
+#: database-backups.php:742
+msgid "Notification to admin"
+msgstr "Powiadomić admina"
+
+#: database-backups.php:745
+msgid "Send Email to admin with result of backup operation"
+msgstr "Wysłać do admina emaila z wynikiem operacji"
+
+#: database-backups.php:749
+msgid "Enable GZip compression"
+msgstr "Włączyć GZip kompresja"
+
+#: database-backups.php:752
+msgid "Allow to pack your backup in GZ archive"
+msgstr "Pozwolić spakować kopiuj w archiwum"
+
+#: database-backups.php:756
+msgid "Enable converting to UTF-8"
+msgstr "Włączyć przeliczanie w UTF-8"
+
+#: database-backups.php:759
+msgid ""
+"You can check this option if have problems with encoding when import database"
+msgstr "Możesz użyć tej opcji, jeśli masz problemy podczas importowania bazy"
+
+#: database-backups.php:763
+msgid "Enable auto backups"
+msgstr "Włączyć auto kopii"
+
+#: database-backups.php:767
+msgid "Disabled"
+msgstr "Niepełnosprawne"
+
+#: database-backups.php:777
+msgid "Enable auto delete"
+msgstr "Włączyć auto usuwanie"
+
+#: database-backups.php:781
+msgid "Check this option if you want auto deleting the old backups"
+msgstr "Użyj tej opcji, jeśli chcesz auto usuwanie starych kopij"
+
+#: database-backups.php:785
+msgid "Delete after * days"
+msgstr "Usuwanie przez * dni"
+
+#: database-backups.php:789
+msgid "How many days to store the backups. 0 - for disable this option"
+msgstr "Jak długo przechowywać kopie. 0 - wyłączyć opcje"
+
+#: database-backups.php:793
+msgid "Delete after * copies"
+msgstr "Usuwanie przez * kopie"
+
+#: database-backups.php:797
+msgid "How many copies of backups to store. 0 - for disable this option"
+msgstr "Ile przechowywać kopie. 0 - wyłączyć opcje"
+
+#: database-backups.php:806
+msgid "All backups"
+msgstr "Wszyscy kopii"
+
+#: database-backups.php:809
+msgid "No backups yet"
+msgstr "Obecnie nie ma żadnych kopii"
+
+#: database-backups.php:813
+msgid "ID"
+msgstr "ID"
+
+#: database-backups.php:815
+msgid "File Name"
+msgstr "Nazwa pliku"
+
+#: database-backups.php:821
+msgid "Actions"
+msgstr "Działania"
+
+#: database-backups.php:844
+msgid "Delete"
+msgstr "Usunąć"
+
+#: database-backups.php:862
+msgid "Do backup"
+msgstr "Zrobić kopię"
+
+#~ msgid "Once Mountly"
+#~ msgstr "Raz w miesiąc"
+
+#~ msgid "Weekly"
+#~ msgstr "Tygodniowy"
+
+#~ msgid "Monthly"
+#~ msgstr "Miesięcznie"
+
+#~ msgid "Database Backup"
+#~ msgstr "Database Backup"

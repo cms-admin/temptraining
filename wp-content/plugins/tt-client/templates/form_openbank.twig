@@ -1,0 +1,53 @@
+<div class="col-flex is-9">
+  {% if "now"|date("d") < 29 %} {% set frequency = "now"|date("d") %} {% else %} {% set frequency = 28 %} {% endif %}
+  <form name="PaymentForm" action="ttcli_openbank_payment" method="post" id="tt-client-openbank" class="wpcf7-form">
+    <input type="hidden" name="orderNumber" value="{{client.client_id}}_{{now|date('ymd_Hi')}}" />
+    <input type="hidden" name="amount" value="{{client.tarif_cost  * 100}}" />
+    <input type="hidden" name="returnUrl" value="{{function('get_permalink')}}" />
+    <input type="hidden" name="clientId" value="{{client.client_id}}" />
+
+    <input type="hidden" name="description" value="Оплата тарифа {% spaceless %}{{client.client_tarif_name}}{% endspaceless %}" />
+    <input type="hidden" name="jsonParams:month_count" value='1' />
+    <input type="hidden" name="jsonParams:email" value="{{client.client_id_name}}" />
+    {% if not client.recurring_id  and client.can_recurring %}
+      <input type="hidden" name="jsonParams:initRecurringFrequency" value="{{client.pay_date_frequency}}" />
+      <input type="hidden" name="jsonParams:initRecurringExpiry" value="{{ "now"|date_modify("+1 year")|date("Ymd") }}" />
+    {% endif %}
+
+    <input type="hidden" name="taxSystem" value="2" />
+    <input type="hidden" name="orderBundle" value="1" />
+
+    <div class="row">
+      <div class="col-sm-6 col-xm-4 col-md-4">
+        <label>Выберите платежный период:</label>
+        <br>
+        <span class="wpcf7-form-control-wrap menu-subject">
+          <select class="wpcf7-form-control wpcf7-select" id="select-payment-client">
+            <option value="1" selected>Месяц</option>
+            <option value="2">2 месяца</option>
+            <option value="3">3 месяца</option>
+            <option value="4">4 месяца</option>
+            <option value="6">6 месяцев</option>
+             <option value="12">Год</option>
+          </select>
+        </span>
+      </div>
+      <div class="col-sm-6 col-xm-4 col-md-4">
+        <label class="hidden-xx">&nbsp;</label>
+        <br>
+        <span class="wpcf7-form-control-wrap">
+          <button type="submit" id="openbank_payment" class="submit" data-tarif-name="{{client.client_tarif_name}}"
+            month-price="{{client.tarif_cost}}" data-month="1" data-price="{{client.tarif_cost}}"
+            data-id="{{client.client_id}}">Оплатить {{client.tarif_cost}} рублей</button>
+        </span>
+      </div>
+
+      {% if client.recurring_id %}
+      <div class="col-sm-6 col-xm-4 col-md-4">
+        <label>Подключен автоплатеж {{client.recurring_frequency}} числа месяца</label>
+        <span id="openbank_cancel_binding" data-client-id="{{client.client_id}}" class="submit is-danger">Отключить</span>
+      </div>
+      {% endif %}
+    </div>
+  </form>
+</div>

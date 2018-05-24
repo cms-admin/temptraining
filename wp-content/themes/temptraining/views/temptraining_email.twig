@@ -1,0 +1,10 @@
+{% if atts %}
+<div class="shortcode-email">
+  <span class="shortcode-email__action">{{atts.text}}</span>
+  <div class="modal">
+    <div class="modal-dialog">
+      {{function('do_shortcode', shortcode)}}
+    </div>
+  </div>
+</div>
+{% endif %}

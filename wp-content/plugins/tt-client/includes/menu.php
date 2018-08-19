@@ -8,40 +8,49 @@ add_action('admin_menu', 'tt_client_admin_menu_setup');
 function tt_client_admin_menu_setup() {
   // Главная страница плагина
   add_menu_page(
-    __('Кабинет клиента', 'tt-client'), // Page title
-    __('Кабинет', 'tt-client'),         // Menu title
-    'administrator',                    // Capability
-    'ttcli',                        // Menu slug
-    'tt_client_admin_index',            // Function
-    'none',                             // Icon url
-    9                                   // Position 
+    plang('Кабинет клиента'),
+    plang('Кабинет'),
+    'administrator',
+    'ttcli',
+    'tt_client_admin_index',
+    'none',
+    9
   );
 
   add_submenu_page(
-    'ttcli',                            // Parent slug
-    __('Спортивный клуб', 'tt-client'),            // Page title
-    __('Клуб', 'tt-client'), // Menu title
-    'administrator',                    // Capability
-    'ttcli-club',                       // Menu slug
-    'tt_client_admin_club'              // Function
+    'ttcli',
+    plang('Спортивный клуб'),
+    plang('Клуб'),
+    'administrator',
+    'ttcli-club',
+    'tt_client_admin_club'
   );
 
   add_submenu_page(
-    'ttcli',                                // Parent slug
-    __('Шаблоны', 'tt-client'),           // Page title
-    __('Шаблоны писем', 'tt-client'),   // Menu title
-    'administrator',                // Capability
-    'ttcli-templates',                       // Menu slug
-    'tt_client_admin_templates'            // Function
+    'ttcli',
+    plang('Шаблоны'),
+    plang('Шаблоны писем'),
+    'administrator',
+    'ttcli-templates',
+    'tt_client_admin_templates'
   );
 
   add_submenu_page(
-    'ttcli',                        // Parent slug
-    __('Настройки', 'tt-client'),          // Page title
-    __('Настройки плагина', 'tt-client'),  // Menu title
-    'administrator',                // Capability
-    'ttcli-settings',                       // Menu slug
-    'tt_client_admin_settings'            // Function
+    'ttcli',
+    plang('Сообщения'),
+    plang('Обратная связь'),
+    'administrator',
+    'ttcli-feedback',
+    'tt_client_admin_feedback'
+  );
+
+  add_submenu_page(
+    'ttcli',
+    plang('Настройки'),
+    plang('Настройки плагина'),
+    'administrator',
+    'ttcli-settings',
+    'tt_client_admin_settings'
   );
 
   // регистрируем зависимые плагины

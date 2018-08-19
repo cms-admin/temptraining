@@ -1,0 +1,217 @@
+0000.004 (0) Opened log file at time: Sun, 19 Aug 2018 18:11:15 +0000 on http://temptraining.loc
+0000.008 (0) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.14.13 WP: 4.9.8 PHP: 7.0.26 (apache2handler, Windows NT DESKTOP-DD0O4UO 10.0 build 17134 (Windows 10) AMD64) MySQL: 5.6.38 WPLANG: ru_RU Server: Apache safe_mode: 0 max_execution_time: 900 memory_limit: 1536M (used: 38.2M | 2M) multisite: N openssl: OpenSSL 1.0.2m  2 Nov 2017 mcrypt: Y LANG:  ZipArchive::addFile: Y
+0000.010 (0) Free space on disk containing Updraft's temporary directory: 759659.1 MB
+0000.014 (0) Tasks: Backup files:  (schedule: fortnightly) Backup DB: 1 (schedule: daily)
+0000.016 (0) Processed schedules. Tasks now: Backup files:  Backup DB: 1
+0000.130 (0) Requesting semaphore lock (d) (apparently via scheduler: last_scheduled_action_called_at=1534677629, seconds_ago=24646)
+0000.133 (0) Set semaphore last lock (d) time to 2018-08-19 18:11:15
+0000.135 (0) Semaphore lock (d) complete
+0000.139 (0) Backup run: resumption=0, nonce=4664b34df86f, begun at=1534702275 (0s ago), job type=backup
+0000.142 (0) Scheduling a resumption (1) after 300 seconds (1534702575) in case this run gets aborted
+0000.154 (0) This backup run is not intended for files - skipping
+0000.157 (0) Beginning creation of database dump (WordPress DB)
+0000.298 (0) Table wp_options: Total expected rows (approximate): 620
+0000.421 (0) Table wp_options: Total rows added: 615 in 0.12 seconds
+0000.425 (0) Table wp_options: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_options.table.gz - 383.3 KB)
+0000.455 (0) Table wp_users: Total expected rows (approximate): 204
+0000.480 (0) Table wp_users: Total rows added: 204 in 0.02 seconds
+0000.483 (0) Table wp_users: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_users.table.gz - 13.2 KB)
+0000.492 (0) Table wp_usermeta: Total expected rows (approximate): 6020
+0000.671 (0) Table wp_usermeta: Total rows added: 6020 in 0.18 seconds
+0000.674 (0) Table wp_usermeta: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_usermeta.table.gz - 71.2 KB)
+0000.683 (0) Table wp_commentmeta: Total expected rows (approximate): 0
+0000.693 (0) Table wp_commentmeta: Total rows added: 0 in 0.01 seconds
+0000.696 (0) Table wp_commentmeta: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_commentmeta.table.gz - 0.3 KB)
+0000.705 (0) Table wp_comments: Total expected rows (approximate): 0
+0000.716 (0) Table wp_comments: Total rows added: 0 in 0.01 seconds
+0000.718 (0) Table wp_comments: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_comments.table.gz - 0.5 KB)
+0000.733 (0) Table wp_links: Total expected rows (approximate): 0
+0000.743 (0) Table wp_links: Total rows added: 0 in 0.01 seconds
+0000.746 (0) Table wp_links: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_links.table.gz - 0.4 KB)
+0000.755 (0) Table wp_postmeta: Total expected rows (approximate): 6841
+0001.049 (0) Table wp_postmeta: Total rows added: 6841 in 0.29 seconds
+0001.052 (0) Table wp_postmeta: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_postmeta.table.gz - 230.3 KB)
+0001.061 (0) Table wp_posts: Total expected rows (approximate): 3831
+0005.343 (0) Table wp_posts: Total rows added: 3831 in 4.28 seconds
+0005.346 (0) Table wp_posts: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_posts.table.gz - 4885.4 KB)
+0005.356 (0) Table wp_term_relationships: Total expected rows (approximate): 337
+0005.373 (0) Table wp_term_relationships: Total rows added: 337 in 0.01 seconds
+0005.376 (0) Table wp_term_relationships: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_term_relationships.table.gz - 1.4 KB)
+0005.447 (0) Table wp_term_taxonomy: Total expected rows (approximate): 43
+0005.460 (0) Table wp_term_taxonomy: Total rows added: 43 in 0.01 seconds
+0005.463 (0) Table wp_term_taxonomy: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_term_taxonomy.table.gz - 0.8 KB)
+0005.480 (0) Table wp_termmeta: Total expected rows (approximate): 0
+0005.495 (0) Table wp_termmeta: Total rows added: 0 in 0.01 seconds
+0005.498 (0) Table wp_termmeta: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_termmeta.table.gz - 0.3 KB)
+0005.507 (0) Table wp_terms: Total expected rows (approximate): 37
+0005.519 (0) Table wp_terms: Total rows added: 37 in 0.01 seconds
+0005.522 (0) Table wp_terms: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_terms.table.gz - 1.2 KB)
+0005.546 (0) Table wp_yoast_seo_links: Total expected rows (approximate): 0
+0005.556 (0) Table wp_yoast_seo_links: Total rows added: 0 in 0.01 seconds
+0005.559 (0) Table wp_yoast_seo_links: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_yoast_seo_links.table.gz - 0.3 KB)
+0005.575 (0) Table wp_yoast_seo_meta: Total expected rows (approximate): 0
+0005.587 (0) Table wp_yoast_seo_meta: Total rows added: 0 in 0.01 seconds
+0005.589 (0) Table wp_yoast_seo_meta: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_yoast_seo_meta.table.gz - 0.3 KB)
+0005.599 (0) Table wp_clients: Total expected rows (approximate): 218
+0005.631 (0) Table wp_clients: Total rows added: 219 in 0.03 seconds
+0005.634 (0) Table wp_clients: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_clients.table.gz - 10.2 KB)
+0005.645 (0) Table wp_club: Total expected rows (approximate): 19
+0005.663 (0) Table wp_club: Total rows added: 19 in 0.02 seconds
+0005.666 (0) Table wp_club: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_club.table.gz - 1.2 KB)
+0005.681 (0) Table wp_club_orders: Total expected rows (approximate): 16
+0005.693 (0) Table wp_club_orders: Total rows added: 16 in 0.01 seconds
+0005.697 (0) Table wp_club_orders: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_club_orders.table.gz - 0.9 KB)
+0005.707 (0) Table wp_coaches: Total expected rows (approximate): 21
+0005.719 (0) Table wp_coaches: Total rows added: 21 in 0.01 seconds
+0005.722 (0) Table wp_coaches: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_coaches.table.gz - 1.1 KB)
+0005.737 (0) Table wp_goods: Total expected rows (approximate): 16
+0005.750 (0) Table wp_goods: Total rows added: 16 in 0.01 seconds
+0005.753 (0) Table wp_goods: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_goods.table.gz - 1.5 KB)
+0005.763 (0) Table wp_log: Total expected rows (approximate): 1110
+0005.874 (0) Table wp_log: Total rows added: 1345 in 0.11 seconds
+0005.876 (0) Table wp_log: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_log.table.gz - 73.2 KB)
+0005.886 (0) Table wp_orders: Total expected rows (approximate): 2870
+0006.030 (0) Table wp_orders: Total rows added: 2870 in 0.14 seconds
+0006.033 (0) Table wp_orders: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_orders.table.gz - 98.2 KB)
+0006.048 (0) Table wp_popup_manager: Total expected rows (approximate): 0
+0006.058 (0) Table wp_popup_manager: Total rows added: 0 in 0.01 seconds
+0006.061 (0) Table wp_popup_manager: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_popup_manager.table.gz - 0.3 KB)
+0006.075 (0) Table wp_popup_manager_templates: Total expected rows (approximate): 5
+0006.086 (0) Table wp_popup_manager_templates: Total rows added: 5 in 0.01 seconds
+0006.089 (0) Table wp_popup_manager_templates: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_popup_manager_templates.table.gz - 1.2 KB)
+0006.099 (0) Table wp_rewards: Total expected rows (approximate): 639
+0006.128 (0) Table wp_rewards: Total rows added: 639 in 0.03 seconds
+0006.132 (0) Table wp_rewards: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_rewards.table.gz - 4.5 KB)
+0006.148 (0) Table wp_wpfront_ure_login_redirect: Total expected rows (approximate): 0
+0006.158 (0) Table wp_wpfront_ure_login_redirect: Total rows added: 0 in 0.01 seconds
+0006.161 (0) Table wp_wpfront_ure_login_redirect: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wpfront_ure_login_redirect.table.gz - 0.4 KB)
+0006.177 (0) Table wp_wpfront_ure_options: Total expected rows (approximate): 4
+0006.187 (0) Table wp_wpfront_ure_options: Total rows added: 5 in 0.01 seconds
+0006.190 (0) Table wp_wpfront_ure_options: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wpfront_ure_options.table.gz - 0.4 KB)
+0006.207 (0) Table wp_wplnst_scans: Total expected rows (approximate): 0
+0006.218 (0) Table wp_wplnst_scans: Total rows added: 0 in 0.01 seconds
+0006.220 (0) Table wp_wplnst_scans: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wplnst_scans.table.gz - 0.5 KB)
+0006.235 (0) Table wp_wplnst_scans_objects: Total expected rows (approximate): 0
+0006.246 (0) Table wp_wplnst_scans_objects: Total rows added: 0 in 0.01 seconds
+0006.248 (0) Table wp_wplnst_scans_objects: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wplnst_scans_objects.table.gz - 0.4 KB)
+0006.264 (0) Table wp_wplnst_urls: Total expected rows (approximate): 125
+0006.289 (0) Table wp_wplnst_urls: Total rows added: 125 in 0.02 seconds
+0006.292 (0) Table wp_wplnst_urls: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wplnst_urls.table.gz - 9 KB)
+0006.307 (0) Table wp_wplnst_urls_locations: Total expected rows (approximate): 0
+0006.317 (0) Table wp_wplnst_urls_locations: Total rows added: 0 in 0.01 seconds
+0006.320 (0) Table wp_wplnst_urls_locations: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wplnst_urls_locations.table.gz - 0.6 KB)
+0006.340 (0) Table wp_wplnst_urls_locations_att: Total expected rows (approximate): 0
+0006.350 (0) Table wp_wplnst_urls_locations_att: Total rows added: 0 in 0.01 seconds
+0006.353 (0) Table wp_wplnst_urls_locations_att: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wplnst_urls_locations_att.table.gz - 0.4 KB)
+0006.366 (0) Table wp_wplnst_urls_status: Total expected rows (approximate): 0
+0006.379 (0) Table wp_wplnst_urls_status: Total rows added: 0 in 0.01 seconds
+0006.381 (0) Table wp_wplnst_urls_status: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wplnst_urls_status.table.gz - 0.6 KB)
+0006.395 (0) Table wp_wppcp_group_users: Total expected rows (approximate): 0
+0006.405 (0) Table wp_wppcp_group_users: Total rows added: 0 in 0.01 seconds
+0006.407 (0) Table wp_wppcp_group_users: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wppcp_group_users.table.gz - 0.3 KB)
+0006.424 (0) Table wp_wppcp_private_page: Total expected rows (approximate): 0
+0006.434 (0) Table wp_wppcp_private_page: Total rows added: 0 in 0.01 seconds
+0006.436 (0) Table wp_wppcp_private_page: finishing file (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wppcp_private_page.table.gz - 0.3 KB)
+0006.443 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_options.table.gz (1/34): adding to final database dump
+0006.507 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_users.table.gz (2/34): adding to final database dump
+0006.512 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_usermeta.table.gz (3/34): adding to final database dump
+0006.552 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_commentmeta.table.gz (4/34): adding to final database dump
+0006.554 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_comments.table.gz (5/34): adding to final database dump
+0006.556 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_links.table.gz (6/34): adding to final database dump
+0006.558 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_postmeta.table.gz (7/34): adding to final database dump
+0006.647 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_posts.table.gz (8/34): adding to final database dump
+0008.735 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_term_relationships.table.gz (9/34): adding to final database dump
+0008.739 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_term_taxonomy.table.gz (10/34): adding to final database dump
+0008.741 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_termmeta.table.gz (11/34): adding to final database dump
+0008.743 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_terms.table.gz (12/34): adding to final database dump
+0008.746 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_yoast_seo_links.table.gz (13/34): adding to final database dump
+0008.747 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_yoast_seo_meta.table.gz (14/34): adding to final database dump
+0008.749 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_clients.table.gz (15/34): adding to final database dump
+0008.754 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_club.table.gz (16/34): adding to final database dump
+0008.756 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_club_orders.table.gz (17/34): adding to final database dump
+0008.759 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_coaches.table.gz (18/34): adding to final database dump
+0008.761 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_goods.table.gz (19/34): adding to final database dump
+0008.763 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_log.table.gz (20/34): adding to final database dump
+0008.810 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_orders.table.gz (21/34): adding to final database dump
+0008.841 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_popup_manager.table.gz (22/34): adding to final database dump
+0008.843 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_popup_manager_templates.table.gz (23/34): adding to final database dump
+0008.845 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_rewards.table.gz (24/34): adding to final database dump
+0008.850 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wpfront_ure_login_redirect.table.gz (25/34): adding to final database dump
+0008.852 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wpfront_ure_options.table.gz (26/34): adding to final database dump
+0008.854 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wplnst_scans.table.gz (27/34): adding to final database dump
+0008.856 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wplnst_scans_objects.table.gz (28/34): adding to final database dump
+0008.858 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wplnst_urls.table.gz (29/34): adding to final database dump
+0008.862 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wplnst_urls_locations.table.gz (30/34): adding to final database dump
+0008.864 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wplnst_urls_locations_att.table.gz (31/34): adding to final database dump
+0008.866 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wplnst_urls_status.table.gz (32/34): adding to final database dump
+0008.868 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wppcp_group_users.table.gz (33/34): adding to final database dump
+0008.870 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db-table-wp_wppcp_private_page.table.gz (34/34): adding to final database dump
+0008.872 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db.gz: finished writing out complete database file (5784 KB)
+0008.973 (0) Total database tables backed up: 34 (backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db.gz, size: 5929113, sha256)
+0008.984 (0) backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db.gz: db: This file has not yet been successfully uploaded: will queue
+0008.985 (0) Saving backup history. Total backup size: 5.7 MB
+0008.990 (0) Requesting upload of the files that have not yet been successfully uploaded (1)
+0008.994 (0) Cloud backup selection (1/1): ftp with instance (1/1) (last)
+0008.996 (0) Beginning dispatch of backup to remote (ftp) (instance identifier s-6f4b737c38277c0ae3d1c8adac3c8d89)
+0009.061 (0) FTP upload attempt: backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db.gz -> ftp://ftp_backups@localhost//temptraining.loc/backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db.gz
+0009.096 (0) Ftp chunked upload: 8.9 % uploaded
+0009.119 (0) Ftp chunked upload: 17.8 % uploaded
+0009.138 (0) Ftp chunked upload: 26.7 % uploaded
+0009.155 (0) Ftp chunked upload: 35.6 % uploaded
+0009.187 (0) Ftp chunked upload: 53.4 % uploaded
+0009.220 (0) Ftp chunked upload: 71.1 % uploaded
+0009.351 (0) FTP upload attempt successful (5790.1KB in 0.29s)
+0009.354 (0) Recording as successfully uploaded: backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db.gz
+0009.362 (0) Deleting local file: backup_2018-08-19-2111_temptrainingloc_4664b34df86f-db.gz: OK
+0009.368 (0) Retain: beginning examination of existing backup sets; user setting: retain_files=2, retain_db=7
+0009.373 (0) Number of backup sets in history: 10; groups (db): 1
+0009.376 (0) Examining (for databases) backup set with group_id=0, nonce=4664b34df86f, datestamp=1534702275 (Aug 19 2018 18:11:15)
+0009.378 (0) This backup set is the backup set just made, so will not be deleted.
+0009.379 (0) Examining (for databases) backup set with group_id=0, nonce=b6d909ddd98f, datestamp=1534677628 (Aug 19 2018 11:20:28)
+0009.379 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0009.382 (0) Examining (for databases) backup set with group_id=0, nonce=3db65550697c, datestamp=1534588083 (Aug 18 2018 10:28:03)
+0009.382 (0) Examining (for databases) backup set with group_id=0, nonce=12991cc436f9, datestamp=1534529286 (Aug 17 2018 18:08:06)
+0009.382 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0009.383 (0) Examining (for databases) backup set with group_id=0, nonce=5d6f14bab13f, datestamp=1534442911 (Aug 16 2018 18:08:31)
+0009.383 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0009.384 (0) Examining (for databases) backup set with group_id=0, nonce=f3f358cfcd11, datestamp=1534356497 (Aug 15 2018 18:08:17)
+0009.384 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0009.386 (0) Examining (for databases) backup set with group_id=0, nonce=ce22f26dd6d8, datestamp=1534270102 (Aug 14 2018 18:08:22)
+0009.386 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0009.387 (0) Examining (for databases) backup set with group_id=0, nonce=ced4cb695e23, datestamp=1534183861 (Aug 13 2018 18:11:01)
+0009.387 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0009.388 (0) Examining (for databases) backup set with group_id=0, nonce=462b43b7b013, datestamp=1534097555 (Aug 12 2018 18:12:35)
+0009.388 (0) 1534097555: db: this set includes a database (backup_2018-08-12-2112_temptrainingru_462b43b7b013-db.gz); db count is now 7
+0009.388 (0) 1534097555: db: over retain limit (7); will delete this database
+0009.388 (0) Delete file: backup_2018-08-12-2112_temptrainingru_462b43b7b013-db.gz, service=ftp
+0009.393 (0) FTP delete: failed (/temptraining.loc/backup_2018-08-12-2112_temptrainingru_462b43b7b013-db.gz)
+0009.399 (0) This backup set is now empty; will remove from history
+0009.402 (0) Corresponding log file (log.462b43b7b013.txt) not found - must have already been deleted
+0009.406 (0) Examining (for databases) backup set with group_id=0, nonce=83af3d2c661c, datestamp=1533378487 (Aug 04 2018 10:28:07)
+0009.406 (0) Number of backup sets in history: 9; groups (files): 1
+0009.409 (0) Examining (for files) backup set with nonce=4664b34df86f, datestamp=1534702275 (Aug 19 2018 18:11:15)
+0009.410 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0009.413 (0) Examining (for files) backup set with nonce=b6d909ddd98f, datestamp=1534677628 (Aug 19 2018 11:20:28)
+0009.413 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0009.414 (0) Examining (for files) backup set with nonce=3db65550697c, datestamp=1534588083 (Aug 18 2018 10:28:03)
+0009.415 (0) This backup set remains non-empty (f=1/d=0); will retain in history
+0009.418 (0) Examining (for files) backup set with nonce=12991cc436f9, datestamp=1534529286 (Aug 17 2018 18:08:06)
+0009.418 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0009.421 (0) Examining (for files) backup set with nonce=5d6f14bab13f, datestamp=1534442911 (Aug 16 2018 18:08:31)
+0009.421 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0009.422 (0) Examining (for files) backup set with nonce=f3f358cfcd11, datestamp=1534356497 (Aug 15 2018 18:08:17)
+0009.422 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0009.423 (0) Examining (for files) backup set with nonce=ce22f26dd6d8, datestamp=1534270102 (Aug 14 2018 18:08:22)
+0009.423 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0009.423 (0) Examining (for files) backup set with nonce=ced4cb695e23, datestamp=1534183861 (Aug 13 2018 18:11:01)
+0009.423 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0009.424 (0) Examining (for files) backup set with nonce=83af3d2c661c, datestamp=1533378487 (Aug 04 2018 10:28:07)
+0009.424 (0) This backup set remains non-empty (f=1/d=0); will retain in history
+0009.425 (0) Retain: saving new backup history (sets now: 9) and finishing retain operation
+0009.431 (0) Resume backup (4664b34df86f, 0): finish run
+0009.434 (0) Decremented the semaphore (d) by 1
+0009.436 (0) Semaphore (d) unlocked
+0009.437 (0) There were no errors in the uploads, so the 'resume' event (1) is being unscheduled
+0009.442 (0) The backup apparently succeeded and is now complete
+0009.444 (0) No email will/can be sent - the user has not configured an email address.
+0009.446 (0) Резервное копирование успешно завершено

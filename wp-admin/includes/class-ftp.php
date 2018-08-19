@@ -727,4 +727,186 @@ class ftp_base {
 
 		foreach($list as $k=>$v) {
 			$list[$k]=$this->parselisting($v);
-			if( ! $list[$k] or $list[$k]["name"]=="." or $list[
+			if( ! $list[$k] or $list[$k]["name"]=="." or $list[$k]["name"]=="..") unset($list[$k]);
+		}
+		$ret=true;
+
+		foreach($list as $el) {
+			if ( empty($el) )
+				continue;
+
+			if($el["type"]=="d") {
+				if(!$this->mdel($remote."/".$el["name"], $continious)) {
+					$ret=false;
+					if(!$continious) break;
+				}
+			} else {
+				if (!$this->delete($remote."/".$el["name"])) {
+					$this->PushError("mdel", "can't delete file", "Can't delete remote file \"".$remote."/".$el["name"]."\"");
+					$ret=false;
+					if(!$continious) break;
+				}
+			}
+		}
+
+		if(!$this->rmdir($remote)) {
+			$this->PushError("mdel", "can't delete folder", "Can't delete remote folder \"".$remote."/".$el["name"]."\"");
+			$ret=false;
+		}
+		return $ret;
+	}
+
+	function mmkdir($dir, $mode = 0777) {
+		if(empty($dir)) return FALSE;
+		if($this->is_exists($dir) or $dir == "/" ) return TRUE;
+		if(!$this->mmkdir(dirname($dir), $mode)) return false;
+		$r=$this->mkdir($dir, $mode);
+		$this->chmod($dir,$mode);
+		return $r;
+	}
+
+	function glob($pattern, $handle=NULL) {
+		$path=$output=null;
+		if(PHP_OS=='WIN32') $slash='\\';
+		else $slash='/';
+		$lastpos=strrpos($pattern,$slash);
+		if(!($lastpos===false)) {
+			$path=substr($pattern,0,-$lastpos-1);
+			$pattern=substr($pattern,$lastpos);
+		} else $path=getcwd();
+		if(is_array($handle) and !empty($handle)) {
+			while($dir=each($handle)) {
+				if($this->glob_pattern_match($pattern,$dir))
+				$output[]=$dir;
+			}
+		} else {
+			$handle=@opendir($path);
+			if($handle===false) return false;
+			while($dir=readdir($handle)) {
+				if($this->glob_pattern_match($pattern,$dir))
+				$output[]=$dir;
+			}
+			closedir($handle);
+		}
+		if(is_array($output)) return $output;
+		return false;
+	}
+
+	function glob_pattern_match($pattern,$string) {
+		$out=null;
+		$chunks=explode(';',$pattern);
+		foreach($chunks as $pattern) {
+			$escape=array('$','^','.','{','}','(',')','[',']','|');
+			while(strpos($pattern,'**')!==false)
+				$pattern=str_replace('**','*',$pattern);
+			foreach($escape as $probe)
+				$pattern=str_replace($probe,"\\$probe",$pattern);
+			$pattern=str_replace('?*','*',
+				str_replace('*?','*',
+					str_replace('*',".*",
+						str_replace('?','.{1,1}',$pattern))));
+			$out[]=$pattern;
+		}
+		if(count($out)==1) return($this->glob_regexp("^$out[0]$",$string));
+		else {
+			foreach($out as $tester)
+				if($this->my_regexp("^$tester$",$string)) return true;
+		}
+		return false;
+	}
+
+	function glob_regexp($pattern,$probe) {
+		$sensitive=(PHP_OS!='WIN32');
+		return ($sensitive?
+			preg_match( '/' . preg_quote( $pattern, '/' ) . '/', $probe ) :
+			preg_match( '/' . preg_quote( $pattern, '/' ) . '/i', $probe )
+		);
+	}
+
+	function dirlist($remote) {
+		$list=$this->rawlist($remote, "-la");
+		if($list===false) {
+			$this->PushError("dirlist","can't read remote folder list", "Can't read remote folder \"".$remote."\" contents");
+			return false;
+		}
+
+		$dirlist = array();
+		foreach($list as $k=>$v) {
+			$entry=$this->parselisting($v);
+			if ( empty($entry) )
+				continue;
+
+			if($entry["name"]=="." or $entry["name"]=="..")
+				continue;
+
+			$dirlist[$entry['name']] = $entry;
+		}
+
+		return $dirlist;
+	}
+// <!-- --------------------------------------------------------------------------------------- -->
+// <!--       Private functions                                                                 -->
+// <!-- --------------------------------------------------------------------------------------- -->
+	function _checkCode() {
+		return ($this->_code<400 and $this->_code>0);
+	}
+
+	function _list($arg="", $cmd="LIST", $fnction="_list") {
+		if(!$this->_data_prepare()) return false;
+		if(!$this->_exec($cmd.$arg, $fnction)) {
+			$this->_data_close();
+			return FALSE;
+		}
+		if(!$this->_checkCode()) {
+			$this->_data_close();
+			return FALSE;
+		}
+		$out="";
+		if($this->_code<200) {
+			$out=$this->_data_read();
+			$this->_data_close();
+			if(!$this->_readmsg()) return FALSE;
+			if(!$this->_checkCode()) return FALSE;
+			if($out === FALSE ) return FALSE;
+			$out=preg_split("/[".CRLF."]+/", $out, -1, PREG_SPLIT_NO_EMPTY);
+//			$this->SendMSG(implode($this->_eol_code[$this->OS_local], $out));
+		}
+		return $out;
+	}
+
+// <!-- --------------------------------------------------------------------------------------- -->
+// <!-- Partie : gestion des erreurs                                                            -->
+// <!-- --------------------------------------------------------------------------------------- -->
+// Gnre une erreur pour traitement externe  la classe
+	function PushError($fctname,$msg,$desc=false){
+		$error=array();
+		$error['time']=time();
+		$error['fctname']=$fctname;
+		$error['msg']=$msg;
+		$error['desc']=$desc;
+		if($desc) $tmp=' ('.$desc.')'; else $tmp='';
+		$this->SendMSG($fctname.': '.$msg.$tmp);
+		return(array_push($this->_error_array,$error));
+	}
+
+// Rcupre une erreur externe
+	function PopError(){
+		if(count($this->_error_array)) return(array_pop($this->_error_array));
+			else return(false);
+	}
+}
+
+$mod_sockets = extension_loaded( 'sockets' );
+if ( ! $mod_sockets && function_exists( 'dl' ) && is_callable( 'dl' ) ) {
+	$prefix = ( PHP_SHLIB_SUFFIX == 'dll' ) ? 'php_' : '';
+	@dl( $prefix . 'sockets.' . PHP_SHLIB_SUFFIX );
+	$mod_sockets = extension_loaded( 'sockets' );
+}
+
+require_once dirname( __FILE__ ) . "/class-ftp-" . ( $mod_sockets ? "sockets" : "pure" ) . ".php";
+
+if ( $mod_sockets ) {
+	class ftp extends ftp_sockets {}
+} else {
+	class ftp extends ftp_pure {}
+}

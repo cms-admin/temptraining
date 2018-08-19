@@ -4,10 +4,15 @@ namespace TTClient;
 
 use TTClient\Client;
 
+/**
+ * Class ClientModel
+ * @package TTClient
+ * @property \wpdb
+ */
 class ClientModel
 {
   protected $root_dir;
-  protected $wpdb;
+  protected $db;
   protected $prefix;
 
   private static $instance;
@@ -23,11 +28,12 @@ class ClientModel
     require_once (realpath($this->root_dir . 'wp-includes/class-wp-query.php'));
 
     global $wpdb;
-    $this->wpdb = $wpdb;
+    $this->db = $wpdb;
     $this->prefix = $wpdb->prefix;
   }
 
-  public static function getInstance($site_dir = false) {
+  public static function getInstance($site_dir = false)
+  {
     if (null === self::$instance)
       return self::$instance = new self($site_dir);
     else
@@ -39,7 +45,8 @@ class ClientModel
    * @param array $array
    * @return string
    */
-  public function arrayToYaml($input_array, $indent = 2, $word_wrap = 40) {
+  public function arrayToYaml($input_array, $indent = 2, $word_wrap = 40)
+  {
     if(!empty($input_array)){
 
       foreach ($input_array as $key => $value) {
@@ -60,7 +67,8 @@ class ClientModel
    * @param string $yaml
    * @return array
    */
-  public static function yamlToArray($yaml) {
+  public static function yamlToArray($yaml)
+  {
     return \Spyc::YAMLLoadString($yaml);
   }
 
@@ -74,7 +82,7 @@ class ClientModel
   {
     $client_sql = "SELECT client_id, coach_id FROM {$this->prefix}clients WHERE client_id = '{$client_id}'";
 
-    $client = $this->wpdb->get_row($client_sql);
+    $client = $this->db->get_row($client_sql);
 
     if (empty($client)) return false;
 
@@ -82,7 +90,7 @@ class ClientModel
 
     $coach_sql = "SELECT * FROM {$this->prefix}coaches WHERE coach_id = '{$coach_id}'";
 
-    $coach = $this->wpdb->get_row($coach_sql);
+    $coach = $this->db->get_row($coach_sql);
 
     if (empty($coach)) return false;
 
@@ -97,12 +105,58 @@ class ClientModel
    */
   public function getClientInfo($id, $key = false)
   {
-    $prefix = $this->wpdb->prefix;
+    $prefix = $this->db->prefix;
     $client_sql = "SELECT * FROM {$prefix}clients WHERE client_id = '{$id}'";
-    $client = $this->wpdb->get_row($client_sql);
+    $client = $this->db->get_row($client_sql);
 
     if (empty($client)) return false;
 
     return ($key) ? $client->$key : $client;
+  }
+
+  /**
+   * Полчает любую опцию
+   * @param bool $key
+   * @param string $option_name
+   * @return array|bool|mixed
+   */
+  public function getOption($key = false, $option_name = 'tt_client_options')
+  {
+    $option_raw = get_option($option_name, false);
+
+    if ($option_raw){
+      $option = (@unserialize($option_raw)) ? unserialize($option_raw) : $this->yamlToArray($option_raw);
+    } else {
+      return false;
+    }
+
+    if ($key) {
+      return (isset($option[$key])) ? $option[$key] : false;
+    } else {
+      return $option;
+    }
+  }
+
+  /**
+   * Сохраняет опцию
+   * @param bool $data
+   * @param bool $option_name
+   * @return bool
+   */
+  public function saveOption($data, $option_name = false)
+  {
+    if (!$option_name) return false;
+
+    $newvalue = (is_array($data)) ? $this->arrayToYaml($data) : $data;
+
+    if (get_option($option_name)) {
+      update_option($option_name, $newvalue);
+    } else {
+      $deprecated=' ';
+      $autoload='no';
+      add_option($option_name, $newvalue, $deprecated, $autoload);
+    }
+
+    return true;
   }
 }

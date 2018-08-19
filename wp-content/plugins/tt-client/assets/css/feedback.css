@@ -1,0 +1,67 @@
+.ttcli-front-form {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+  .ttcli-front-form__label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700; }
+    .ttcli-front-form__label-inner {
+      display: inline-block;
+      font-weight: normal;
+      margin-left: 6px; }
+  .ttcli-front-form__control {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px; }
+    .ttcli-front-form__control-text {
+      display: block;
+      width: 100%;
+      height: 40px;
+      border: 1px solid #777;
+      padding: 9px 15px;
+      line-height: 20px; }
+    .ttcli-front-form__control-message {
+      display: block;
+      width: 100%;
+      height: 212px;
+      border: 1px solid #777;
+      padding: 9px 15px;
+      line-height: 20px; }
+    .ttcli-front-form__control-error {
+      display: block;
+      color: #761c19; }
+  .ttcli-front-form__prices {
+    text-align: right;
+    width: 100%;
+    font-size: 24px;
+    line-height: 40px; }
+    .ttcli-front-form__prices p {
+      margin: 0; }
+  .ttcli-front-form__submit {
+    margin-top: 15px; }
+    .ttcli-front-form__submit-btn {
+      display: block;
+      width: 100%;
+      height: 40px;
+      border: 0;
+      padding: 5px 15px;
+      line-height: 30px;
+      font-weight: 600;
+      text-transform: uppercase;
+      text-align: center;
+      background-color: #2ecc71;
+      color: #fff;
+      cursor: pointer; }
+      .ttcli-front-form__submit-btn span {
+        display: inline-block;
+        vertical-align: top;
+        line-height: 30px; }
+        .ttcli-front-form__submit-btn span.icon {
+          font-size: 24px;
+          margin-right: 6px; }
+        .ttcli-front-form__submit-btn span.text {
+          font-size: 16px; }
+
+/*# sourceMappingURL=feedback.css.map */

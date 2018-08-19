@@ -260,6 +260,34 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ion-spin {
+  transform-origin: center center;
+  -webkit-animation: ion-spin 2s infinite linear;
+  animation: ion-spin 2s infinite linear;
+}
+
+@-webkit-keyframes ion-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes ion-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
 .ion-alert:before { content: "\f101"; }
 
 .ion-alert-circled:before { content: "\f100"; }

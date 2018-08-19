@@ -98,7 +98,8 @@
 }
 
 /* Welcome Panel */
-.welcome-panel {
+.welcome-panel,
+.try-gutenberg-panel {
 	position: relative;
 	overflow: auto;
 	margin: 16px 0;
@@ -110,7 +111,8 @@
 	line-height: 2.1em;
 }
 
-.welcome-panel h2 {
+.welcome-panel h2,
+.try-gutenberg-panel h2 {
 	margin: 0;
 	font-size: 21px;
 	font-weight: 400;
@@ -122,25 +124,43 @@
 	font-size: 16px;
 }
 
-.welcome-panel li {
+.try-gutenberg-panel h3 {
+	margin: 17px 0 0;
+	font-size: 16px;
+	line-height: 1.4;
+}
+
+.welcome-panel li,
+.try-gutenberg-panel li {
 	font-size: 14px;
 }
 
-.welcome-panel p {
+.welcome-panel p,
+.try-gutenberg-panel p {
 	color: #72777c;
 }
 
-.welcome-panel a {
+.welcome-panel a,
+.try-gutenberg-action a {
 	text-decoration: none;
 }
 
-.welcome-panel .about-description {
+.welcome-panel .about-description,
+.try-gutenberg-panel .about-description {
 	font-size: 16px;
 	margin: 0;
 }
 
-.welcome-panel .welcome-panel-close {
+.try-gutenberg-panel-content hr {
+	margin: 20px -23px 0 -23px;
+	border-top: 1px solid #f3f4f5;
+	border-bottom: none;
+}
+
+.welcome-panel .welcome-panel-close,
+.try-gutenberg-panel .try-gutenberg-panel-close {
 	position: absolute;
+	z-index: 10;
 	top: 10px;
 	left: 10px;
 	padding: 10px 21px 10px 15px;
@@ -149,7 +169,8 @@
 	text-decoration: none;
 }
 
-.welcome-panel .welcome-panel-close:before {
+.welcome-panel .welcome-panel-close:before,
+.try-gutenberg-panel .try-gutenberg-panel-close:before {
 	position: absolute;
 	top: 8px;
 	right: 0;
@@ -164,9 +185,21 @@
 	white-space: normal;
 }
 
-.welcome-panel-content {
-	margin-right: 13px;
+.welcome-panel-content,
+.try-gutenberg-panel-content {
+	margin: 0 13px;
 	max-width: 1500px;
+}
+
+.try-gutenberg-panel img {
+	margin-top: 23px;
+	width: calc( 100% - 40px );
+	border: 1px solid #f3f4f5;
+}
+
+.try-gutenberg-panel .install-now.updating-message:before,
+.try-gutenberg-panel .install-now.updated-message:before {
+	margin-top: 11px;
 }
 
 .welcome-panel .welcome-panel-column-container {
@@ -180,6 +213,10 @@
 	float: right;
 }
 
+.try-gutenberg-panel .try-gutenberg-panel-column > * {
+	padding-left: 40px;
+}
+
 .ie8 .welcome-panel .welcome-panel-column {
 	min-width: 230px;
 }
@@ -188,11 +225,27 @@
 	width: 36%;
 }
 
+.try-gutenberg-panel .try-gutenberg-panel-column-container {
+	display: -ms-grid;
+	display: grid;
+	-ms-grid-columns: 36% 32% 32%;
+	grid-template-columns: 36% 32% 32%;
+	margin-bottom: 13px;
+}
+
+.try-gutenberg-panel .try-gutenberg-panel-column:not(.try-gutenberg-panel-image-column) {
+	display: -ms-grid;
+	display: grid;
+	-ms-grid-rows: auto 100px;
+	grid-template-rows: auto 100px;
+}
+
 .welcome-panel-column p.hide-if-no-customize {
 	margin-top: 10px;
 }
 
-.welcome-panel-column p {
+.welcome-panel-column p,
+.try-gutenberg-panel-column p {
 	margin-top: 7px;
 	color: #444;
 }
@@ -202,7 +255,7 @@
 }
 
 .welcome-panel .welcome-panel-column ul {
-	margin: 0.8em 0 1em 1em;
+		margin: 0.8em 0 1em 1em;
 }
 
 .welcome-panel .welcome-panel-column li {
@@ -963,3 +1016,368 @@ form.initial-form.quickpress-open input#title {
 	padding: 12px;
 }
 
+#latest-comments #the-comment-list .pingback {
+	padding-right: 12px !important;
+}
+
+#latest-comments #the-comment-list .comment-item:first-child {
+	border-top: none;
+}
+
+#latest-comments #the-comment-list .comment-meta {
+	line-height: 1.5em;
+	margin: 0;
+	color: #666;
+}
+
+#latest-comments #the-comment-list .comment-meta cite {
+	font-style: normal;
+	font-weight: 400;
+}
+
+#latest-comments #the-comment-list .comment-item blockquote,
+#latest-comments #the-comment-list .comment-item blockquote p {
+	margin: 0;
+	padding: 0;
+	display: inline;
+}
+
+#latest-comments #the-comment-list .comment-item p.row-actions {
+	margin: 3px 0 0;
+	padding: 0;
+	font-size: 13px;
+}
+
+/* QuickDraft */
+
+#title-wrap label,
+#description-wrap label {
+	cursor: text;
+}
+
+#title-wrap #title {
+	padding: 2px 6px;
+	font-size: 1.3em;
+	outline: none;
+}
+
+#title-wrap #title-prompt-text {
+	font-size: 1.1em;
+	padding: 5px 8px;
+}
+
+/* Feeds */
+.rss-widget ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+a.rsswidget {
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.4em;
+}
+
+.rss-widget ul li {
+	line-height: 1.5em;
+	margin-bottom: 12px;
+}
+
+.rss-widget span.rss-date {
+	color: #72777c;
+	font-size: 13px;
+	margin-right: 3px;
+}
+
+.rss-widget cite {
+	display: block;
+	text-align: left;
+	margin: 0 0 1em;
+	padding: 0;
+}
+
+.rss-widget cite:before {
+	content: "\2014";
+}
+
+.dashboard-comment-wrap {
+	word-wrap: break-word;
+}
+
+/* Browser Nag */
+#dashboard_browser_nag a.update-browser-link {
+	font-size: 1.2em;
+	font-weight: 600;
+}
+
+#dashboard_browser_nag a {
+	text-decoration: underline;
+}
+
+#dashboard_browser_nag p.browser-update-nag.has-browser-icon {
+	padding-left: 125px;
+}
+
+#dashboard_browser_nag .browser-icon {
+	margin-top: -35px;
+}
+
+#dashboard_browser_nag.postbox.browser-insecure {
+	background-color: #ac1b1b;
+	border-color: #ac1b1b;
+}
+
+#dashboard_browser_nag.postbox {
+	background-color: #e29808;
+	background-image: none;
+	border-color: #edc048;
+	color: #fff;
+	box-shadow: none;
+}
+
+#dashboard_browser_nag.postbox.browser-insecure h2 {
+	border-bottom-color: #cd5a5a;
+	color: #fff;
+}
+
+#dashboard_browser_nag.postbox h2 {
+	border-bottom-color: #f6e2ac;
+	background: transparent none;
+	color: #fff;
+	box-shadow: none;
+}
+
+#dashboard_browser_nag a {
+	color: #fff;
+}
+
+#dashboard_browser_nag h2.hndle {
+	border: none;
+	font-weight: 600;
+	font-size: 20px;
+	padding-top: 10px;
+}
+
+.postbox#dashboard_browser_nag p a.dismiss {
+	font-size: 14px;
+}
+
+.postbox#dashboard_browser_nag p,
+.postbox#dashboard_browser_nag a,
+.postbox#dashboard_browser_nag p.browser-update-nag {
+	font-size: 16px;
+}
+
+/* =Media Queries
+-------------------------------------------------------------- */
+
+/* one column on the dash */
+@media only screen and (max-width: 799px) {
+	#wpbody-content #dashboard-widgets .postbox-container {
+		width: 100%;
+	}
+}
+
+/* two columns on the dash, but keep the setting if one is selected */
+@media only screen and (min-width: 800px) and (max-width: 1499px) {
+	#wpbody-content #dashboard-widgets .postbox-container {
+		width: 49.5%;
+	}
+
+	#wpbody-content #dashboard-widgets #postbox-container-2,
+	#wpbody-content #dashboard-widgets #postbox-container-3,
+	#wpbody-content #dashboard-widgets #postbox-container-4 {
+		float: left;
+		width: 50.5%;
+	}
+
+	#dashboard-widgets #postbox-container-3 .empty-container,
+	#dashboard-widgets #postbox-container-4 .empty-container {
+		border: 0 none;
+		height: 0;
+		min-height: 0;
+	}
+
+	#dashboard-widgets #postbox-container-3 .empty-container:after,
+	#dashboard-widgets #postbox-container-4 .empty-container:after {
+		display: none;
+	}
+
+	#wpbody #wpbody-content #dashboard-widgets.columns-1 .postbox-container {
+		width: 100%;
+	}
+
+	#wpbody #wpbody-content .metabox-holder.columns-1 .postbox-container .empty-container {
+		border: 0 none;
+		height: 0;
+		min-height: 0;
+	}
+
+	/* show the radio buttons for column prefs only for one or two columns */
+	.index-php .screen-layout,
+	.index-php .columns-prefs {
+		display: block;
+	}
+
+	.columns-prefs .columns-prefs-3,
+	.columns-prefs .columns-prefs-4 {
+		display: none;
+	}
+
+	.metabox-holder .postbox-container .empty-container:after {
+		display: block;
+	}
+}
+
+/* three columns on the dash */
+@media only screen and (min-width: 1500px) and (max-width: 1800px) {
+	#wpbody-content #dashboard-widgets .postbox-container {
+		width: 33.5%;
+	}
+
+	#wpbody-content #dashboard-widgets #postbox-container-1 {
+		width: 33%;
+	}
+
+	#wpbody-content #dashboard-widgets #postbox-container-3,
+	#wpbody-content #dashboard-widgets #postbox-container-4 {
+		float: left;
+	}
+
+	#dashboard-widgets #postbox-container-4 .empty-container {
+		border: 0 none;
+		height: 0;
+		min-height: 0;
+	}
+
+	#dashboard-widgets #postbox-container-4 .empty-container:after {
+		display: none;
+	}
+
+	.metabox-holder .postbox-container .empty-container:after {
+		display: block;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.try-gutenberg-panel .try-gutenberg-panel-column-container {
+		-ms-grid-columns: 50% 50%;
+		grid-template-columns: 50% 50%;
+	}
+
+	.try-gutenberg-panel .try-gutenberg-panel-image-column {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 870px) {
+	.welcome-panel .welcome-panel-column,
+	.welcome-panel .welcome-panel-column:first-child {
+		display: block;
+		float: none;
+		width: 100%;
+	}
+
+	.try-gutenberg-panel .try-gutenberg-panel-column-container {
+		-ms-grid-columns: 100%;
+		grid-template-columns: 100%;
+	}
+
+	.welcome-panel .welcome-panel-column li {
+		display: inline-block;
+		margin-left: 13px;
+	}
+
+	.welcome-panel .welcome-panel-column ul {
+		margin: 0.4em 0 0;
+	}
+}
+
+@media screen and ( max-width: 782px ) {
+	#dashboard_recent_comments #the-comment-list .comment-item .avatar {
+		height: 30px;
+		width: 30px;
+		margin: 4px 0 5px 10px;
+	}
+
+	.community-events-toggle-location {
+		height: 38px;
+		vertical-align: baseline;
+	}
+
+	.community-events-form .regular-text {
+		height: 32px;
+	}
+
+	#community-events-submit {
+		margin-bottom: 0;
+		/* Override .wp-core-ui .button */
+		vertical-align: top;
+	}
+
+	.community-events-form label,
+	#dashboard-widgets .community-events-cancel.button-link {
+		/* Same properties as the submit button for cross-browsers alignment. */
+		font-size: 14px;
+		line-height: normal;
+		height: auto;
+		padding: 6px 0;
+		border: 1px solid transparent;
+	}
+
+	.community-events .spinner {
+		margin-top: 7px;
+	}
+}
+
+/* Smartphone */
+@media screen and (max-width: 600px) {
+	/* Keep the close icon from overlapping the Welcome text. */
+	.welcome-panel .welcome-panel-close,
+	.try-gutenberg-panel .try-gutenberg-panel-close {
+		overflow: hidden;
+		text-indent: 40px;
+		white-space: nowrap;
+		width: 20px;
+		height: 20px;
+		padding: 5px;
+		top: 5px;
+		left: 5px;
+	}
+
+	/* Make the close icon larger for tappability. */
+	.welcome-panel .welcome-panel-close:before,
+	.try-gutenberg-panel .try-gutenberg-panel-close:before {
+		font-size: 20px;
+		top: 5px;
+		right: -35px;
+	}
+}
+
+@media screen and (min-width: 355px) {
+	.community-events .event-info {
+		display: table-row;
+		float: right;
+		max-width: 59%;
+	}
+
+	.event-icon,
+	.event-icon[aria-hidden="true"] {
+		display: table-cell;
+	}
+
+	.event-info-inner {
+		display: table-cell;
+	}
+
+	.community-events .event-date-time {
+		float: left;
+		max-width: 39%;
+	}
+
+	.community-events .event-date,
+	.community-events .event-time {
+		text-align: left;
+	}
+}

@@ -31,6 +31,25 @@ class UpdraftPlus_Backup_History {
 		
 		return isset($backup_history[$timestamp]) ? $backup_history[$timestamp] : array();
 	}
+	
+	/**
+	 * Get the backup history for an indicated nonce
+	 *
+	 * @param String $nonce - Backup nonce to get a particular backup job
+	 *
+	 * @return Array|Boolean - either the particular backup indicated, or false
+	 */
+	public static function get_backup_set_by_nonce($nonce) {
+		if (empty($nonce)) return false;
+		$backup_history = self::get_history();
+		foreach ($backup_history as $timestamp => $backup_info) {
+			if ($nonce == $backup_info['nonce']) {
+				$backup_info['timestamp'] = $timestamp;
+				return $backup_info;
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * This function will scan the backup history and split the files up in to incremental sets, foreign backup sets will only have one incremental set.
@@ -546,6 +565,41 @@ class UpdraftPlus_Backup_History {
 
 		return $messages;
 
+	}
+	
+	/**
+	 * This function will look through the backup history and return the latest full backups nonce.
+	 *
+	 * @return string - the backup nonce of a full backup or an empty string if none are found
+	 */
+	public static function get_latest_full_backup() {
+		
+		$backup_history = self::get_history();
+
+		global $updraftplus;
+		
+		$backupable_entities = $updraftplus->get_backupable_file_entities(true, true);
+
+		foreach ($backupable_entities as $key => $info) {
+			if (!UpdraftPlus_Options::get_updraft_option("updraft_include_$key", false)) {
+				unset($backupable_entities[$key]);
+			}
+		}
+		
+		foreach ($backup_history as $key => $backup) {
+			
+			$full_backup_found = true;
+			
+			foreach ($backupable_entities as $key => $info) {
+				if (!isset($backup[$key])) $full_backup_found = false;
+			}
+			
+			if ($full_backup_found) {
+				return $backup['nonce'];
+			}
+		}
+
+		return '';
 	}
 	
 	/**

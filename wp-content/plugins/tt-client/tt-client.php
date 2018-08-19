@@ -98,6 +98,12 @@ function tt_client_layouts()
 {
   global $post;
 
+  $recaptchaSecret = ClientModel::getInstance()->getOption('recaptcha_secret', 'tt_client_feedback');
+
+  if ($recaptchaSecret) {
+    wp_enqueue_script('recaptha', 'https://www.google.com/recaptcha/api.js', false, null, true);
+  }
+
   switch ($post->post_name) {
     # Кабинет клиента
     case 'client':
@@ -136,6 +142,15 @@ function tt_client_layouts()
       );
       break;
   }
+
+  # Формы обратной связи
+  wp_enqueue_style( 'feedback', TT_CLIENT_CSS_URL . 'feedback.css', ['nice-select', 'switchery'], TT_CLIENT_V);
+  wp_enqueue_script( 'feedback', TT_CLIENT_JS_URL . 'feedback.js', ['jquery', 'nice-select', 'switchery'], TT_CLIENT_V, true );
+  wp_localize_script('feedback', 'feedback_ajax',
+    [
+      'url' => admin_url('admin-ajax.php')
+    ]
+  );
 }
 add_action( 'wp_enqueue_scripts', 'tt_client_layouts' );
 
@@ -443,4 +458,26 @@ function toggle_coach_noty(){
   wp_send_json($response);
 
   exit;
+}
+
+/**
+ * Отображает форму обратной связи
+ * @param string $form
+ * @return bool
+ */
+function ttcli_get_form($form = 'training')
+{
+  if ($form == 'training') {
+    $form_enable = ClientModel::getInstance()->getOption('form_training', 'tt_client_feedback');
+  } elseif ($form == 'director') {
+    $form_enable = ClientModel::getInstance()->getOption('form_director', 'tt_client_feedback');
+  }
+
+  $context  = Timber::get_context();
+
+  $context['recaptcha_sitekey'] = ClientModel::getInstance()->getOption('recaptcha_sitekey', 'tt_client_feedback');
+
+  if ($form_enable) {
+    echo Timber::compile('forms/feedback/' . $form . '.twig', $context);
+  }
 }

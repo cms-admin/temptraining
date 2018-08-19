@@ -1,0 +1,90 @@
+<aside id="begin-modal" class="widget-modal modal widget_text">
+  <div class="modal-dialog" role="document">
+    <div class="container">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="{{ plang('Закрыть') }}">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h3 class="modal-title">{{ plang('Начать тренироваться') }}</h3>
+        </div>
+
+        <div class="modal-body">
+          <div class="ttcli-front-response" data-ttcli="from-response"></div>
+          <form id="ttcli_form_training" action="ttcli_form_training" method="post" class="ttcli-front-form" data-ttcli="form">
+            <div class="row">
+              <div class="col-xm-6 col-md-6">
+                <label class="ttcli-front-form__label" for="training_username">{{ plang('Ваше имя') }}</label>
+                <div class="ttcli-front-form__control">
+                  <input type="text" id="training_username" name="training_username" value="" size="40" class="ttcli-front-form__control-text"
+                         required placeholder="{{ plang('Введите имя') }}">
+                  <span class="ttcli-front-form__control-error" data-control="training_username"></span>
+                </div>
+
+                <label class="ttcli-front-form__label" for="training_sport">{{ plang('Вид спорта') }}</label>
+                <div class="ttcli-front-form__control">
+                  <select id="training_sport" name="training_sport" class="ttcli-front-form__control-select"
+                          aria-transform="true" data-ttcli="form-prices-select">
+                    <option value="price-1">{{ plang('Триатлон') }}</option>
+                    <option value="price-2">{{ plang('Два спорта') }}</option>
+                    <option value="price-3">{{ plang('Бег') }}</option>
+                  </select>
+                  <span class="ttcli-front-form__control-error" data-control="training_sport"></span>
+                </div>
+
+                <label class="ttcli-front-form__label" for="training_contacts">{{ plang('Контакты для ответа') }}</label>
+                <div class="ttcli-front-form__control">
+                  <input type="text" id="training_contacts" name="training_contacts" value="" class="ttcli-front-form__control-text"
+                         required placeholder="{{ plang('Введите email или телефон') }}">
+                  <span class="ttcli-front-form__control-error" data-control="training_contacts"></span>
+                </div>
+              </div>
+
+              <div class="col-xm-6 col-md-6">
+                <label class="ttcli-front-form__label" for="training_message">{{ plang('Расскажите о себе') }}</label>
+                <div class="ttcli-front-form__control">
+                  <textarea type="text" id="training_message" name="training_message" value="" rows="10" class="ttcli-front-form__control-message"
+                            required placeholder="{{ plang('В двух словах о своём спортивном прошлом и настоящем, целях') }}"></textarea>
+                  <span class="ttcli-front-form__control-error" data-control="training_username"></span>
+                </div>
+              </div>
+
+              <div class="col-xx-12">
+                <div class="row">
+                  <div class="col-xm-6">
+                    <div class="ttcli-front-form__prices" data-ttcli="form-prices">
+                      <p id="price-1"><span>8000 руб. / мес.</span></p>
+                      <p id="price-2" class="hidden"><span>6500 руб. / мес.</span></p>
+                      <p id="price-3" class="hidden"><span>5000 руб. / мес.</span></p>
+                    </div>
+                  </div>
+                  <div class="col-xm-6">
+                    <label class="ttcli-front-form__label" for="training_offer">
+                      <input type="checkbox" id="training_offer" name="training_offer" value="1"
+                             class="ttcli-front-form__control-switch" aria-transform="true" checked />
+                      <span class="ttcli-front-form__label-inner">
+                        {{ plang('Я прочитал и принимаю') }} <a href="{{ home_url }}/public-offer/" target="_blank">{{ plang('условия оферты') }}</a>
+                      </span>
+                    </label>
+                    <span class="ttcli-front-form__control-error" data-control="training_offer"></span>
+
+                    {% if recaptcha_sitekey %}
+                      <div class="g-recaptcha" data-sitekey="{{ recaptcha_sitekey }}"></div>
+                    {% endif %}
+
+                    <div class="ttcli-front-form__submit">
+                      <button type="submit" class="ttcli-front-form__submit-btn" data-loading-text="{{ plang('Подождите') }}">
+                        <span class="icon"><i class="ion ion-paper-airplane"></i></span>
+                        <span class="text">{{ plang('Отправить') }}</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>

@@ -1,6 +1,7 @@
 <?php
 
 use TTClient\Client;
+use TTClient\ClientModel;
 use TTClient\ClientYakassa;
 
 /*
@@ -94,4 +95,28 @@ function tt_client_admin_club(){
   $context['club_options'] = Client::getInstance()->getSomeOptions(false, 'tt_club_options');
 
   Timber::render('admin/club.twig', $context );
+}
+
+/**
+ * Настройки обратной связи
+ */
+function tt_client_admin_feedback()
+{
+  $context  = Timber::get_context();
+
+  $context['forms'] = [
+    'training' => ClientModel::getInstance()->getOption('form_training', 'tt_client_feedback'),
+    'director' => ClientModel::getInstance()->getOption('form_director', 'tt_client_feedback'),
+  ];
+
+  $context['emails'] = [
+    'training' => ClientModel::getInstance()->getOption('emails_training', 'tt_client_feedback'),
+    'director' => ClientModel::getInstance()->getOption('emails_director', 'tt_client_feedback'),
+  ];
+  $context['recaptcha'] = [
+    'sitekey' => ClientModel::getInstance()->getOption('recaptcha_sitekey', 'tt_client_feedback'),
+    'secret' => ClientModel::getInstance()->getOption('recaptcha_secret', 'tt_client_feedback'),
+  ];
+
+  Timber::render('admin/feedback.twig', $context);
 }

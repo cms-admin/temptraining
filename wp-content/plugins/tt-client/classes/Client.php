@@ -380,7 +380,7 @@ class Client
 
   /**
    * Определяет роль пользователя
-   * @return int
+   * @return mixed
    *   0 - Гость
    *   1 - Админ
    *   2 - Тренер
@@ -421,10 +421,10 @@ class Client
     // Если клиент
     $is_client = $this->isClient($user);
     if ($is_client){
-      return array(
+      return [
         "role" => 3,
         "data" => $is_client,
-      );
+      ];
     }
 
     // Если член клуба
@@ -1218,7 +1218,7 @@ class Client
   {
     $options = $this->getPluginOptions();
 
-    $register_data = array(
+    $register_data = [
       'userName'    => $options['openbank_user'],
       'password'    => $options['openbank_pass'],
       'orderNumber' => urlencode($post['orderNumber']),
@@ -1227,7 +1227,7 @@ class Client
       'clientId'    => intval($post['clientId']),
       'description' => strip_tags($post['description']),
       'jsonParams'  => json_encode($post['jsonParams']),
-    );
+    ];
 
     $response = $this->openbankGateway('register.do', $register_data);
 
@@ -1283,20 +1283,20 @@ class Client
     $is_order = $this->wpdb->get_row("SELECT * FROM {$prefix}orders WHERE order_id = '{$order_id}'");
 
     if($is_order){
-      $tpl = array(
+      $tpl = [
         'status'  => 'info',
         'title'   => 'Информация о заказе',
         'message' => 'Данный заказ уже оплачен ' . date('d.m.Y', strtotime($is_order->date))
-      );
+      ];
     } else {
       $options = $this->getPluginOptions();
 
       // Данные для запроса сведений о заказе
-      $gateway_data = array(
+      $gateway_data = [
         'userName'  => $options['openbank_user'],
         'password'  => $options['openbank_pass'],
         'orderId'   => $order_id
-      );
+      ];
 
       $response = $this->openbankGateway('getOrderStatusExtended.do', $gateway_data);
 
@@ -1308,7 +1308,7 @@ class Client
 
         $is_recurring = (intval($client_row->recurring_frequency) > 0 && !empty($client_row->recurring_id)) ? true : false;
 
-        $tpl = $this->openbankCreateOrder($response, $is_recurring);
+        $tpl = $this->openbankCreateOrder($response, $is_recurring, $client_id);
       } else {
         $tpl = array(
           'status'  => 'flase',
@@ -1324,13 +1324,17 @@ class Client
   /**
    * Создает заказ при успешной оплате клиента
    * @param  array $response [description]
+   * @param bool $recurring - true, если это автоплатеж
+   * @param int $client_id - id клиента в таблице wp_clients
    * @return array
    */
-  public function openbankCreateOrder($response, $recurring = false)
+  public function openbankCreateOrder($response, $recurring = false, $client_id = null)
   {
     $prefix = $this->wpdb->prefix;
 
-    $client_id = stristr($response['orderNumber'], '_', true);
+    if (empty($client_id)) {
+      $client_id = stristr($response['orderNumber'], '_', true);
+    }
 
     foreach ($response['merchantOrderParams'] as $key => $param){
       $response['merchantOrderParams'][$param['name']] = $param['value'];
@@ -1354,7 +1358,7 @@ class Client
     $order_wage = ($order_amount - $order_subscription) * (intval($coach_rate) / 100);
 
     // Формирует данные для сохранения заказа в таблицу `orders`
-    $order_data = array(
+    $order_data = [
       'order_id'      => $response['attributes']['mdOrder'],
       'coach_id'      => $this->getClientInfo($client_id, 'coach_id'),
       'client_id'     => $client_id,
@@ -1364,14 +1368,13 @@ class Client
       'subscription'  => $order_subscription,
       'wage'          => $order_wage,
       'reward_id'     => 0
-    );
+    ];
 
     // Добавляет новый заказ в БД
-    //var_dump($order_data);
     $this->wpdb->insert("{$prefix}orders", $order_data);
-    $id = $this->wpdb->insert_id;
+    $order_id = $this->wpdb->insert_id;
 
-    if($id) {
+    if($order_id) {
       $options = $this->getPluginOptions();
 
       // Отправляет инфу о заказе на email
@@ -1381,7 +1384,6 @@ class Client
         $this->sendCreateOrderMessage($order_data);
       }
 
-
       // Увеличиваем зарплату тренера в таблице тренеров
       $coach_reward = intval($this->getCoachInfoByClientId($client_id, 'reward')) + $order_wage;
 
@@ -1389,25 +1391,28 @@ class Client
       $coach_tax = (int) $this->getCoachInfoByClientId($client_id, 'tax') + ((int) $options['coaches_tax'] / 100 * $order_wage);
 
       // Обновляет данные тренера
-      $coach_data = array(
+      $coach_data = [
         'reward'  => $coach_reward,
         'tax'     => $coach_tax
-      );
-      $this->wpdb->update($prefix.'coaches', $coach_data, array('coach_id' => $order_data['coach_id']));
-      //var_dump($coach_data);
+      ];
+      $this->wpdb->update($prefix.'coaches', $coach_data, ['coach_id' => $order_data['coach_id']]);
 
       // вычисляем дату до которой продливается срок оплаты клиента
       $client_current_pay_date = $this->getClientInfo($client_id, 'pay_date');
+
       if (intval($client_current_pay_date) > 0){
+        // Если клиент платит не в первый раз
         $date_before = date_create($client_current_pay_date);
-        //$client_current_pay_date = date_create($client_current_pay_date)
-        //$client_data['pay_date'] = date('Y-m-d', strtotime("+$order_period months", strtotime($client_current_pay_date)));
       } else {
+        // Если клиент раньше не платил
         $date_before = date_create(date('Y-m-d'));
-        //$client_data['pay_date'] = date('Y-m-d', strtotime("+$order_period months", time()));
       }
 
+      // Дата следующей оплаты (к дате текущей оплаты прибаляется кол-во оплаченных месяцев
+      $date_after = date_add($date_before, date_interval_create_from_date_string($order_period.' months'));
+      /*
       $date_before_day = intval($date_before->format('d'));
+
       if ($date_before_day > 28 && isset($response['bindingInfo']['bindingId'])){
         $date_after_day = 1;
         $date_after_month = intval($date_before->format('m')) + 2;
@@ -1417,17 +1422,19 @@ class Client
       } else {
         $date_after = date_add($date_before, date_interval_create_from_date_string($order_period.' months'));
       }
+      */
 
       $client_data['pay_date'] = $date_after->setTime(21, 00, 00)->format('Y-m-d H:i:s');
 
       // параметры автоплатежа
       if (isset($response['bindingInfo']['bindingId']) && $recurring == false){
-        $recurringFrequency = (isset($response['merchantOrderParams']['recurringFrequency'])) ? $response['merchantOrderParams']['recurringFrequency'] : $response['merchantOrderParams']['initRecurringFrequency'];
-        $client_recurring_frequency = ((int) $recurringFrequency < 10) ? '0'. $recurringFrequency : $recurringFrequency;
-        $client_recurring_expiry = date_create($response['cardAuthInfo']['expiration'] . $client_recurring_frequency);
+        $date_after_day = intval($date_after->format('d'));
+        $date_after_day = ($date_after_day > 28) ? 28 : intval($date_after_day);
+        $recurring_next_day = ($date_after_day < 10) ? '0'. $date_after_day : $date_after_day;
+        $client_recurring_expiry = date_create($response['cardAuthInfo']['expiration'] . $recurring_next_day);
 
         $client_data['recurring_id'] = $response['bindingInfo']['bindingId'];
-        $client_data['recurring_frequency'] = $client_recurring_frequency;
+        $client_data['recurring_frequency'] = $recurring_next_day;
         $client_data['recurring_expiry'] = $client_recurring_expiry->format('Y-m-d');
       }
       //var_dump($client_data);
@@ -1449,16 +1456,16 @@ class Client
       }
 
 
-      $tpl = array(
+      $tpl = [
         'status'  => 'success',
         'title'   => $response['errorMessage'],
         'message' => $message
-      );
+      ];
     } else {
       $tpl = array(
         'status'  => 'danger',
         'title'   => 'Ошибка!',
-        'message' => 'Не удалось записать заказ в базу данных сайта.<br/>Обратитесь к администратору'
+        'message' => 'Не удалось записать заказ в базу данных сайта.<br>Обратитесь к администратору'
       );
     }
 

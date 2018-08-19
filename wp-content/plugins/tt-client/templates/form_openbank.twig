@@ -9,10 +9,6 @@
     <input type="hidden" name="description" value="Оплата тарифа {% spaceless %}{{client.client_tarif_name}}{% endspaceless %}" />
     <input type="hidden" name="jsonParams:month_count" value='1' />
     <input type="hidden" name="jsonParams:email" value="{{client.client_id_name}}" />
-    {% if not client.recurring_id  and client.can_recurring %}
-      <input type="hidden" name="jsonParams:initRecurringFrequency" value="{{client.pay_date_frequency}}" />
-      <input type="hidden" name="jsonParams:initRecurringExpiry" value="{{ "now"|date_modify("+1 year")|date("Ymd") }}" />
-    {% endif %}
 
     <input type="hidden" name="taxSystem" value="2" />
     <input type="hidden" name="orderBundle" value="1" />

@@ -6,13 +6,13 @@
     <img src="{{client.photo_url}}" alt="{{client.name}}" />
   </figure>
   <div class="dash-header__data">
-    <h3 class="title">{{client.name}}</h3>
+    <h3 class="title">{{ client.name }}</h3>
     <div class="text">
       <span>{{client.client_tarif_name}}</span>
-      <span><strong>Тренер</strong>: {{client.coach_name}}</span>
+      <span><strong>Тренер</strong>: {{ client.coach_name }}</span>
       <span>
         <strong>Оплата</strong>:
-        <span class="{{client.pay_class}}">
+        <span class="{{ client.pay_class }}">
           {% if client.pay_date %}{{client.pay_date|date("d.m.Y")}}{% else %}еще не производилась {% endif %}
           {% if client.pay_interval %}({{client.pay_interval}}){% endif %}
         </span>
@@ -26,17 +26,17 @@
 {% endif %}
 
 {% if tpl %}
-  <section class="dash-info {{tpl.status}}">
-    <h4 class="dash-info__title">{{tpl.title}}</h4>
-    <div class="dash-info__text">{{tpl.message}}</div>
-    <a class="dash-info__close" href="{{function('site_url', 'client/')}}"><i class="ion ion-close-circled"></i></a>
+  <section class="dash-info {{ tpl.status }}">
+    <h4 class="dash-info__title">{{ tpl.title }}</h4>
+    <div class="dash-info__text">{{ tpl.message }}</div>
+    <a class="dash-info__close" href="{{ fn('site_url', 'client/') }}"><i class="ion ion-close-circled"></i></a>
   </section>
 {% endif %}
 
 {% if not client.recurring_id and options.alert_reccuring %}
   <section class="dash-info error">
     <h4 class="dash-info__title">Внимание!</h4>
-    <div class="dash-info__text">{{options.alert_reccuring}}</div>
+    <div class="dash-info__text">{{ options.alert_reccuring }}</div>
   </section>
 {% endif %}
 

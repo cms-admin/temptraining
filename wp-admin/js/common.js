@@ -663,4 +663,490 @@ $document.ready( function() {
 			el.focus();
 			sel = document.selection.createRange();
 			sel.text = '\t';
-		} else if ( s
+		} else if ( selStart >= 0 ) {
+			scroll = this.scrollTop;
+			el.value = val.substring(0, selStart).concat('\t', val.substring(selEnd) );
+			el.selectionStart = el.selectionEnd = selStart + 1;
+			this.scrollTop = scroll;
+		}
+
+		if ( e.stopPropagation )
+			e.stopPropagation();
+		if ( e.preventDefault )
+			e.preventDefault();
+	});
+
+	if ( pageInput.length ) {
+		pageInput.closest('form').submit( function() {
+
+			// Reset paging var for new filters/searches but not for bulk actions. See #17685.
+			if ( $('select[name="action"]').val() == -1 && $('select[name="action2"]').val() == -1 && pageInput.val() == currentPage )
+				pageInput.val('1');
+		});
+	}
+
+	$('.search-box input[type="search"], .search-box input[type="submit"]').mousedown(function () {
+		$('select[name^="action"]').val('-1');
+	});
+
+	// Scroll into view when focused
+	$('#contextual-help-link, #show-settings-link').on( 'focus.scroll-into-view', function(e){
+		if ( e.target.scrollIntoView )
+			e.target.scrollIntoView(false);
+	});
+
+	// Disable upload buttons until files are selected
+	(function(){
+		var button, input, form = $('form.wp-upload-form');
+		if ( ! form.length )
+			return;
+		button = form.find('input[type="submit"]');
+		input = form.find('input[type="file"]');
+
+		function toggleUploadButton() {
+			button.prop('disabled', '' === input.map( function() {
+				return $(this).val();
+			}).get().join(''));
+		}
+		toggleUploadButton();
+		input.on('change', toggleUploadButton);
+	})();
+
+	function pinMenu( event ) {
+		var windowPos = $window.scrollTop(),
+			resizing = ! event || event.type !== 'scroll';
+
+		if ( isIOS || isIE8 || $adminmenu.data( 'wp-responsive' ) ) {
+			return;
+		}
+
+		if ( height.menu + height.adminbar < height.window ||
+			height.menu + height.adminbar + 20 > height.wpwrap ) {
+			unpinMenu();
+			return;
+		}
+
+		menuIsPinned = true;
+
+		if ( height.menu + height.adminbar > height.window ) {
+			// Check for overscrolling
+			if ( windowPos < 0 ) {
+				if ( ! pinnedMenuTop ) {
+					pinnedMenuTop = true;
+					pinnedMenuBottom = false;
+
+					$adminMenuWrap.css({
+						position: 'fixed',
+						top: '',
+						bottom: ''
+					});
+				}
+
+				return;
+			} else if ( windowPos + height.window > $document.height() - 1 ) {
+				if ( ! pinnedMenuBottom ) {
+					pinnedMenuBottom = true;
+					pinnedMenuTop = false;
+
+					$adminMenuWrap.css({
+						position: 'fixed',
+						top: '',
+						bottom: 0
+					});
+				}
+
+				return;
+			}
+
+			if ( windowPos > lastScrollPosition ) {
+				// Scrolling down
+				if ( pinnedMenuTop ) {
+					// let it scroll
+					pinnedMenuTop = false;
+					menuTop = $adminMenuWrap.offset().top - height.adminbar - ( windowPos - lastScrollPosition );
+
+					if ( menuTop + height.menu + height.adminbar < windowPos + height.window ) {
+						menuTop = windowPos + height.window - height.menu - height.adminbar;
+					}
+
+					$adminMenuWrap.css({
+						position: 'absolute',
+						top: menuTop,
+						bottom: ''
+					});
+				} else if ( ! pinnedMenuBottom && $adminMenuWrap.offset().top + height.menu < windowPos + height.window ) {
+					// pin the bottom
+					pinnedMenuBottom = true;
+
+					$adminMenuWrap.css({
+						position: 'fixed',
+						top: '',
+						bottom: 0
+					});
+				}
+			} else if ( windowPos < lastScrollPosition ) {
+				// Scrolling up
+				if ( pinnedMenuBottom ) {
+					// let it scroll
+					pinnedMenuBottom = false;
+					menuTop = $adminMenuWrap.offset().top - height.adminbar + ( lastScrollPosition - windowPos );
+
+					if ( menuTop + height.menu > windowPos + height.window ) {
+						menuTop = windowPos;
+					}
+
+					$adminMenuWrap.css({
+						position: 'absolute',
+						top: menuTop,
+						bottom: ''
+					});
+				} else if ( ! pinnedMenuTop && $adminMenuWrap.offset().top >= windowPos + height.adminbar ) {
+					// pin the top
+					pinnedMenuTop = true;
+
+					$adminMenuWrap.css({
+						position: 'fixed',
+						top: '',
+						bottom: ''
+					});
+				}
+			} else if ( resizing ) {
+				// Resizing
+				pinnedMenuTop = pinnedMenuBottom = false;
+				menuTop = windowPos + height.window - height.menu - height.adminbar - 1;
+
+				if ( menuTop > 0 ) {
+					$adminMenuWrap.css({
+						position: 'absolute',
+						top: menuTop,
+						bottom: ''
+					});
+				} else {
+					unpinMenu();
+				}
+			}
+		}
+
+		lastScrollPosition = windowPos;
+	}
+
+	function resetHeights() {
+		height = {
+			window: $window.height(),
+			wpwrap: $wpwrap.height(),
+			adminbar: $adminbar.height(),
+			menu: $adminMenuWrap.height()
+		};
+	}
+
+	function unpinMenu() {
+		if ( isIOS || ! menuIsPinned ) {
+			return;
+		}
+
+		pinnedMenuTop = pinnedMenuBottom = menuIsPinned = false;
+		$adminMenuWrap.css({
+			position: '',
+			top: '',
+			bottom: ''
+		});
+	}
+
+	function setPinMenu() {
+		resetHeights();
+
+		if ( $adminmenu.data('wp-responsive') ) {
+			$body.removeClass( 'sticky-menu' );
+			unpinMenu();
+		} else if ( height.menu + height.adminbar > height.window ) {
+			pinMenu();
+			$body.removeClass( 'sticky-menu' );
+		} else {
+			$body.addClass( 'sticky-menu' );
+			unpinMenu();
+		}
+	}
+
+	if ( ! isIOS ) {
+		$window.on( 'scroll.pin-menu', pinMenu );
+		$document.on( 'tinymce-editor-init.pin-menu', function( event, editor ) {
+			editor.on( 'wp-autoresize', resetHeights );
+		});
+	}
+
+	window.wpResponsive = {
+		init: function() {
+			var self = this;
+
+			// Modify functionality based on custom activate/deactivate event
+			$document.on( 'wp-responsive-activate.wp-responsive', function() {
+				self.activate();
+			}).on( 'wp-responsive-deactivate.wp-responsive', function() {
+				self.deactivate();
+			});
+
+			$( '#wp-admin-bar-menu-toggle a' ).attr( 'aria-expanded', 'false' );
+
+			// Toggle sidebar when toggle is clicked
+			$( '#wp-admin-bar-menu-toggle' ).on( 'click.wp-responsive', function( event ) {
+				event.preventDefault();
+
+				// close any open toolbar submenus
+				$adminbar.find( '.hover' ).removeClass( 'hover' );
+
+				$wpwrap.toggleClass( 'wp-responsive-open' );
+				if ( $wpwrap.hasClass( 'wp-responsive-open' ) ) {
+					$(this).find('a').attr( 'aria-expanded', 'true' );
+					$( '#adminmenu a:first' ).focus();
+				} else {
+					$(this).find('a').attr( 'aria-expanded', 'false' );
+				}
+			} );
+
+			// Add menu events
+			$adminmenu.on( 'click.wp-responsive', 'li.wp-has-submenu > a', function( event ) {
+				if ( ! $adminmenu.data('wp-responsive') ) {
+					return;
+				}
+
+				$( this ).parent( 'li' ).toggleClass( 'selected' );
+				event.preventDefault();
+			});
+
+			self.trigger();
+			$document.on( 'wp-window-resized.wp-responsive', $.proxy( this.trigger, this ) );
+
+			// This needs to run later as UI Sortable may be initialized later on $(document).ready()
+			$window.on( 'load.wp-responsive', function() {
+				var width = navigator.userAgent.indexOf('AppleWebKit/') > -1 ? $window.width() : window.innerWidth;
+
+				if ( width <= 782 ) {
+					self.disableSortables();
+				}
+			});
+		},
+
+		activate: function() {
+			setPinMenu();
+
+			if ( ! $body.hasClass( 'auto-fold' ) ) {
+				$body.addClass( 'auto-fold' );
+			}
+
+			$adminmenu.data( 'wp-responsive', 1 );
+			this.disableSortables();
+		},
+
+		deactivate: function() {
+			setPinMenu();
+			$adminmenu.removeData('wp-responsive');
+			this.enableSortables();
+		},
+
+		trigger: function() {
+			var viewportWidth = getViewportWidth();
+
+			// Exclude IE < 9, it doesn't support @media CSS rules.
+			if ( ! viewportWidth ) {
+				return;
+			}
+
+			if ( viewportWidth <= 782 ) {
+				if ( ! wpResponsiveActive ) {
+					$document.trigger( 'wp-responsive-activate' );
+					wpResponsiveActive = true;
+				}
+			} else {
+				if ( wpResponsiveActive ) {
+					$document.trigger( 'wp-responsive-deactivate' );
+					wpResponsiveActive = false;
+				}
+			}
+
+			if ( viewportWidth <= 480 ) {
+				this.enableOverlay();
+			} else {
+				this.disableOverlay();
+			}
+		},
+
+		enableOverlay: function() {
+			if ( $overlay.length === 0 ) {
+				$overlay = $( '<div id="wp-responsive-overlay"></div>' )
+					.insertAfter( '#wpcontent' )
+					.hide()
+					.on( 'click.wp-responsive', function() {
+						$toolbar.find( '.menupop.hover' ).removeClass( 'hover' );
+						$( this ).hide();
+					});
+			}
+
+			$toolbarPopups.on( 'click.wp-responsive', function() {
+				$overlay.show();
+			});
+		},
+
+		disableOverlay: function() {
+			$toolbarPopups.off( 'click.wp-responsive' );
+			$overlay.hide();
+		},
+
+		disableSortables: function() {
+			if ( $sortables.length ) {
+				try {
+					$sortables.sortable('disable');
+				} catch(e) {}
+			}
+		},
+
+		enableSortables: function() {
+			if ( $sortables.length ) {
+				try {
+					$sortables.sortable('enable');
+				} catch(e) {}
+			}
+		}
+	};
+
+	// Add an ARIA role `button` to elements that behave like UI controls when JavaScript is on.
+	function aria_button_if_js() {
+		$( '.aria-button-if-js' ).attr( 'role', 'button' );
+	}
+
+	$( document ).ajaxComplete( function() {
+		aria_button_if_js();
+	});
+
+	/**
+	 * @summary Get the viewport width.
+	 *
+	 * @since 4.7.0
+	 *
+	 * @returns {number|boolean} The current viewport width or false if the
+	 *                           browser doesn't support innerWidth (IE < 9).
+	 */
+	function getViewportWidth() {
+		var viewportWidth = false;
+
+		if ( window.innerWidth ) {
+			// On phones, window.innerWidth is affected by zooming.
+			viewportWidth = Math.max( window.innerWidth, document.documentElement.clientWidth );
+		}
+
+		return viewportWidth;
+	}
+
+	/**
+	 * @summary Set the admin menu collapsed/expanded state.
+	 *
+	 * Sets the global variable `menuState` and triggers a custom event passing
+	 * the current menu state.
+	 *
+	 * @since 4.7.0
+	 *
+	 * @returns {void}
+	 */
+	function setMenuState() {
+		var viewportWidth = getViewportWidth() || 961;
+
+		if ( viewportWidth <= 782  ) {
+			menuState = 'responsive';
+		} else if ( $body.hasClass( 'folded' ) || ( $body.hasClass( 'auto-fold' ) && viewportWidth <= 960 && viewportWidth > 782 ) ) {
+			menuState = 'folded';
+		} else {
+			menuState = 'open';
+		}
+
+		$document.trigger( 'wp-menu-state-set', { state: menuState } );
+	}
+
+	// Set the menu state when the window gets resized.
+	$document.on( 'wp-window-resized.set-menu-state', setMenuState );
+
+	/**
+	 * @summary Set ARIA attributes on the collapse/expand menu button.
+	 *
+	 * When the admin menu is open or folded, updates the `aria-expanded` and
+	 * `aria-label` attributes of the button to give feedback to assistive
+	 * technologies. In the responsive view, the button is always hidden.
+	 *
+	 * @since 4.7.0
+	 *
+	 * @returns {void}
+	 */
+	$document.on( 'wp-menu-state-set wp-collapse-menu', function( event, eventData ) {
+		var $collapseButton = $( '#collapse-button' ),
+			ariaExpanded = 'true',
+			ariaLabelText = commonL10n.collapseMenu;
+
+		if ( 'folded' === eventData.state ) {
+			ariaExpanded = 'false';
+			ariaLabelText = commonL10n.expandMenu;
+		}
+
+		$collapseButton.attr({
+			'aria-expanded': ariaExpanded,
+			'aria-label': ariaLabelText
+		});
+	});
+
+	window.wpResponsive.init();
+	setPinMenu();
+	setMenuState();
+	currentMenuItemHasPopup();
+	makeNoticesDismissible();
+	aria_button_if_js();
+
+	$document.on( 'wp-pin-menu wp-window-resized.pin-menu postboxes-columnchange.pin-menu postbox-toggled.pin-menu wp-collapse-menu.pin-menu wp-scroll-start.pin-menu', setPinMenu );
+
+	// Set initial focus on a specific element.
+	$( '.wp-initial-focus' ).focus();
+
+	// Toggle update details on update-core.php.
+	$body.on( 'click', '.js-update-details-toggle', function() {
+		var $updateNotice = $( this ).closest( '.js-update-details' ),
+			$progressDiv = $( '#' + $updateNotice.data( 'update-details' ) );
+
+		/*
+		 * When clicking on "Show details" move the progress div below the update
+		 * notice. Make sure it gets moved just the first time.
+		 */
+		if ( ! $progressDiv.hasClass( 'update-details-moved' ) ) {
+			$progressDiv.insertAfter( $updateNotice ).addClass( 'update-details-moved' );
+		}
+
+		// Toggle the progress div visibility.
+		$progressDiv.toggle();
+		// Toggle the Show Details button expanded state.
+		$( this ).attr( 'aria-expanded', $progressDiv.is( ':visible' ) );
+	});
+});
+
+// Fire a custom jQuery event at the end of window resize
+( function() {
+	var timeout;
+
+	function triggerEvent() {
+		$document.trigger( 'wp-window-resized' );
+	}
+
+	function fireOnce() {
+		window.clearTimeout( timeout );
+		timeout = window.setTimeout( triggerEvent, 200 );
+	}
+
+	$window.on( 'resize.wp-fire-once', fireOnce );
+}());
+
+// Make Windows 8 devices play along nicely.
+(function(){
+	if ( '-ms-user-select' in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/) ) {
+		var msViewportStyle = document.createElement( 'style' );
+		msViewportStyle.appendChild(
+			document.createTextNode( '@-ms-viewport{width:auto!important}' )
+		);
+		document.getElementsByTagName( 'head' )[0].appendChild( msViewportStyle );
+	}
+})();
+
+}( jQuery, window ));

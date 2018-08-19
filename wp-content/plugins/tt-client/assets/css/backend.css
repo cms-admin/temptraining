@@ -297,11 +297,19 @@
   text-transform: uppercase;
   color: #889CA7;
 }
+.ttcli-form__control-label .switchery{
+  box-sizing: border-box;
+}
 .ttcli-form__control-check + .ttcli-form__control-label,
 .switchery + .ttcli-form__control-label{
   display: inline-block;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
   margin-bottom: 0;
+}
+.ttcli-form__control-label .switchery + span {
+  margin: 3px 1px 1px 5px;
+  line-height: 20px;
+  display: inline-block;
 }
 .ttcli-form .switchery-small{
   height: 22px;

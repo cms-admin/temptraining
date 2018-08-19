@@ -1,0 +1,100 @@
+{% extends "admin/index.twig" %}
+
+{% block header_title %}
+  <h2 class="ttcli-head__title">{{ plang('Настройки обратной связи') }}</h2>
+{% endblock %}
+
+{% block header_data %}{% endblock %}
+
+{% block header_actions %}
+  <div class="grid__col-lg-2">
+    <nav class="ttcli-head__menu">
+      <a class="ttcli-head__menu-title bg-grey-o" href="{{function('admin_url', 'admin.php?page=ttcli')}}">
+        <i class="ti-back-left"></i> <span>{{ plang('Назад') }}</span>
+      </a>
+    </nav>
+  </div>
+  <div class="grid__col-lg-2">
+    <nav class="ttcli-head__menu">
+      <button class="ttcli-head__menu-title bg-green" data-save-form="ttcli_feedback_form">
+        <i class="ti-save"></i> <span>{{ plang('Сохранить') }}</span>
+      </button>
+    </nav>
+  </div>
+{% endblock %}
+
+{% block content %}
+<form id="ttcli_feedback_form" action="ttcli_save_feedback_options">
+  <div class="grid">
+    {# ПЕРЕКЮЧАТЕЛИ ФОРМ #}
+    <div class="grid__col-md-4">
+      <div class="ttcli-form">
+        <section class="ttcli-form__head">
+          <h4 class="ttcli-form__head-title">{{ plang('Настройки форм')}}</h4>
+        </section>
+
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label">
+            <input type="checkbox" name="form_training" data-js="switch" data-switch-options='{"size": "small"}' value="1"
+                {% if forms.training %} checked="checked"{% endif %}>
+            <span>{{ plang('Начать тренироваться') }}</span>
+          </label>
+        </div>
+
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label">
+            <input type="checkbox" name="form_director" data-js="switch" data-switch-options='{"size": "small"}' value="1"
+                {% if forms.director %} checked="checked"{% endif %}>
+            <span>{{ plang('Написать директору') }}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    {# НАСТРОЙКИ EMAIL'ов #}
+    <div class="grid__col-md-4">
+      <div class="ttcli-form">
+        <section class="ttcli-form__head">
+          <h4 class="ttcli-form__head-title">{{ plang('Настройки уведомлений')}}</h4>
+        </section>
+
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="emails_training">
+            {{ plang('Email\'ы для формы "Начать тренироваться"') }}
+          </label>
+          <input class="ttcli-form__control-string" id="emails_training" name="emails_training" value="{{ emails.training }}"  />
+        </div>
+
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="emails_director">
+            {{ plang('Email\'ы для формы "Написать директору"') }}
+          </label>
+          <input class="ttcli-form__control-string" id="emails_director" name="emails_director" value="{{ emails.director }}"  />
+        </div>
+      </div>
+    </div>
+
+    <div class="grid__col-md-4">
+      <div class="ttcli-form">
+        <section class="ttcli-form__head">
+          <h4 class="ttcli-form__head-title">{{ plang('Настройки Recaptcha')}}</h4>
+        </section>
+
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="recaptcha_sitekey">
+            {{ plang('Ключ сайта') }}
+          </label>
+          <input class="ttcli-form__control-string" id="recaptcha_sitekey" name="recaptcha_sitekey" value="{{ recaptcha.sitekey }}"  />
+        </div>
+
+        <div class="ttcli-form__control">
+          <label class="ttcli-form__control-label" for="recaptcha_secret">
+            {{ plang('Секретный ключ') }}
+          </label>
+          <input class="ttcli-form__control-string" id="recaptcha_secret" name="recaptcha_secret" value="{{ recaptcha.secret }}"  />
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}

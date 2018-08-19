@@ -3,6 +3,19 @@
 use TTClient\Client;
 use TTClient\ClientYakassa;
 
+if (!function_exists('plang')):
+  /**
+   * Упрощенный перевод для плагина
+   * @param string $text
+   * @param string $plugin
+   * @return string
+   */
+  function plang($text, $plugin = 'tt-client')
+  {
+    return __($text, $plugin);
+  }
+endif;
+
 /**
  * Автоматическое обновление плагина 
  */
@@ -281,4 +294,16 @@ function ttcli_update_140()
   Client::getInstance()->saveOptions($options);
 }
 
-?>
+/**
+ * Добавляет новые Twig переменные и функции
+ * @param $twig
+ * @return mixed
+ */
+function ttcli_extend_twig($twig)
+{
+  // Функции для перевода темы на другие языки
+  $twig->addFunction(new Twig_SimpleFunction ('plang', 'plang'));
+
+  return $twig;
+}
+add_filter('timber/twig', 'ttcli_extend_twig');

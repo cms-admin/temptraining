@@ -123,17 +123,17 @@
 
   if ($('#tt-client-openbank').length > 0) {
     $(document).on('change', '#select-payment-client', function () {
-      var $this = $(this);
-      var $form = $this.closest('form');
+      const $this = $(this);
+      const $form = $this.closest('form');
 
-      var period = $this.val();
-      var price = $form.find('button[type="submit"]').attr('month-price');
+      let period = $this.val();
+      let price = $form.find('button[type="submit"]').attr('month-price');
 
-      var jsonParamsMonthCount = parseInt(period);
+      let jsonParamsMonthCount = parseInt(period);
 
-      var total = parseInt(period) * parseInt(price);
+      let total = parseInt(period) * parseInt(price);
 
-      $form.find('input[name="amount"]').val(parseInt(total) * 100);
+      $form.find('input[name="amount"]').val(total * 100);
       $form.find('input[name="jsonParams:month_count"]').val(jsonParamsMonthCount);
 
       $form.find('button[type="submit"]').text('Оплатить ' + total + ' рублей');
@@ -143,11 +143,11 @@
     $(document).on('submit', '#tt-client-openbank', function (e) {
       e.preventDefault ? e.preventDefault() : (e.returnValue = false);
 
-      var form = $(this),
-        button = form.find('button[type="submit"]'),
-        button_text = button.html(),
-        action = form.attr('action'),
-        formData = form.serializeArray();
+      const form = $(this);
+      let button = form.find('button[type="submit"]');
+      let button_text = button.html();
+      let action = form.attr('action');
+      let formData = form.serializeArray();
 
       button.text('Подождите...');
 
@@ -159,7 +159,8 @@
           data: formData
         },
         success: function (data) {
-          //console.log(data);
+          console.log(data);
+
           if (data.success) {
             window.location = data.redirect;
           } else {

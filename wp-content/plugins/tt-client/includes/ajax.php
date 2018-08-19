@@ -1,6 +1,7 @@
 <?php
 
 use TTClient\Client;
+use TTClient\ClientModel;
 use TTClient\ClientYakassa;
 
 if( wp_doing_ajax() ){
@@ -8,6 +9,7 @@ if( wp_doing_ajax() ){
   add_action('wp_ajax_ttcli_save_options', 'ttcli_ajax_save_options');
   add_action('wp_ajax_ttcli_save_templates', 'ttcli_ajax_save_templates');
   add_action('wp_ajax_ttcli_save_club_page', 'ttcli_ajax_save_club_page');
+  add_action('wp_ajax_ttcli_save_feedback_options', 'ttcli_ajax_save_feedback_options');
 
   // Оплата клиента через банк открытие
   add_action('wp_ajax_ttcli_openbank_payment', 'ttcli_ajax_openbank_payment');
@@ -27,6 +29,10 @@ if( wp_doing_ajax() ){
   // Регистрация члена клуба
   add_action('wp_ajax_ttcli_member_register', 'ttcli_ajax_member_register');
   add_action('wp_ajax_nopriv_ttcli_member_register', 'ttcli_ajax_member_register');
+
+  // Отправка форм обратной связи
+  add_action('wp_ajax_ttcli_form_training', 'ttcli_ajax_form_training');
+  add_action('wp_ajax_nopriv_ttcli_form_training', 'ttcli_ajax_form_training');
 }
 
 /**
@@ -112,6 +118,151 @@ function ttcli_ajax_save_club_page()
   wp_send_json($alert);
   
   exit;
+}
+
+/**
+ * Сохраняет настройки обратной связи
+ */
+function ttcli_ajax_save_feedback_options()
+{
+  $ajax = $_POST['data'];
+  $post = Client::getInstance()->postToArray($ajax);
+
+  if (ClientModel::getInstance()->saveOption($post, 'tt_client_feedback')) {
+    $message = [
+      'title'   => plang('Выполнено'),
+      'message' => plang('Настройки сохранены'),
+      'type'    => 'success'
+    ];
+  } else {
+    $message = [
+      'title'   => plang('Ошибка'),
+      'message' => plang('Не удалось сохранить настройки плагина'),
+      'type'    => 'error'
+    ];
+  }
+
+  wp_send_json($message);
+
+  exit;
+}
+
+function ttcli_ajax_form_training()
+{
+  $data = [];
+  parse_str($_POST['data'], $data);
+
+  #проверка на ошибки
+  $errors = [];
+
+  if (!isset($data['training_offer'])) {
+    $errors['training_offer'] = plang('Для отправки сообщения необходимо принять условия оферты');
+  }
+
+  if (!isset($data['training_username'])) {
+    $errors['training_username'] = plang('Необходимо указать ваше имя');
+  }
+
+  if (!isset($data['training_contacts'])) {
+    $errors['training_contacts'] = plang('Необходимо указать телефон или email');
+  }
+
+  if (!empty($errors)) {
+    $result = [
+      'success' => false,
+      'errors'  => $errors
+    ];
+
+    wp_send_json($result);
+  }
+
+  $recaptchaSecret = ClientModel::getInstance()->getOption('recaptcha_secret', 'tt_client_feedback');
+
+  if ($recaptchaSecret) {
+    $recaptchaParams = [
+      'secret'    => trim($recaptchaSecret),
+      'response'  => $data['g-recaptcha-response']
+    ];
+
+    $recaptchaCurl = curl_init();
+    curl_setopt_array($recaptchaCurl, [
+      CURLOPT_URL => 'https://www.google.com/recaptcha/api/siteverify',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_POST => true,
+      CURLOPT_POSTFIELDS => http_build_query($recaptchaParams)
+    ]);
+
+    $recaptchaResponse = json_decode(curl_exec($recaptchaCurl));
+    curl_close($recaptchaCurl);
+
+    if ($recaptchaResponse->success == false) {
+      $result['success'] = false;
+      $result['message'] = tlang('Проверка <b>Я не робот</b> не пройдена');
+
+      wp_send_json($result);
+
+      exit;
+    }
+  }
+
+  // Отправка уведомления на email
+  $notifyEmail = ClientModel::getInstance()->getOption('emails_training', 'tt_client_feedback');
+  $notifyEmail = explode(',', $notifyEmail);
+
+  $notifyFrom = 'From: ' . tlang('Уведомление от') . ' ' . get_option('siteurl');
+  $notifySubject = 'From: ' . tlang('Новое сообщение из формы "Начать тренироваться"');
+
+  foreach ($notifyEmail as $email) {
+    $email = trim($email);
+    if(is_email($email)){
+      $headers[] = $email;
+      $headers[] = 'content-type: text/html';
+
+      wp_mail($email, $notifySubject, ttcli_feedback_notify($data, 'training'), $headers);
+    }
+  }
+
+  $result['success'] = true;
+  $result['message'] = plang('Ваше сообщение успешно отправлено!');
+
+  wp_send_json($result);
+
+  exit;
+}
+
+/**
+ * Шаблон email письма о новом сообщении на сайте
+ * @param  [type] $data    [description]
+ * @param  [type] $post_id [description]
+ * @return [type]          [description]
+ */
+function ttcli_feedback_notify($data, $form)
+{
+  $html = file_get_contents(TT_CLIENT_DIR . 'templates/emails/' . $form . '.html');
+
+  switch ($form) {
+    case 'training':
+      $training_sport = [
+        'price-1' => plang('Триатлон'),
+        'price-2' => plang('Два спорта'),
+        'price-3' => plang('Бег'),
+
+      ];
+      $message_replace = [
+        '{{ title }}'         => plang('Новое сообщение из формы "Начать тренироваться"'),
+        '{{ username }}'   => $data['training_username'],
+        '{{ contacts }}'   => $data['training_contacts'],
+        '{{ sport }}'  => $training_sport[$data['training_sport']],
+        '{{ message }}'  => $data['training_message'],
+      ];
+      break;
+
+    default:
+      $message_replace = [];
+      break;
+  }
+
+  return strtr($html, $message_replace);
 }
 
 /**

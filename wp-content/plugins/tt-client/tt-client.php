@@ -6,7 +6,7 @@ use TTClient\ClientModel;
 /*
 Plugin Name: Темп Клиент
 Description: Личный кабинет для клиентов и тренеров
-Version: 1.4.6
+Version: 1.5.0
 Author: Александр Ерко <info@cms-admin.ru>
 Author URI: http://cms-admin.ru/
 Plugin URI: http://cms-admin.ru/
@@ -15,7 +15,7 @@ define('TT_CLIENT_DIR', plugin_dir_path(__FILE__));
 
 define('TT_CLIENT_URL', plugin_dir_url(__FILE__));
 
-define('TT_CLIENT_V', '1.4.6');
+define('TT_CLIENT_V', '1.5.0');
 
 define('TT_CLIENT_CSS_URL', TT_CLIENT_URL . 'assets/css/');
 define('TT_CLIENT_JS_URL', TT_CLIENT_URL . 'assets/js/');
@@ -168,7 +168,6 @@ function tt_client_login_redirect( $redirect_to, $request, $user )
     return $redirect_to;
   }
 }
-
 add_filter( 'login_redirect', 'tt_client_login_redirect', 10, 3 );
 
 /**

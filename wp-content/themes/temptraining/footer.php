@@ -30,9 +30,10 @@
 <button data-toggle="modal" data-target="#callback-modal" class="pulse-button" title="Написать директору">
   <i class="ion ion-chatboxes"></i>
 </button>
-<?php ttcli_get_form('training'); ?>
 
-<?php if (is_active_sidebar('callback')) : dynamic_sidebar('callback'); endif; ?>
+<?php ttcli_get_form('training'); ?>
+<?php ttcli_get_form('director'); ?>
+
 <?php wp_footer(); ?>
 </body>
 </html>

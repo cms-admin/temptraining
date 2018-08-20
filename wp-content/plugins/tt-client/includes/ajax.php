@@ -33,6 +33,8 @@ if( wp_doing_ajax() ){
   // Отправка форм обратной связи
   add_action('wp_ajax_ttcli_form_training', 'ttcli_ajax_form_training');
   add_action('wp_ajax_nopriv_ttcli_form_training', 'ttcli_ajax_form_training');
+  add_action('wp_ajax_ttcli_form_director', 'ttcli_ajax_form_director');
+  add_action('wp_ajax_nopriv_ttcli_form_director', 'ttcli_ajax_form_director');
 }
 
 /**
@@ -147,6 +149,9 @@ function ttcli_ajax_save_feedback_options()
   exit;
 }
 
+/**
+ * Обработка сообщения из формы "Начать тренироваться"
+ */
 function ttcli_ajax_form_training()
 {
   $data = [];
@@ -231,6 +236,88 @@ function ttcli_ajax_form_training()
 }
 
 /**
+ * Сообщения из формы "Написать директору"
+ */
+function ttcli_ajax_form_director ()
+{
+  $data = [];
+  parse_str($_POST['data'], $data);
+
+  #проверка на ошибки
+  $errors = [];
+
+  if (!isset($data['director_username'])) {
+    $errors['director_username'] = plang('Необходимо указать ваше имя');
+  }
+
+  if (!isset($data['director_contacts'])) {
+    $errors['director_contacts'] = plang('Необходимо указать телефон или email');
+  }
+
+  if (!empty($errors)) {
+    $result = [
+      'success' => false,
+      'errors'  => $errors
+    ];
+
+    wp_send_json($result);
+  }
+
+  $recaptchaSecret = ClientModel::getInstance()->getOption('recaptcha_secret', 'tt_client_feedback');
+
+  if ($recaptchaSecret) {
+    $recaptchaParams = [
+      'secret'    => trim($recaptchaSecret),
+      'response'  => $data['g-recaptcha-response']
+    ];
+
+    $recaptchaCurl = curl_init();
+    curl_setopt_array($recaptchaCurl, [
+      CURLOPT_URL => 'https://www.google.com/recaptcha/api/siteverify',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_POST => true,
+      CURLOPT_POSTFIELDS => http_build_query($recaptchaParams)
+    ]);
+
+    $recaptchaResponse = json_decode(curl_exec($recaptchaCurl));
+    curl_close($recaptchaCurl);
+
+    if ($recaptchaResponse->success == false) {
+      $result['success'] = false;
+      $result['message'] = tlang('Проверка <b>Я не робот</b> не пройдена');
+
+      wp_send_json($result);
+
+      exit;
+    }
+  }
+
+  // Отправка уведомления на email
+  $notifyEmail = ClientModel::getInstance()->getOption('emails_director', 'tt_client_feedback');
+  $notifyEmail = explode(',', $notifyEmail);
+
+  $notifyFrom = 'From: ' . tlang('Уведомление от') . ' ' . get_option('siteurl');
+  $notifySubject = 'From: ' . tlang('Новое сообщение из формы "Написать директору"');
+
+  foreach ($notifyEmail as $email) {
+    $email = trim($email);
+    if(is_email($email)){
+      $headers[] = $email;
+      $headers[] = 'content-type: text/html';
+
+      wp_mail($email, $notifySubject, ttcli_feedback_notify($data, 'director'), $headers);
+    }
+  }
+
+  $result['success'] = true;
+  $result['message'] = plang('Ваше сообщение успешно отправлено!');
+
+  wp_send_json($result);
+
+  exit;
+}
+
+/**
  * Шаблон email письма о новом сообщении на сайте
  * @param  [type] $data    [description]
  * @param  [type] $post_id [description]
@@ -254,6 +341,22 @@ function ttcli_feedback_notify($data, $form)
         '{{ contacts }}'   => $data['training_contacts'],
         '{{ sport }}'  => $training_sport[$data['training_sport']],
         '{{ message }}'  => $data['training_message'],
+      ];
+      break;
+
+    case 'director':
+      $director_themes = [
+        'theme-1' => plang('Оставить отзыв'),
+        'theme-2' => plang('Задать вопрос'),
+        'theme-3' => plang('Другое'),
+
+      ];
+      $message_replace = [
+        '{{ title }}'         => plang('Новое сообщение из формы "Написать директору"'),
+        '{{ username }}'   => $data['director_username'],
+        '{{ contacts }}'   => $data['director_contacts'],
+        '{{ theme }}'  => $director_themes[$data['director_theme']],
+        '{{ message }}'  => $data['director_message'],
       ];
       break;
 

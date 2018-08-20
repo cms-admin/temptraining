@@ -99,40 +99,6 @@ function temptraining_widgets_init() {
 		'after_title'   => '</h3>',
   ));
 
-  register_sidebar(array(
-    'name'  => __( 'Popup', 'temptraining' ),
-    'id'    => 'popup',
-    'before_widget' => '<aside id="begin-modal" class="widget-modal modal %2$s">'
-                        . '<div class="modal-dialog" role="document">'
-                        . '<div class="container">'
-                        . '<div class="modal-content">',
-
-    'after_widget'  => '</div></div></div></div></aside>',
-    'before_title'  => '<div class="modal-header">'
-                        . '<button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">'
-                        . '<span aria-hidden="true">&times;</span>'
-                        . '</button>'
-                        . '<h3 class="modal-title">',
-		'after_title'   => '</h3></div><div class="modal-body">',
-  ));
-
-  register_sidebar(array(
-    'name'  => __( 'Обратный звонок', 'temptraining' ),
-    'id'    => 'callback',
-    'before_widget' => '<aside id="callback-modal" class="widget-modal modal %2$s">'
-                        . '<div class="modal-dialog" role="document">'
-                        . '<div class="container">'
-                        . '<div class="modal-content">',
-
-    'after_widget'  => '</div></div></div></div></aside>',
-    'before_title'  => '<div class="modal-header">'
-                        . '<button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">'
-                        . '<span aria-hidden="true">&times;</span>'
-                        . '</button>'
-                        . '<h3 class="modal-title">',
-		'after_title'   => '</h3></div><div class="modal-body">',
-  ));
-
   register_sidebar( array(
 		'name' 				   => __( 'Правая колонка', 'temptraining' ),
 		'id' 					    => 'right_sidebar',

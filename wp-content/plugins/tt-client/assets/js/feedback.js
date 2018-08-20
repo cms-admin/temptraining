@@ -36,20 +36,47 @@
     }
   };
 
-  if ($('select[aria-transform]').length > 0){
-    $.each($('select[aria-transform]'), function(){
-      const $this = $(this);
-      $this.niceSelect();
-    });
-  }
+  $.form = {
+    /**
+     * Сбрасывает поля формы
+     * @param $form
+     */
+    reset: function ($form) {
+      setTimeout(function () {
+        $form.find('[data-ttcli="form-loader"]').removeClass('hidden');
+        $form.fadeIn(300);
+        $form[0].reset();
+      }, 900);
 
-  if ($('input[type="checkbox"][aria-transform]').length > 0){
-    $.each($('input[type="checkbox"][aria-transform]'), function(){
-      let init = new Switchery(this, {
-        size: 'small'
+      setTimeout(function () {
+        $form.find('select').trigger('change').niceSelect('update');
+        $form.find('[data-ttcli="form-loader"]').addClass('hidden');
+        $form.closest('.modal-body').find('[data-ttcli="from-response"]').fadeOut(300);
+      }, 1800);
+    },
+
+    initCheckbox($form) {
+      const $selector = ($form) ? $form.find('input[type="checkbox"][aria-transform]') : $('input[type="checkbox"][aria-transform]');
+      if ($selector.length > 0){
+        $.each($selector, function(){
+          let checkbox = new Switchery(this, {
+            size: 'small'
+          });
+        });
+      }
+    },
+
+    initSelect($form) {
+      const $selector = ($form) ? $form.find('select[aria-transform]') : $('select[aria-transform]');
+      $.each($selector, function(){
+        const $this = $(this);
+        $this.niceSelect();
       });
-    });
-  }
+    }
+  };
+
+  $.form.initSelect();
+  $.form.initCheckbox();
 
   $(document).on('change', '[data-ttcli="form-prices-select"]', function(){
     const $this = $(this);
@@ -75,19 +102,21 @@
         data: $form.serialize()
       },
       success: function(json){
+        $form.find('[data-control]').empty();
         if (json.success) {
           $form.fadeOut();
           $form.closest('.modal-body').find('[data-ttcli="from-response"]').empty().html(json.message);
+          $form.find('.switchery').click();
+          $.form.reset($form);
         } else{
           $form.closest('.modal-body').find('[data-ttcli="from-response"]').empty().html(json.message);
         }
 
         if (json.errors) {
           $.each(json.errors, function(index, value) {
-            $('[data-control="'+index+'"]').empty().text(value);
+            $('[data-control="'+index+'"]').text(value);
           });
         }
-
         $.button.reset($btn);
       }
     });

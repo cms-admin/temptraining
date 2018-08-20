@@ -1,0 +1,76 @@
+<aside id="callback-modal" class="widget-modal modal widget_text">
+  <div class="modal-dialog" role="document">
+    <div class="container">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="{{ plang('Закрыть') }}">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h3 class="modal-title">{{ plang('Написать директору') }}</h3>
+        </div>
+
+        <div class="modal-body">
+          <div class="ttcli-front-response" data-ttcli="from-response"></div>
+          <form id="ttcli_form_director" action="ttcli_form_director" method="post" class="ttcli-front-form" data-ttcli="form">
+            <div class="row">
+              <div class="col-xm-6 col-md-6">
+                <label class="ttcli-front-form__label" for="director_username">{{ plang('Ваше имя') }}</label>
+                <div class="ttcli-front-form__control">
+                  <input type="text" id="director_username" name="director_username" value="" size="40" class="ttcli-front-form__control-text"
+                         required placeholder="{{ plang('Введите имя') }}">
+                  <span class="ttcli-front-form__control-error" data-control="director_username"></span>
+                </div>
+
+                <label class="ttcli-front-form__label" for="director_theme">{{ plang('Тема сообщения') }}</label>
+                <div class="ttcli-front-form__control">
+                  <select id="director_theme" name="director_theme" class="ttcli-front-form__control-select"
+                          aria-transform="true">
+                    <option value="theme-1">{{ plang('Оставить отзыв') }}</option>
+                    <option value="theme-2">{{ plang('Задать вопрос') }}</option>
+                    <option value="theme-3">{{ plang('Другое') }}</option>
+                  </select>
+                  <span class="ttcli-front-form__control-error" data-control="director_theme"></span>
+                </div>
+
+                <label class="ttcli-front-form__label" for="director_contacts">{{ plang('Контакты для ответа') }}</label>
+                <div class="ttcli-front-form__control">
+                  <input type="text" id="director_contacts" name="director_contacts" value="" class="ttcli-front-form__control-text"
+                         required placeholder="{{ plang('Введите email или телефон') }}">
+                  <span class="ttcli-front-form__control-error" data-control="director_contacts"></span>
+                </div>
+              </div>
+
+              <div class="col-xm-6 col-md-6">
+                <label class="ttcli-front-form__label" for="director_message">{{ plang('Сообщение') }}</label>
+                <div class="ttcli-front-form__control">
+                  <textarea type="text" id="director_message" name="director_message" value="" rows="10" class="ttcli-front-form__control-message"
+                            required placeholder="{{ plang('Сообщение') }}"></textarea>
+                  <span class="ttcli-front-form__control-error" data-control="director_username"></span>
+                </div>
+              </div>
+
+              <div class="col-xx-12">
+                <div class="row">
+                  <div class="col-xm-6">
+                    {% if recaptcha_sitekey %}
+                      <div class="g-recaptcha" data-sitekey="{{ recaptcha_sitekey }}"></div>
+                    {% endif %}
+                  </div>
+                  <div class="col-xm-6">
+                    <div class="ttcli-front-form__submit">
+                      <button type="submit" class="ttcli-front-form__submit-btn" data-loading-text="{{ plang('Подождите') }}">
+                        <span class="icon"><i class="ion ion-paper-airplane"></i></span>
+                        <span class="text">{{ plang('Отправить') }}</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ttcli-front-form__loader hidden" data-ttcli="form-loader"><i class="ion ion-spin ion-loop"></i></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>

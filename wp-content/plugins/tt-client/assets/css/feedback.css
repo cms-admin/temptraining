@@ -2,6 +2,21 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box; }
+  .ttcli-front-form__loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(46, 204, 113, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .ttcli-front-form__loader i {
+      display: inline-block;
+      line-height: 1;
+      font-size: 64px;
+      color: #fff; }
   .ttcli-front-form__label {
     display: inline-block;
     max-width: 100%;

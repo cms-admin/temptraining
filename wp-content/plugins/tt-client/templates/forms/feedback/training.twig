@@ -61,7 +61,7 @@
                   <div class="col-xm-6">
                     <label class="ttcli-front-form__label" for="training_offer">
                       <input type="checkbox" id="training_offer" name="training_offer" value="1"
-                             class="ttcli-front-form__control-switch" aria-transform="true" checked />
+                             class="ttcli-front-form__control-switch" aria-transform="true" />
                       <span class="ttcli-front-form__label-inner">
                         {{ plang('Я прочитал и принимаю') }} <a href="{{ home_url }}/public-offer/" target="_blank">{{ plang('условия оферты') }}</a>
                       </span>
@@ -82,6 +82,7 @@
                 </div>
               </div>
             </div>
+            <div class="ttcli-front-form__loader hidden" data-ttcli="form-loader"><i class="ion ion-spin ion-loop"></i></div>
           </form>
         </div>
       </div>

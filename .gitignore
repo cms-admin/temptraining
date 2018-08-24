@@ -1,4 +1,6 @@
 *.log
+.idea
+.vscode
 .backups/
 wp-config.php
 wp-content/advanced-cache.php

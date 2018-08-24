@@ -718,7 +718,7 @@ class Client
 
     $admins = get_users( $args );
 
-    $sql = "SELECT client_id_name, client_id, client_name, client_tarif_name, tarif_cost, coach_id, pay_date, can_pay, notify "
+    $sql = "SELECT client_id_name, client_id, client_name, client_tarif_name, tarif_cost, coach_id, pay_date, can_pay, notify recurring_id "
           ."FROM {$prefix}clients "
           ."WHERE coach_id = '{$coach_id}' ";
 

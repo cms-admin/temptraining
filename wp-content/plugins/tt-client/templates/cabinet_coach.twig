@@ -138,6 +138,11 @@
             {% if client.pay_date != '0000-00-00 00:00:00' %}{{client.pay_date|date("d.m.Y")}}{% else %}не установлено{% endif %}
             {% if client.pay_interval %} ({{client.pay_interval}}){% endif %}
           </span>
+          
+          <span class="recurring-status {% if client.recurring_id|number_format > 0 %}danger{% else %}disable{% endif %}">
+            <i class="ion ion-card"></i>
+          </span>
+          
           <span class="{{noty_class}}"><i class="ion {{noty_icon}}"></i></span>
           {% if client.history %}
             <button class="jstree-toggle client-row__btn">

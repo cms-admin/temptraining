@@ -4111,6 +4111,9 @@ div.wpcf7 .prices p + p{
 .dash-header__data .text span.danger{
   color: #f24c4b;
 }
+.dash-coaches .client-row > a span.recurring-status{
+  margin-right: 5px;
+}
 .dash-info{
   position: relative;
   padding: 20px 15px;

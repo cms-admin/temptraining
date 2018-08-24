@@ -1,4 +1,5 @@
 *.log
+*.settings
 .idea
 .vscode
 .backups/
@@ -9,6 +10,7 @@ wp-content/backups/
 wp-content/blogs.dir/
 wp-content/cache/
 wp-content/upgrade/
+wp-content/updraft/
 wp-content/uploads/
 wp-content/mu-plugins/
 wp-content/wp-cache-config.php

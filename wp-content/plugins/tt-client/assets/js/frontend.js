@@ -347,7 +347,7 @@
         options.plugins.push(paginations);
       }
 
-      if (typeof (options) != 'undefined') {
+      if (options.length > 0) {
         listjs[index] = new List(id, options);
         $this.attr('data-list-id', index);
       }

@@ -1,0 +1,8 @@
+.cabinet {
+  width: 100%;
+  min-height: calc(100vh - 370px);
+  background-color: #F4F8F9; }
+  .admin-bar .cabinet {
+    min-height: calc(100vh - 402px); }
+
+/*# sourceMappingURL=new_frontend.css.map */

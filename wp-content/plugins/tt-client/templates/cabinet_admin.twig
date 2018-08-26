@@ -3,247 +3,204 @@
 {% block title %}Личный кабинет администратора{% endblock %}
 
 {% block header %}
-
-<section class="dash-header">
-  <figure class="dash-header__image">
-    <img src="{{photo}}" alt="{{c_user.display_name}}" />
-  </figure>
-  <div class="dash-header__data">
-    <h3 class="title">{{user.display_name}}</h3>
-    <div class="text">
-      <button type="button" class="btn-show jstree-showall" rel="#dashCoaches">
-        <i class="ion ion-eye"></i> <span>Развернуть</span>
-      </button>
-      <button type="button" class="btn-hide jstree-hideall" rel="#dashCoaches">
-        <i class="ion ion-eye-disabled"></i> <span>Свернуть</span>
-      </button>
+  {# ШАПКА: ИНФОРМАЦИЯ ОБ АДМИНЕ #}
+  <section class="dash-header">
+    <figure class="dash-header__image">
+      <img src="{{photo}}" alt="{{c_user.display_name}}" />
+    </figure>
+    <div class="dash-header__data">
+      <h3 class="title">{{user.display_name}}</h3>
+      <div class="text">
+        <button type="button" class="btn-show jstree-showall" rel="#dashCoaches">
+          <i class="ion ion-eye"></i> <span>Развернуть</span>
+        </button>
+        <button type="button" class="btn-hide jstree-hideall" rel="#dashCoaches">
+          <i class="ion ion-eye-disabled"></i> <span>Свернуть</span>
+        </button>
+      </div>
     </div>
-  </div>
 
-  {% if is_coach %}
-    {% if is_coach.clients|length > 0 %}
-      <button class="dash-header__tile is-coach slide-toggle" rel="#dashCoachAdminClients">
+    {% if is_coach %}
+      {% if is_coach.clients|length > 0 %}
+        <button class="dash-header__tile is-coach slide-toggle" rel="#dashCoachAdminClients">
+          <figure class="dash-header__tile-icon">
+            <img src="{{icons_url}}investment.svg" alt="Ученики" />
+          </figure>
+          <span>Ученики</span>
+        </button>
+      {% endif %}
+
+      {% if is_coach.reward_history %}
+        <button class="dash-header__tile slide-toggle is-border is-coach" rel="#totalRewardHistory">
+          <figure class="dash-header__tile-icon">
+            <img src="{{icons_url}}folder.svg" alt="История выплат" />
+          </figure>
+          <span>История</span>
+        </button>
+      {% endif %}
+      <button class="dash-header__tile is-coach is-border slide-toggle" rel="#totalPayHistory">
         <figure class="dash-header__tile-icon">
-          <img src="{{icons_url}}investment.svg" alt="Ученики" />
+          <img src="{{icons_url}}wallet-1.svg" alt="Вознаграждение" />
         </figure>
-        <span>Ученики</span>
+        <span>{{coach.reward|number_format(0, '.', ' ')}}</span>
       </button>
+      <div class="dash-header__tile is-coach is-border">
+        <figure class="dash-header__tile-icon">
+          <img src="{{icons_url}}tax.svg" alt="Налог" />
+        </figure>
+        <span>{{coach.tax|number_format(0, '.', ' ')}}</span>
+      </div>
     {% endif %}
 
-    {% if is_coach.reward_history %}
-      <button class="dash-header__tile slide-toggle is-border is-coach" rel="#totalRewardHistory">
-        <figure class="dash-header__tile-icon">
-          <img src="{{icons_url}}folder.svg" alt="История выплат" />
-        </figure>
-        <span>История</span>
-      </button>
-    {% endif %}
-    <button class="dash-header__tile is-coach is-border slide-toggle" rel="#totalPayHistory">
+    <div class="dash-header__tile">
       <figure class="dash-header__tile-icon">
-        <img src="{{icons_url}}wallet-1.svg" alt="Вознаграждение" />
+        <img src="{{icons_url}}wallet.svg" alt="Вознаграждение" />
       </figure>
-      <span>{{coach.reward|number_format(0, '.', ' ')}}</span>
-    </button>
-    <div class="dash-header__tile is-coach is-border">
-      <figure class="dash-header__tile-icon">
-        <img src="{{icons_url}}tax.svg" alt="Налог" />
-      </figure>
-      <span>{{coach.tax|number_format(0, '.', ' ')}}</span>
+      <span>{{total.reward|number_format(0, '.', ' ')}}</span>
     </div>
-  {% endif %}
 
-  <div class="dash-header__tile">
-    <figure class="dash-header__tile-icon">
-      <img src="{{icons_url}}wallet.svg" alt="Вознаграждение" />
-    </figure>
-    <span>{{total.reward|number_format(0, '.', ' ')}}</span>
-  </div>
-
-  <div class="dash-header__tile is-orange">
-    <figure class="dash-header__tile-icon">
-      <img src="{{icons_url}}budget.svg" alt="Налог" />
-    </figure>
-    <span>{{total.tax|number_format(0, '.', ' ')}}</span>
-  </div>
-</section>
+    <div class="dash-header__tile is-orange">
+      <figure class="dash-header__tile-icon">
+        <img src="{{icons_url}}budget.svg" alt="Налог" />
+      </figure>
+      <span>{{total.tax|number_format(0, '.', ' ')}}</span>
+    </div>
+  </section>
 {% endblock %}
 
 {% block content %}
-{# Если администратор одновременно тренер . START #}
-{% if is_coach %}
-  {% include('partials/coach_reward_history.twig') with { 'reward_history': is_coach.reward_history } %}
+  {# Если администратор одновременно тренер . START #}
+  {% if is_coach %}
+    {% include('partials/coach_reward_history.twig') with { 'reward_history': is_coach.reward_history } %}
 
-  {% include('partials/coach_pay_history.twig') with { 'pays': is_coach.pays } %}
+    {% include('partials/coach_pay_history.twig') with { 'pays': is_coach.pays } %}
 
-  {% include('partials/coach_clients.twig') with { 'clients': is_coach.clients } %}
-{% endif %}
-{# Если администратор одновременно тренер . END #}
+    {% include('partials/coach_clients.twig') with { 'clients': is_coach.clients } %}
+  {% endif %}
+  {# Если администратор одновременно тренер . END #}
 
-<div id="dashCoaches" class="dash-coaches jstree">
-  <ul>
-    {% for coach in coaches %}
-      <li class="coach-row is-admin has-rows">
-        <div class="flex-row">
-          <figure class="photo hidden-xx">
-            <img src="{{coach.photo|resize(60, 60, 'top-center')}}" alt="{{coach.coach_name}}">
-          </figure>
-          <div class="data">
-            <h3 class="data-title">
-              <span class="data-title__name">{{coach.coach_name}}</span>
-            </h3>
-            <div class="data-meta">
-              <!-- Ученики -->
-              <i class="ion ion-person-stalker"></i>&nbsp;
-              <span>
-                {{coach.clients_count}} <span class="hidden-xx">{{coach.clients_title}}</span>
-              </span>
-              <!-- Вознаграждение -->
-              <i class="ion ion-card"></i>&nbsp;
-              <span>
-                <span class="hidden-xx hidden-sm">Вознаграждение: </span>
-                {{coach.reward|number_format(0, '.', ' ')}}
-                <span class="hidden-xx"> руб.</span>
-              </span>
-              <!-- Налог -->
-              <i class="ion ion-calculator"></i>&nbsp;
-              <span>
-                <span class="hidden-xx hidden-sm">Налог: </span>
-                {{coach.tax|number_format(0, '.', ' ')}}
-                <span class="hidden-xx"> руб.</span>
-              </span>
-            </div>
-          </div>
-          <!-- Кнопки действий -->
-          {% if coach.reward_history %}
-          <button class="coach-row__action-history slide-toggle is-blue" rel="#reward_history_{{coach.coach_id}}">
-            <figure class="dash-header__tile-icon">
-              <img src="{{icons_url}}time-is-money.svg" alt="История выплат" />
+  <div id="dashCoaches" class="dash-coaches jstree">
+    <ul>
+      {% for coach in coaches %}
+        <li class="coach-row is-admin has-rows">
+          <div class="flex-row">
+            <figure class="photo hidden-xx">
+              <img src="{{coach.photo|resize(60, 60, 'top-center')}}" alt="{{coach.coach_name}}">
             </figure>
-            <span>История</span>
-          </button>
-          {% endif %}
-          <button class="coach-row__action-reward" data-reward="{{coach.coach_id}}"
-            {% if coach.reward == 0 %} disabled="disabled"{% endif %}>
-            <figure class="dash-header__tile-icon">
-              <img src="{{icons_url}}wallet.svg" alt="Вознаграждение">
-            </figure>
-            <span>Выплата</span>
-          </button>
-          <button class="coach-row__action-tax" data-tax="{{coach.coach_id}}"
-            {% if coach.tax == 0 %} disabled="disabled"{% endif %}>
-            <figure class="dash-header__tile-icon">
-              <img src="{{icons_url}}budget.svg" alt="Налог">
-            </figure>
-            <span>Налог</span>
-          </button>
-        </div>
-
-        {# История выплат тренера #}
-        {% if coach.reward_history %}
-        <div id="reward_history_{{coach.coach_id}}" class="reward-history__row dash-coaches is-toggle" style="display: none;" 
-          data-list=""
-          {% if coach.reward_history|length > 5 %} data-list-pages="5"{% endif %} 
-          data-list-options='{"valueNames": ["date", "sum"], "listClass": "history-list"}'>
-          <ul class="history-list has-separate">
-            {% for reward in coach.reward_history %}
-            <li>
-              <div class="client-row history-row">
-                <i class="jstree-icon jstree-themeicon" role="presentation"></i>
-
-                <span class="fix-2">
-                  <i class="ion ion-calendar"></i>&nbsp;
-                  <span class="date {% if reward.pays %} slide-toggle{% endif %}"
-                    {% if reward.pays %} rel="#reward_history_{{coach.coach_id}}_{{reward.id}}"{% endif %}>
-                    {{reward.payment_date|date("d.m.Y")}}
-                  </span>
+            <div class="data">
+              <h3 class="data-title">
+                <span class="data-title__name">{{coach.coach_name}}</span>
+              </h3>
+              <div class="data-meta">
+                <!-- Ученики -->
+                <i class="ion ion-person-stalker"></i>&nbsp;
+                <span>
+                  {{coach.clients_count}} <span class="hidden-xx">{{coach.clients_title}}</span>
                 </span>
-
-                {% if reward.type == 1 %}
-                  <span class="fix-2"><i class="ion ion-card"></i>&nbsp;<span>Вознаграждение</span></span>
-                {% else %}
-                  <span class="fix-2"><i class="ion ion-calculator"></i>&nbsp;<span>Налог</span></span>
-                {% endif %}
-
-                <span class="fix-2">
-                  <i class="ion ion-cash"></i>&nbsp;
-                  <span class="sum">{{reward.amount|number_format(0, '.', ' ')}}</span>
+                <!-- Вознаграждение -->
+                <i class="ion ion-card"></i>&nbsp;
+                <span>
+                  <span class="hidden-xx hidden-sm">Вознаграждение: </span>
+                  {{coach.reward|number_format(0, '.', ' ')}}
+                  <span class="hidden-xx"> руб.</span>
+                </span>
+                <!-- Налог -->
+                <i class="ion ion-calculator"></i>&nbsp;
+                <span>
+                  <span class="hidden-xx hidden-sm">Налог: </span>
+                  {{coach.tax|number_format(0, '.', ' ')}}
+                  <span class="hidden-xx"> руб.</span>
                 </span>
               </div>
-              
-              {% if reward.pays %}
-                <div id="reward_history_{{coach.coach_id}}_{{reward.id}}" class="is-toggle" style="display: none">
-                  <ul class="history-list has-pays">
-                    {% for pay in reward.pays %}
-                    <li class="client-row history-row">
-                      <i class="jstree-icon jstree-themeicon" role="presentation"></i>
-                      <span class="fix-2 client-row__placeholder"></span>
-                      <span class="fix-2">{{pay.client_name}}</span>
-                      <span class="fix-1">{{pay.amount|number_format(0, '.', ' ')}}</span>
-                      <span class="fix-1">{{pay.period}} {{pay.period_title}}</span>
-                      <span class="fix-2">{{pay.client_tarif_name}}</span>
-                      <span>{{pay.date|date("d.m.Y")}}</span>
-                    </li>
-                    {% endfor %}
-                  </ul>
-                </div>
-              {% endif %}
-            </li>
-            {% endfor %}
-          </ul>
-          <ul class="listjs-pagination"></ul>
-        </div>
-        {% endif %}
-
-        <!-- Клиенты тренера -->
-        {% if coach.clients_count > 0 %}
-        <ul>
-          {% for client in coach.clients %}
-            {% if client.notify == 1 %}
-              {% set noty_class = 'active' %}
-              {% set noty_icon = 'ion-android-notifications' %}
-            {% else %}
-              {% set noty_class = 'disable' %}
-              {% set noty_icon = 'ion-android-notifications-off' %}
+            </div>
+            <!-- Кнопки действий -->
+            {% if coach.reward_history %}
+            <button class="coach-row__action-history slide-toggle is-blue" rel="#reward_history_{{coach.coach_id}}">
+              <figure class="dash-header__tile-icon">
+                <img src="{{icons_url}}time-is-money.svg" alt="История выплат" />
+              </figure>
+              <span>История</span>
+            </button>
             {% endif %}
-            <li class="client-row{% if client.history %} has-history{% endif %}">
-              
+            <button class="coach-row__action-reward" data-reward="{{coach.coach_id}}"
+              {% if coach.reward == 0 %} disabled="disabled"{% endif %}>
+              <figure class="dash-header__tile-icon">
+                <img src="{{icons_url}}wallet.svg" alt="Вознаграждение">
+              </figure>
+              <span>Выплата</span>
+            </button>
+            <button class="coach-row__action-tax" data-tax="{{coach.coach_id}}"
+              {% if coach.tax == 0 %} disabled="disabled"{% endif %}>
+              <figure class="dash-header__tile-icon">
+                <img src="{{icons_url}}budget.svg" alt="Налог">
+              </figure>
+              <span>Налог</span>
+            </button>
+          </div>
 
-              <span class="fix-2">{{client.client_name}}</span>
-              <span class="fix-2 hidden-xm hidden-sm hidden-xs hidden-xx">{{client.client_id_name}}</span>
-              <span class="fix-flex hidden-sm hidden-xs hidden-xx">{{client.client_tarif_name}}</span>
-              <span class="fix-1 visible-sm visible-xs visible-xx">{{client.tarif_cost}}</span>
-              <span class="fix-1 fix-xs-1 fix-xx-2 {{client.pay_class}}">
-                {% if client.pay_date != '0000-00-00 00:00:00' %}{{client.pay_date|date("d.m.Y")}}{% else %}не установлено{% endif %}
-                {% if client.pay_interval %} ({{client.pay_interval}}){% endif %}
-              </span>
-              <span class="{{noty_class}}"><i class="ion {{noty_icon}}"></i></span>
-              {% if client.history %}
-                <button class="jstree-toggle client-row__btn">
-                  <img src="{{icons_url}}credit-card-2.svg" alt="История платежей" />
-                </button>
-                <ul>
-                  {% for pay in client.history %}
-                    <li class="client-row{% if pay.wait %} is-waiting{% endif %}">
-                      <span class="fix-2 client-row__placeholder"></span>
-                      <span class="fix-2">{% if pay.wait %}не выплачено{% else %}выплачено{% endif %}</span>
-                      <span class="fix-2">{{pay.wage|number_format(0, '.', ' ')}} руб.</span>
-                      <span class="fix-2">{{pay.period_title}}</span>
-                      <span class="fix-flex">{{pay.date|date("d.m.Y")}}</span>
-                    </li>
-                  {% endfor %}
-                </ul>
-              {% else %}
-                <span class="client-row__btn">
-                  <img src="{{icons_url}}credit-card-1.svg" alt="История платежей" />
-                </span>
-              {% endif %}
-            </li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-      </li>
-    {% endfor %}
-  </ul>
-</div>
-{% include('offers.twig') %}
+          {# История выплат тренера #}
+          {% if coach.reward_history %}
+          <div id="reward_history_{{coach.coach_id}}" class="reward-history__row dash-coaches is-toggle" style="display: none;"
+            data-list=""
+            {% if coach.reward_history|length > 5 %} data-list-pages="5"{% endif %}
+            data-list-options='{"valueNames": ["date", "sum"], "listClass": "history-list"}'>
+            <ul class="history-list has-separate">
+              {% for reward in coach.reward_history %}
+              <li>
+                <div class="client-row history-row">
+                  <i class="jstree-icon jstree-themeicon" role="presentation"></i>
+
+                  <span class="fix-2">
+                    <i class="ion ion-calendar"></i>&nbsp;
+                    <span class="date {% if reward.pays %} slide-toggle{% endif %}"
+                      {% if reward.pays %} rel="#reward_history_{{coach.coach_id}}_{{reward.id}}"{% endif %}>
+                      {{reward.payment_date|date("d.m.Y")}}
+                    </span>
+                  </span>
+
+                  {% if reward.type == 1 %}
+                    <span class="fix-2"><i class="ion ion-card"></i>&nbsp;<span>Вознаграждение</span></span>
+                  {% else %}
+                    <span class="fix-2"><i class="ion ion-calculator"></i>&nbsp;<span>Налог</span></span>
+                  {% endif %}
+
+                  <span class="fix-2">
+                    <i class="ion ion-cash"></i>&nbsp;
+                    <span class="sum">{{reward.amount|number_format(0, '.', ' ')}}</span>
+                  </span>
+                </div>
+
+                {% if reward.pays %}
+                  <div id="reward_history_{{coach.coach_id}}_{{reward.id}}" class="is-toggle" style="display: none">
+                    <ul class="history-list has-pays">
+                      {% for pay in reward.pays %}
+                      <li class="client-row history-row">
+                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>
+                        <span class="fix-2 client-row__placeholder"></span>
+                        <span class="fix-2">{{pay.client_name}}</span>
+                        <span class="fix-1">{{pay.amount|number_format(0, '.', ' ')}}</span>
+                        <span class="fix-1">{{pay.period}} {{pay.period_title}}</span>
+                        <span class="fix-2">{{pay.client_tarif_name}}</span>
+                        <span>{{pay.date|date("d.m.Y")}}</span>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+            <ul class="listjs-pagination"></ul>
+          </div>
+          {% endif %}
+
+          <!-- Клиенты тренера -->
+          {% if coach.clients_count > 0 %}
+            {% include "partials/coach_clients.twig" with {"clients": coach.clients, "hide_wrap": true} %}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% include('offers.twig') %}
 {% endblock %}

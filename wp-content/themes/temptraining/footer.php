@@ -15,7 +15,6 @@
             </nav>
           </div>
         </div>
-<a href="https://temptraining.ru/privacy-policy/">Политика конфиденциальности</a>
       </div>
       <div class="col-sm-6 col-xm-8">
         <div class="row">

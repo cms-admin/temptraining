@@ -1183,14 +1183,15 @@
     margin-bottom: 380px;
   }
   .footer{
-    height: 380px;
+    min-height: 420px;
+    height: auto;
   }
   .footer > .container{
     position: relative;
   }
   .footer .widget_text:first-child{
     position: absolute;
-    top: 230px;
+    top: 260px;
     left: -100%;
     width: 760px;
   }

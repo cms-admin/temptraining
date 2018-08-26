@@ -1,4 +1,14 @@
 <?php
+define('DS', DIRECTORY_SEPARATOR);
+define('THEME_INC', get_template_directory() . DS .'includes' . DS);
+define('THEME_ASSETS', get_template_directory_uri() . DS . 'assets' . DS);
+define('THEME_NAME', 'temptraining');
+
+require THEME_INC . 'theme-setup.php';
+require THEME_INC . 'theme-helper.php';
+require THEME_INC . 'theme-twig.php';
+require THEME_INC . 'theme-shortcodes.php';
+
 // СПЕЦИАЛЬНЫЕ ТИПЫ ЗАПИСЕЙ: БАНЕРЫ, ТРЕНЕРЫ, ФОРМА
 require get_template_directory() . '/inc/custom_posts/banner.php';
 require get_template_directory() . '/inc/custom_posts/coach.php';
@@ -15,58 +25,10 @@ function temptraining_backend_styles()
 
 add_action( 'admin_enqueue_scripts', 'temptraining_backend_styles' );
 
-if ( ! function_exists( 'temptraining_setup' ) ) :
-  function temptraining_setup() {
-    load_theme_textdomain( 'temptraining', get_template_directory() . '/languages' );
 
-    add_theme_support( 'automatic-feed-links' );
-
-    add_theme_support( 'title-tag' );
-
-    require get_template_directory() . '/inc/functions/menu.php';
-
-    add_theme_support('html5', array(
-  		'search-form',
-  		'comment-form',
-  		'comment-list',
-  		'gallery',
-  		'caption',
-  	));
-
-    add_theme_support('post-formats', array(
-  		'сoach',
-      'banner',
-  		'uniform',
-  		'starts',
-      'video'
-  	));
-
-    add_theme_support('post-thumbnails');
-    set_post_thumbnail_size( 720, 405, true );
-
-    add_image_size( 'temptraining-flag', 120, 9999, false );
-    add_image_size( 'temptraining-partner', 9999, 100, false );
-    add_image_size( 'temptraining-micro', 120, 120, true );
-    add_image_size( 'temptraining-small', 250, 250, true );
-    add_image_size( 'temptraining-normal', 720, 405, false );
-    add_image_size( 'temptraining-big', 1280, 720, false );
-    add_image_size( 'temptraining-full', 1920, 1080, false );
-
-    add_image_size('coach-label', 120, 9999, false);
-  }
-endif; // temptraining_setup
-add_action( 'after_setup_theme', 'temptraining_setup' );
 
 // Add Customizer functionality.
 require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Установка ширины контента
- */
-function temptraining_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'temptraining_content_width', 768 );
-}
-add_action( 'after_setup_theme', 'temptraining_content_width', 0 );
 
 /**
  * Позиции для виджетов
@@ -141,16 +103,6 @@ function add_async_attribute($tag, $handle)
   return str_replace( ' src', ' async="async" src', $tag );
 }
 
-/**
- * Получает опции темы
- */
-function temptraining_opt($key, $default = FALSE)
-{
-  $default = (!$default) ? __('Not specified', 'temptraining') : $default ;
-
-  return get_theme_mod($key, $default);
-}
-
 function temptraining_sp2br($string)
 {
   $string_arr = explode(' ', $string);
@@ -177,85 +129,8 @@ function temptraining_br2span($string)
   return $output;
 }
 
-function temptraining_count_by_tag($tag = ""){
-  if(stripos( $tag, '-' ) > 0){
-    $tag_family = explode('-', $tag);
-    $tag = $tag_family[1];
-  }
-	$posts = get_posts( array('numberposts' => -1, 'post_type'   => 'post', 'tag' => $tag,	'post_status' => 'publish') );
-
-	$countReviews = count($posts);
-
-	return $countReviews;
-
-}
-
 // Add Shortcode
 require get_template_directory() . '/inc/functions/shortcodes.php';
-
-/**
- * Форматирует дату в человеческий формат
- * @param type $date
- * @param type $short
- * @return string
- */
-function temptraining_date_format($date, $short = FALSE){
-		// формируем входную $date с учетом смещения
-		$date = date('Y-m-d H:i:s', $date);
-
-		// сегодняшняя дата
-		$today     = date('Y-m-d', strtotime(date('Y-m-d H:i:s')));
-		// вчерашняя дата
-		$yesterday = date('Y-m-d', strtotime(date('Y-m-d H:i:s'))-(86400));
-
-		// получаем значение даты и времени
-		list($day, $time) = explode(' ', $date);
-		switch( $day ) {
-			// Если дата совпадает с сегодняшней
-			case $today:
-				$result = 'Сегодня';
-				list($h, $m, $s)  = explode(':', $time);
-				$result .= ' в '.$h.':'.$m;
-				break;
-				//Если дата совпадает со вчерашней
-			case $yesterday:
-				$result = 'Вчера';
-				list($h, $m, $s)  = explode(':', $time);
-				$result .= ' в '.$h.':'.$m;
-				break;
-			default: {
-				// Разделяем отображение даты на составляющие
-				list($y, $m, $d)  = explode('-', $day);
-				// Замена числового обозначения месяца на словесное (склоненное в падеже)
-        if ($short === FALSE){
-          $m_arr = array(
-            '01'=>'января',
-            '02'=>'февраля',
-            '03'=>'марта',
-            '04'=>'апреля',
-            '05'=>'мая',
-            '06'=>'июня',
-            '07'=>'июля',
-            '08'=>'августа',
-            '09'=>'сентября',
-            '10'=>'октября',
-            '11'=>'ноября',
-            '12'=>'декабря',
-          );
-          $m = $m_arr[$m];
-        }
-				// Замена чисел 01 02 на 1 2
-				$d = sprintf("%2d", $d);
-				// Формирование окончательного результата
-				if ($short === FALSE){
-          $result = $d.' '.$m.' '.$y;
-        } else {
-          $result = $d.'.'.$m.'.'.$y;
-        }
-			}
-		}
-		return $result;
-}
 
 /**
  * AJAX Load More
@@ -336,14 +211,7 @@ if (!function_exists('_wp_render_title_tag')){
   }
 }
 
-/**
- * Упрощенный перевод
- * @param  string $text строка для перевода
- * @return string - строка с переводом
- */
-function tlang($text){
-  return __($text, 'temptraining');
-}
+
 
 remove_action( 'wp_head', 'rsd_link' );
 remove_action( 'wp_head', 'wlwmanifest_link' );

@@ -1,12 +1,12 @@
-<div id="dashCoachAdminClients" class="dash-coaches is-coach jstree" style="display: none;">
+{% if not hide_wrap %}<div id="dashCoachAdminClients" class="dash-coaches is-coach jstree" style="display: none;">{% endif %}
   <ul>
     {% for client in clients %}
       {% if client.notify == 1 %}
         {% set noty_class = 'active' %}
-        {% set noty_icon = 'ion-android-notifications' %}
+        {% set noty_icon = 'ion-play' %}
       {% else %}
         {% set noty_class = 'disable' %}
-        {% set noty_icon = 'ion-android-notifications-off' %}
+        {% set noty_icon = 'ion-pause' %}
       {% endif %}
       <li id="client_{{client.client_id}}" class="client-row{% if client.history %} has-history{% endif %}">
         <span class="fix-2">{{client.client_name}}</span>
@@ -17,7 +17,13 @@
           {% if client.pay_date != '0000-00-00 00:00:00' %}{{client.pay_date|date("d.m.Y")}}{% else %}не установлено{% endif %}
           {% if client.pay_interval %} ({{client.pay_interval}}){% endif %}
         </span>
-        <span class="{{noty_class}}"><i class="ion {{noty_icon}}"></i></span>
+
+        <span class="recurring-status is-icon {% if client.recurring_id|number_format > 0 %}danger{% else %}disable{% endif %}">
+            <i class="ion ion-card"></i>
+          </span>
+
+        <span class="{{noty_class}} is-icon"><i class="ion {{noty_icon}}"></i></span>
+
         {% if client.history %}
           <button class="jstree-toggle client-row__btn">
             <img src="{{icons_url}}credit-card-2.svg" alt="История платежей" />
@@ -41,4 +47,4 @@
       </li>
     {% endfor %}
   </ul>
-</div>
+{% if not hide_wrap %}</div>{% endif %}

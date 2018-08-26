@@ -1,0 +1,12 @@
+// Color wars
+$color-cabinet-bg: #F4F8F9;
+
+.cabinet{
+  width: 100%;
+  min-height: calc(100vh - 370px);
+  background-color: $color-cabinet-bg;
+
+  .admin-bar & {
+    min-height: calc(100vh - 402px);
+  }
+}

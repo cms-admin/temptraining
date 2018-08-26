@@ -1175,10 +1175,19 @@ body:not([class*="apple-device"]) .fixed-bg{
 .home-news .widget-description{
   margin-bottom: 20px;
 }
+.footer .textwidget .widget-content__list{
+  margin-bottom: 0;
+}
+.footer .textwidget .widget-content__list + .widget-content__list{
+  margin-top: 20px;
+}
+.footer .textwidget .widget-content__list + .footer-menu{
+  margin-top: 10px;
+}
 .widget-content__list .post-item{
   position: relative;
   width: 100%;
-  margin-bottom: 20px;
+  margin: 0;
 }
 .widget-content__list .post-item.has-image{
   padding-left: 140px;
@@ -1209,6 +1218,13 @@ body:not([class*="apple-device"]) .fixed-bg{
 }
 .widget-content__list .post-item__link{
   margin: 0 0 10px;
+  line-height: 20px;
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+.footer .textwidget .widget-content__list .post-item__link{
+  margin: 0;
   line-height: 20px;
   font-family: "Lato", sans-serif;
   font-size: 16px;
@@ -3823,7 +3839,8 @@ div.wpcf7 .prices p + p{
 }
 .dash-header__data{
   width: 100%;
-  padding: 20px 15px;
+  padding: 15px;
+  min-height: 100px;
 }
 .dash-header__data .title{
   font-size: 24px;
@@ -3842,6 +3859,22 @@ div.wpcf7 .prices p + p{
   vertical-align: middle;
   margin: 0 0 0 20px;
 }
+.dash-header__data-label{
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+  padding: 3px 6px;
+  border-radius: 3px;
+  background: #ff4d15;
+  background: -moz-linear-gradient(left,  #ff4d15 0%, #ff835c 100%);
+  background: -webkit-linear-gradient(left,  #ff4d15 0%,#ff835c 100%);
+  background: linear-gradient(to right,  #ff4d15 0%,#ff835c 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff4d15', endColorstr='#ff835c',GradientType=1 );
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 .dash-header__data .text span + span,
 .dash-header__data .text span + button {
   margin-left: 10px;
@@ -4101,6 +4134,9 @@ div.wpcf7 .prices p + p{
 .offers .post-text a{
   color: #f2784b;
 }
+.dash-coaches .client-row > a span.is-icon{
+  font-size: 20px;
+}
 .dash-coaches .client-row > a span.disable{
   color: #777777;
 }
@@ -4112,7 +4148,7 @@ div.wpcf7 .prices p + p{
   color: #f24c4b;
 }
 .dash-coaches .client-row > a span.recurring-status{
-  margin-right: 5px;
+  margin-right: 12px;
 }
 .dash-info{
   position: relative;

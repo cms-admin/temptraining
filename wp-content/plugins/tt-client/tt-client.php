@@ -7,7 +7,7 @@ use TTClient\ClientEmail;
 /*
 Plugin Name: Темп Клиент
 Description: Личный кабинет для клиентов и тренеров
-Version: 1.5.0
+Version: 1.5.2
 Author: Александр Ерко <info@cms-admin.ru>
 Author URI: http://cms-admin.ru/
 Plugin URI: http://cms-admin.ru/
@@ -24,7 +24,12 @@ define('TT_CLIENT_ICONS_URL', TT_CLIENT_URL . 'assets/icons/');
 define('TT_CLIENT_VIEWS', TT_CLIENT_DIR . 'templates/');
 define('TT_CLIENT_THEME_VIEWS', get_template_directory() . '/tt-client/');
 define('TT_CLIENT_LOGS', TT_CLIENT_DIR . '/.logs/');
-define('TT_CRON_URL', 'https://temptraining.ru/');
+
+if (is_dir('/var/www/u0249987/data/www/temptraining.ru/')){
+  define('TT_CLIENT_HOME', 'https://temptraining.ru/'); // for production
+} else {
+  define('TT_CLIENT_HOME', 'http://temptraining.loc/'); // for development
+}
 
 /**
  * Загрузка плагина

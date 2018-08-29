@@ -847,6 +847,8 @@ class Client
 
   /**
    * Список последних оплативших в админке модуля
+   * @param int $limit
+   * @return bool/array
    */
   public function getAdminLastOrders($limit=20)
   {
@@ -1278,6 +1280,8 @@ class Client
 
   /**
    * Проверка оплаты заказа
+   * @param $order_id (int)
+   * @return array
    */
   public function openbankCheckOrder($order_id){
     $prefix = $this->wpdb->prefix;
@@ -2190,7 +2194,7 @@ class Client
     if (is_dir(TT_CLIENT_LOGS) === FALSE){
       mkdir(TT_CLIENT_LOGS, 0700);
     }
-    $text = '<FilesMatch "(.(zip)|~)$">
+    $text = '<FilesMatch "(.(zip)|~)$"> 
         Order allow,deny
         Deny from all
         Satisfy All
@@ -2217,8 +2221,8 @@ class Client
 
   /**
    * Напоминание клиентам о необходимости совершить платеж через $days дней
-   * @param  integer $days [description]
-   * @return [type]        [description]
+   * @param  $days int [description]
+   * @return mixed
    */
   public function cronClientsPayNotyfy($days = false)
   {
@@ -2228,6 +2232,15 @@ class Client
 
     $clients = ClientModel::getInstance()->getClientsForPayNotify($days);
 
+    $today = date_create(date('Y-m-d'));
+    $expirationDate = ($days === false) ?
+      $today :
+      date_add($today, date_interval_create_from_date_string($days.' days'))
+        ->setTime(23, 59, 59)
+        ->format('Y-m-d\TH:i:s');
+
+    $payReturnUrl = TT_CLIENT_HOME . '/client';
+
     if(!empty($clients)){
       
       foreach ($clients as $client) {
@@ -2236,13 +2249,14 @@ class Client
 
         // Данные для регистрации заказа
         $register_data = [
-          'userName'    => $options['openbank_user'],
-          'password'    => $options['openbank_pass'],
-          'orderNumber' => urlencode($client->client_id . '_' . date('ymd_Hi')),
-          'amount'      => intval($client->tarif_cost) * 100,
-          'returnUrl'   => TT_CRON_URL . 'client',
-          'clientId'    => intval($client->client_id),
-          'description' => strip_tags('Оплата тарифа '. $client->client_tarif_name),
+          'userName'        => $options['openbank_user'],
+          'password'        => $options['openbank_pass'],
+          'orderNumber'     => urlencode($client->client_id . '_' . date('ymd_Hi')),
+          'amount'          => intval($client->tarif_cost) * 100,
+          'returnUrl'       => $payReturnUrl,
+          'clientId'        => intval($client->client_id),
+          'description'     => strip_tags('Оплата тарифа '. $client->client_tarif_name),
+          'expirationDate'  => $expirationDate,
           'jsonParams'  => json_encode([
             'month_count' => 1,
             'email'       => $client->client_id_name,
@@ -2252,7 +2266,9 @@ class Client
         $response = $this->openbankGateway('register.do', $register_data);
         
         if (isset($response['errorCode'])){
-          $client->pay_link = false;
+          $client->pay_link = $payReturnUrl;
+          var_dump($expirationDate);
+          var_dump($response);
         } else {
           $client->pay_link = $response['formUrl'];
         }

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cron_task date="2018-08-29 15:58" type="pay_notify" days="2">
+<period start="2018-08-31 00:00:00" end="2018-08-31 23:59:59"/>
+<clients found="2">
+<client name="Алёна Мурлаева" email="puffistik@inbox.ru" tarif_cost="5000" pay_date="2018-08-31 21:00:00"/>
+<client name="Андрей Калашников" email="kalash-88@bk.ru" tarif_cost="7100" pay_date="2018-08-31 21:00:00"/>
+</clients>
+</cron_task>
+
+<cron_task date="2018-08-29 16:01" type="pay_notify" days="2">
+<period start="2018-08-31 00:00:00" end="2018-08-31 23:59:59"/>
+<clients found="2">
+<client name="Алёна Мурлаева" email="puffistik@inbox.ru" tarif_cost="5000" pay_date="2018-08-31 21:00:00"/>
+<client name="Андрей Калашников" email="kalash-88@bk.ru" tarif_cost="7100" pay_date="2018-08-31 21:00:00"/>
+</clients>
+</cron_task>
+
+<cron_task date="2018-08-29 16:01" type="pay_notify" days="2">
+<period start="2018-08-31 00:00:00" end="2018-08-31 23:59:59"/>
+<clients found="2">
+<client name="Алёна Мурлаева" email="puffistik@inbox.ru" tarif_cost="5000" pay_date="2018-08-31 21:00:00"/>
+<client name="Андрей Калашников" email="kalash-88@bk.ru" tarif_cost="7100" pay_date="2018-08-31 21:00:00"/>
+</clients>
+</cron_task>
+
+<cron_task date="2018-08-29 16:03" type="pay_notify" days="2">
+<period start="2018-08-31 00:00:00" end="2018-08-31 23:59:59"/>
+<clients found="2">
+<client name="Алёна Мурлаева" email="puffistik@inbox.ru" tarif_cost="5000" pay_date="2018-08-31 21:00:00"/>
+<client name="Андрей Калашников" email="kalash-88@bk.ru" tarif_cost="7100" pay_date="2018-08-31 21:00:00"/>
+</clients>
+</cron_task>
+
+<cron_task date="2018-08-29 16:04" type="pay_notify" days="2">
+<period start="2018-08-31 00:00:00" end="2018-08-31 23:59:59"/>
+<clients found="2">
+<client name="Алёна Мурлаева" email="puffistik@inbox.ru" tarif_cost="5000" pay_date="2018-08-31 21:00:00"/>
+<client name="Андрей Калашников" email="kalash-88@bk.ru" tarif_cost="7100" pay_date="2018-08-31 21:00:00"/>
+</clients>
+</cron_task>
+
+<cron_task date="2018-08-29 16:05" type="pay_notify" days="2">
+<period start="2018-08-31 00:00:00" end="2018-08-31 23:59:59"/>
+<clients found="2">
+<client name="Алёна Мурлаева" email="puffistik@inbox.ru" tarif_cost="5000" pay_date="2018-08-31 21:00:00"/>
+<client name="Андрей Калашников" email="kalash-88@bk.ru" tarif_cost="7100" pay_date="2018-08-31 21:00:00"/>
+</clients>
+</cron_task>
+
+<cron_task date="2018-08-29 16:06" type="pay_notify" days="2">
+<period start="2018-08-31 00:00:00" end="2018-08-31 23:59:59"/>
+<clients found="2">
+<client name="Алёна Мурлаева" email="puffistik@inbox.ru" tarif_cost="5000" pay_date="2018-08-31 21:00:00"/>
+<client name="Андрей Калашников" email="kalash-88@bk.ru" tarif_cost="7100" pay_date="2018-08-31 21:00:00"/>
+</clients>
+</cron_task>
+
+<cron_task date="2018-08-29 16:08" type="pay_notify" days="2">
+<period start="2018-08-31 00:00:00" end="2018-08-31 23:59:59"/>
+<clients found="2">
+<client name="Алёна Мурлаева" email="puffistik@inbox.ru" tarif_cost="5000" pay_date="2018-08-31 21:00:00"/>
+<client name="Андрей Калашников" email="kalash-88@bk.ru" tarif_cost="7100" pay_date="2018-08-31 21:00:00"/>
+</clients>
+</cron_task>
+
+<cron_task date="2018-08-29 16:08" type="pay_notify" days="2">
+<period start="2018-08-31 00:00:00" end="2018-08-31 23:59:59"/>
+<clients found="2">
+<client name="Алёна Мурлаева" email="puffistik@inbox.ru" tarif_cost="5000" pay_date="2018-08-31 21:00:00"/>
+<client name="Андрей Калашников" email="kalash-88@bk.ru" tarif_cost="7100" pay_date="2018-08-31 21:00:00"/>
+</clients>
+</cron_task>
+
+<cron_task date="2018-08-29 16:11" type="pay_notify" days="2">
+<period start="2018-08-31 00:00:00" end="2018-08-31 23:59:59"/>
+<clients found="2">
+<client name="Алёна Мурлаева" email="puffistik@inbox.ru" tarif_cost="5000" pay_date="2018-08-31 21:00:00"/>
+<client name="Андрей Калашников" email="kalash-88@bk.ru" tarif_cost="7100" pay_date="2018-08-31 21:00:00"/>
+</clients>
+</cron_task>
+
+<cron_task date="2018-08-29 16:12" type="pay_notify" days="2">
+<period start="2018-08-31 00:00:00" end="2018-08-31 23:59:59"/>
+<clients found="2">
+<client name="Алёна Мурлаева" email="puffistik@inbox.ru" tarif_cost="5000" pay_date="2018-08-31 21:00:00"/>
+<client name="Андрей Калашников" email="kalash-88@bk.ru" tarif_cost="7100" pay_date="2018-08-31 21:00:00"/>
+</clients>
+</cron_task>
+
+<cron_task date="2018-08-29 16:15" type="pay_notify" days="2">
+<period start="2018-08-31 00:00:00" end="2018-08-31 23:59:59"/>
+<clients found="2">
+<client name="Алёна Мурлаева" email="puffistik@inbox.ru" tarif_cost="5000" pay_date="2018-08-31 21:00:00"/>
+<client name="Андрей Калашников" email="kalash-88@bk.ru" tarif_cost="7100" pay_date="2018-08-31 21:00:00"/>
+</clients>
+</cron_task>

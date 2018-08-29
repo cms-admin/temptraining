@@ -2,6 +2,7 @@
 use TTClient\Client;
 use TTClient\ClientYakassa;
 use TTClient\ClientModel;
+use TTClient\ClientEmail;
 
 /*
 Plugin Name: Темп Клиент
@@ -15,13 +16,15 @@ define('TT_CLIENT_DIR', plugin_dir_path(__FILE__));
 
 define('TT_CLIENT_URL', plugin_dir_url(__FILE__));
 
-define('TT_CLIENT_V', '1.5.0');
+define('TT_CLIENT_V', '1.5.1');
 
 define('TT_CLIENT_CSS_URL', TT_CLIENT_URL . 'assets/css/');
 define('TT_CLIENT_JS_URL', TT_CLIENT_URL . 'assets/js/');
 define('TT_CLIENT_ICONS_URL', TT_CLIENT_URL . 'assets/icons/');
 define('TT_CLIENT_VIEWS', TT_CLIENT_DIR . 'templates/');
 define('TT_CLIENT_THEME_VIEWS', get_template_directory() . '/tt-client/');
+define('TT_CLIENT_LOGS', TT_CLIENT_DIR . '/.logs/');
+define('TT_CRON_URL', 'https://temptraining.ru/');
 
 /**
  * Загрузка плагина
@@ -34,6 +37,7 @@ function tt_client_load(){
   require_once(TT_CLIENT_DIR.'classes/Client.php');
   require_once(TT_CLIENT_DIR.'classes/ClientYakassa.php');
   require_once(TT_CLIENT_DIR.'classes/ClientModel.php');
+  require_once(TT_CLIENT_DIR.'classes/ClientEmail.php');
 
   /**
    * Ajax запросы

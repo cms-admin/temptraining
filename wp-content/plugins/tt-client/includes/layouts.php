@@ -19,6 +19,7 @@ function ercrm_admin_styles($hook){
   wp_enqueue_style( 'ttcli_datetime', TT_CLIENT_CSS_URL . 'jquery.datetimepicker.css' );
   wp_enqueue_style( 'ttcli_scroll', TT_CLIENT_CSS_URL . 'jquery.scrollbar.css' );
   wp_enqueue_style( 'ttcli_tooltips', TT_CLIENT_CSS_URL . 'tooltip.css' );
+  wp_enqueue_style( 'ttcli_iziModal', TT_CLIENT_CSS_URL . 'iziModal.css' );
   wp_enqueue_style( 'ttcli_backend', TT_CLIENT_CSS_URL . 'backend.css', array(), '1.0.1' );
 
   wp_enqueue_script( 'ttcli_bootstrap', TT_CLIENT_JS_URL . 'bootstrap.js', ['jquery']);
@@ -31,6 +32,8 @@ function ercrm_admin_styles($hook){
   wp_enqueue_script( 'ttcli_tooltips', TT_CLIENT_JS_URL . 'Tooltip.js', ['jquery']);
   wp_enqueue_script( 'ttcli_list', TT_CLIENT_JS_URL . 'list.js', ['jquery']);
   wp_enqueue_script( 'ttcli_list_pagination', TT_CLIENT_JS_URL . 'list.pagination.min.js', ['jquery']);
+  wp_enqueue_script( 'ttcli_codeflask', TT_CLIENT_JS_URL . 'codeflask.min.js', ['jquery']);
+  wp_enqueue_script( 'ttcli_iziModal', TT_CLIENT_JS_URL . 'iziModal.js', ['jquery']);
   wp_enqueue_script( 'ttcli_admin', TT_CLIENT_JS_URL . 'admin.js', ['jquery']);
 
   wp_localize_script('ttcli_admin', 'ttcli_ajax',

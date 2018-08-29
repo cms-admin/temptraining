@@ -62,7 +62,30 @@ function tt_client_admin_settings(){
  * @return html render
  */
 function tt_client_admin_templates(){
+  $all_templates = scandir(TT_CLIENT_VIEWS . 'emails');
+  $options = ClientModel::getInstance()->getOption(false, 'tt_client_emails');
+  $email_options = [];
+
+  foreach ($all_templates as $html) {
+    $path = realpath(TT_CLIENT_VIEWS . 'emails/' . $html);
+    if (is_file($path)) {
+      $lines = file($path);
+      
+      $key = str_replace('.html', '', $html);
+      $email_options[$key] = [
+        'file_path' => $path,
+        'file_name' => $html,
+        'file_data' => file_get_contents($path),
+        'title'     => trim(str_replace(['<!--', '-->'], '', $lines[0])),
+        'subject'   => $options[$key]['subject']
+      ];
+    }
+    
+  }
+  
   $context  = Timber::get_context();
+  $context['icons_url'] = TT_CLIENT_ICONS_URL;
+  $context['email_options'] = $email_options;
   $context['options'] = Client::getInstance()->getPluginOptions(false, true);
 
   Timber::render('admin/templates.twig', $context );

@@ -2,6 +2,7 @@
 namespace TTClient;
 
 use TTClient\ClientYakassa;
+use TTClient\ClientModel;
 
 class Client
 {
@@ -26,6 +27,7 @@ class Client
     require_once ($this->root_dir . 'wp-includes/pluggable.php');
     require_once ($this->root_dir . 'wp-includes/capabilities.php');
     require_once ($this->root_dir . 'wp-includes/class-wp-query.php');
+    require_once ($this->root_dir . 'wp-includes/link-template.php');
     require_once (TT_CLIENT_DIR . 'includes'.DIRECTORY_SEPARATOR.'errors.php');
 
     global $wpdb;
@@ -2180,11 +2182,89 @@ class Client
   }
 
   /**
+   * Проверят доступность папки и файлов для записи логов
+   */
+  private function checkLogsDir($file)
+  {
+    // Проверяет сущестование папки с логами
+    if (is_dir(TT_CLIENT_LOGS) === FALSE){
+      mkdir(TT_CLIENT_LOGS, 0700);
+    }
+    $text = '<FilesMatch "(.(zip)|~)$">
+        Order allow,deny
+        Deny from all
+        Satisfy All
+        </FilesMatch>';
+    $htaccess = fopen(TT_CLIENT_LOGS.'/.htaccess', 'w');
+    if (filesize(TT_CLIENT_LOGS.'/.htaccess') > 0) {
+      $content = fread($htaccess, filesize(TT_CLIENT_LOGS.'/.htaccess'));
+    } else {
+      $content = '';
+    }
+
+    if ($content != $text){
+      fwrite($htaccess, $text);
+    }
+
+    fclose($htaccess);
+
+    if (is_file(TT_CLIENT_LOGS . '/' . $file . '.xml') === FALSE)
+    {
+      $fileXML = fopen(TT_CLIENT_LOGS . '/' . $file . '.xml', 'w');
+      fclose($fileXML);
+    }
+  }
+
+  /**
    * Напоминание клиентам о необходимости совершить платеж через $days дней
    * @param  integer $days [description]
    * @return [type]        [description]
    */
   public function cronClientsPayNotyfy($days = false)
+  {
+    if ($days === false) return false;
+
+    $this->checkLogsDir('notification');
+
+    $clients = ClientModel::getInstance()->getClientsForPayNotify($days);
+
+    if(!empty($clients)){
+      
+      foreach ($clients as $client) {
+        // Генерирует заказ для оплаты
+        $options = ClientModel::getInstance()->getOption();
+
+        // Данные для регистрации заказа
+        $register_data = [
+          'userName'    => $options['openbank_user'],
+          'password'    => $options['openbank_pass'],
+          'orderNumber' => urlencode($client->client_id . '_' . date('ymd_Hi')),
+          'amount'      => intval($client->tarif_cost) * 100,
+          'returnUrl'   => TT_CRON_URL . 'client',
+          'clientId'    => intval($client->client_id),
+          'description' => strip_tags('Оплата тарифа '. $client->client_tarif_name),
+          'jsonParams'  => json_encode([
+            'month_count' => 1,
+            'email'       => $client->client_id_name,
+          ]),
+        ];
+
+        $response = $this->openbankGateway('register.do', $register_data);
+        
+        if (isset($response['errorCode'])){
+          $client->pay_link = false;
+        } else {
+          $client->pay_link = $response['formUrl'];
+        }
+        
+        ClientEmail::create()->sendClientPayNotyfy($client, $options);
+      }
+    }
+
+    echo 'cron task cronClientsPayNotyfy('.$days.') complete.'.PHP_EOL;
+  }
+
+  public function old_cronClientsPayNotyfy($days = false)
   {
     if ($days === false) return false;
 

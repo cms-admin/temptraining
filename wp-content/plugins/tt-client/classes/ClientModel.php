@@ -159,4 +159,70 @@ class ClientModel
 
     return true;
   }
+
+  /**
+   * Возвращает массив клиентов, которым необходимо совершить платеж через {$days} дней
+   * @param int $days
+   */
+  public function getClientsForPayNotify($days = false)
+  {
+    // Сегодняшняя дата
+    $today = date_create(date('Y-m-d'));
+    $today_date = $today->format('Y-m-d');
+
+    // Дата оплаты
+    $pay_date = ($days === false) ? $today : date_add($today, date_interval_create_from_date_string($days.' days'));
+
+    // Временной интервал для поиска клиентов
+    $date_start = $pay_date->setTime(00, 00, 00)->format('Y-m-d H:i:s');
+    $date_end = $pay_date->setTime(23, 59, 59)->format('Y-m-d H:i:s');
+
+    $query = "SELECT client_id, client_id_name, client_name, client_tarif_name, tarif_cost, pay_date, recurring_id "
+            ."FROM {$this->prefix}clients "
+            ."WHERE recurring_id = '0' "
+            ."AND notify = '1' "
+            ."AND DATE(pay_date) >= '{$date_start}' "
+            ."AND DATE(pay_date) <= '{$date_end}'";
+
+    $clients = $this->db->get_results($query);
+
+    // Данные для записи в лог
+    $dom = new \DOMDocument('1.0', 'utf-8');
+    // Корневой элемент лога
+    $dom->createElement('cron_task');
+    $rootNode = $dom->createElement('cron_task');
+    $rootNode->setAttribute('date', date('Y-m-d H:i'));
+    $rootNode->setAttribute('type', 'pay_notify');
+    $rootNode->setAttribute('days', $days);
+    $dom->appendChild($rootNode);
+    // Интервал дат для выборки
+    $dateNode = $rootNode->appendChild($dom->createElement('period'));
+    $dateNode->setAttribute('start', $date_start);
+    $dateNode->setAttribute('end', $date_end);
+    // Список клиентов
+    $clientsNode = $rootNode->appendChild($dom->createElement('clients'));
+    $clientsNode->setAttribute('found', count($clients));
+
+    if (!empty($clients)) {
+      foreach ($clients as $client) {
+        $clientNode = $dom->createElement('client');
+        $clientNode->setAttribute('name', $client->client_name);
+        $clientNode->setAttribute('email', $client->client_id_name);
+        $clientNode->setAttribute('tarif_cost', $client->tarif_cost);
+        $clientNode->setAttribute('pay_date', $client->pay_date);
+        $clientsNode->appendChild($clientNode);
+      }
+    }
+
+    $logFile = TT_CLIENT_LOGS . '/notification.xml';
+    $fileContent = str_replace('><', '>'.PHP_EOL.'<', $dom->saveXML());
+
+    if (filesize($logFile) > 0){
+      $fileContent = str_replace('<?xml version="1.0" encoding="utf-8"?>', '', $fileContent);
+    }
+
+    file_put_contents($logFile, $fileContent, FILE_APPEND | LOCK_EX);
+    
+    return $clients;
+  }
 }

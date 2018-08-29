@@ -255,6 +255,49 @@
     media_uploader.open();
   });
 
+  /**
+   * Модальные окна для редактирования шаблонов сообщений
+   */
+  $(document).on('click', '[data-ttcli-modal]', function(){
+    let $this = $(this);
+    let $target = $($this.data('ttcli-modal'));
+    let ID_target = $target.attr('id');
+
+    if ($target.length > 0) {
+      $target.dialog({
+        title: $target.data('title'),
+        dialogClass: 'wp-dialog',
+        autoOpen: false,
+        draggable: false,
+        width: 960,
+        height: 'auto',
+        modal: true,
+        resizable: false,
+        closeOnEscape: true,
+        position: {
+          my: "center",
+          at: "center",
+          of: window
+        },
+        open: function () {
+          // close dialog by clicking the overlay behind it
+          $('.ui-widget-overlay').bind('click', function(){
+            $target.dialog('close');
+          });
+
+        },
+        create: function () {
+          // style fix for WordPress admin
+          $('.ui-dialog-titlebar-close').addClass('ui-button');
+        },
+      });
+      $target.dialog('open');
+    }
+  });
+
+
+
+
 }(jQuery);
 
 function resultAlert(data, callback = false) {

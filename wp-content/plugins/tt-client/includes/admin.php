@@ -68,16 +68,16 @@ function tt_client_admin_templates(){
 
   foreach ($all_templates as $html) {
     $path = realpath(TT_CLIENT_VIEWS . 'emails/' . $html);
+
     if (is_file($path)) {
       $lines = file($path);
-      
+
       $key = str_replace('.html', '', $html);
       $email_options[$key] = [
         'file_path' => $path,
         'file_name' => $html,
-        'file_data' => file_get_contents($path),
-        'title'     => trim(str_replace(['<!--', '-->'], '', $lines[0])),
-        'subject'   => $options[$key]['subject']
+        'edit_url'  => admin_url('/plugin-editor.php?file=tt-client%2Ftemplates%2Femails%2F'.$html.'&plugin=tt-client%2Ftt-client.php'),
+        'title'     => (count(preg_grep("/<!--(.*)-->/", explode("\n", $lines[0]))) > 0) ? trim(str_replace(['<!--', '-->'], '', $lines[0])) : false,
       ];
     }
     

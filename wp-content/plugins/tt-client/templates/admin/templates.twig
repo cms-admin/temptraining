@@ -24,27 +24,28 @@
 {% endblock %}
 
 {% block content %}
-<form id="ttcli_templates_form" action="ttcli_save_templates">
-  <input type="hidden" name="last_update" value="{% if options.last_update %}{{options.last_update}}{% else %}0{% endif %}" />
-
   <div class="file-tiles">
     <div class="grid">
       {% for key, email in email_options %}
-      <div class="grid__col-md-4">
-        <div class="file-tiles__item">
-          <figure class="file-tiles__item-icon">
-            <img src="{{ icons_url }}html.svg" alt="{{ key }}" />
-          </figure>
-          <div class="file-tiles__item-data">
-            <h4 class="file-tiles__item-title">{{ email.title }}</h4>
-            <a href="#" class="file-tiles__item-link" data-izimodal-open="#{{ key }}"  data-izimodal-zindex="20000"  data-izimodal-transitionin="fadeInDown">{{ key }}.html</a>
+        <div class="grid__col-md-4">
+          <div class="file-tiles__item">
+            <figure class="file-tiles__item-icon">
+              <img src="{{ icons_url }}html.svg" alt="{{ key }}" />
+            </figure>
+            <div class="file-tiles__item-data">
+              <h4 class="file-tiles__item-title">{{ email.title }}</h4>
+              <a href="{{ email.edit_url }}" target="_blank" class="file-tiles__item-link">{{ key }}.html</a>
+            </div>
           </div>
         </div>
-        <div id="{{ key }}" class="iziModal">123</div>
-      </div>
       {% endfor %}
     </div>
   </div>
+
+<form id="ttcli_templates_form" action="ttcli_save_templates">
+  <input type="hidden" name="last_update" value="{% if options.last_update %}{{options.last_update}}{% else %}0{% endif %}" />
+
+
 
   <div class="ttcli-form">
     <section class="ttcli-form__head">

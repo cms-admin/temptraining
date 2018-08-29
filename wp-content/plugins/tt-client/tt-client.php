@@ -7,7 +7,7 @@ use TTClient\ClientEmail;
 /*
 Plugin Name: Темп Клиент
 Description: Личный кабинет для клиентов и тренеров
-Version: 1.5.2
+Version: 1.5.3
 Author: Александр Ерко <info@cms-admin.ru>
 Author URI: http://cms-admin.ru/
 Plugin URI: http://cms-admin.ru/

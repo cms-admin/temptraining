@@ -713,3 +713,11 @@
   text-decoration: none;
   cursor: pointer;
 }
+.file-tiles__modal{
+  box-sizing: border-box;
+}
+.file-tiles__modal .ttcli-form {
+  box-sizing: border-box;
+  border: 0 none;
+  padding: 0;
+}

@@ -3,6 +3,7 @@
 use TTClient\Client;
 use TTClient\ClientModel;
 use TTClient\ClientYakassa;
+use TTClient\ClientFormatter;
 
 if( wp_doing_ajax() ){
   // Сохранение настроек
@@ -10,6 +11,7 @@ if( wp_doing_ajax() ){
   add_action('wp_ajax_ttcli_save_templates', 'ttcli_ajax_save_templates');
   add_action('wp_ajax_ttcli_save_club_page', 'ttcli_ajax_save_club_page');
   add_action('wp_ajax_ttcli_save_feedback_options', 'ttcli_ajax_save_feedback_options');
+  add_action('wp_ajax_ttcli_save_email_templates', 'ttcli_save_email_templates');
 
   // Оплата клиента через банк открытие
   add_action('wp_ajax_ttcli_openbank_payment', 'ttcli_ajax_openbank_payment');

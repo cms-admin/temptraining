@@ -24,3 +24,5 @@ wp-content/plugins/hello.php
 /sitemap.xml.gz
 
 package-lock.json
+
+wp-content/plugins/tt-client/.logs
